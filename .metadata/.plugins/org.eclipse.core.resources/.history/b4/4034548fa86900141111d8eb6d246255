@@ -1,0 +1,51 @@
+package application;
+
+public class Animal
+{
+    private String animal;
+    private String animalName;
+    private String animalAge;
+    
+    public Animal(String animal, String animalName, String animalAge)
+    {
+	this.animal = animal;
+	this.animalName = animalName;
+	this.animalAge = animalAge;
+    }
+    
+    public String getArt()
+    {
+        return animal;
+    }
+    
+    public void setArt(String art)
+    {
+        this.animal = art;
+    }
+    
+    public String getNavn()
+    {
+        return animalName;
+    }
+    
+    public void setNavn(String navn)
+    {
+        this.animalName = navn;
+    }
+    
+    public String getAlder()
+    {
+        return animalAge;
+    }
+    
+    public void setAlder(String alder)
+    {
+        this.animalAge = alder;
+    }
+    
+    @Override
+    public String toString()
+    {
+	return "Dyr [art=" + animal + ", navn=" + animalName + ", alder=" + animalAge + "]";
+    }
+}

@@ -1,0 +1,13 @@
+package application;
+
+import presentation.DummyOpretGui;
+
+
+public class KundeController 
+{
+    
+    DummyOpretGui dummmy = new DummyOpretGui();
+    
+    
+
+}

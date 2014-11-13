@@ -1,0 +1,13 @@
+package application;
+
+import presentation.DummyOpretGui;
+
+
+public class CreateCustomerApp 
+{
+    
+    DummyOpretGui dummmy = new DummyOpretGui();
+    
+    
+
+}

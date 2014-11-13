@@ -1,0 +1,13 @@
+package view;
+
+import javax.swing.JTextField;
+
+public class DummyOpretGui
+{
+    private JTextField nameField = new JTextField("Kenneth Mundt");
+    private JTextField addressField = new JTextField("Kettevej 70");
+    private JTextField postCodefField = new JTextField("2650");
+    private JTextField cityField = new JTextField("Hvidovre");
+    private JTextField emailField = new JTextField("km@kennethmundt.com");
+    private JTextField phoneField = new JTextField("60674046");
+}
