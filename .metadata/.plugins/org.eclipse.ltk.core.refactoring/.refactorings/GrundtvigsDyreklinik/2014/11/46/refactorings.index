@@ -12,3 +12,7 @@
 1415713216709	Rename field 'anmimalName'
 1415713231317	Rename local variable 'alder'
 1415713428795	Rename type 'Kunde'
+1415872581866	Delete element
+1415874704384	Delete element
+1415874711261	Rename compilation unit 'CreateCustomerDbb.java'
+1415877528818	Rename local variable 'rs'

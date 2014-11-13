@@ -6,8 +6,8 @@ import java.sql.DriverManager;
 
 public class ConnectionDb
 {
-    String user = "root";
-    String password = "";
+    String user = "kennethmundt";
+    String password = "dreamteam";
     String database = "dyreklinik";
     String url = "jdbc:mysql://localhost/";
     

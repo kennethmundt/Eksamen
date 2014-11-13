@@ -2,19 +2,26 @@ package application;
 
 import java.util.ArrayList;
 
+import dataAccess.CreateCustomerDb;
+
 public class CreateCustomerApp 
 { 
+    
     ArrayList<Animal> animalList = new ArrayList<Animal>();
     Customer customer;
+    CreateCustomerDb ccdb = new CreateCustomerDb();
     
     
-    private void createCustomer(String name, String address, String mail, String phone)
+    public void createCustomer(String name, String address, String phone, String mail)
     {
-	// TODO Auto-generated method stub
+	customer = new Customer(name, address, phone, mail);
+	
+	ccdb.insertCustomer(customer);
+	System.out.println(customer);
 
     }
     
-    private void createAnimal(String name, String age, String animal)
+    public void createAnimal(String name, String age, String animal)
     {
 	// TODO Auto-generated method stub
 
