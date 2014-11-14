@@ -6,53 +6,80 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+
 import application.Customer;
 import application.Animal;
 
-public class ReadCustomerDb 
+public class ReadCustomerDb
 {
-	Connection conn = null;
-	PreparedStatement prepareStatement = null;
-	ResultSet result = null;
+    Connection conn = null;
+    PreparedStatement prepareStatement = null;
+    ResultSet result = null;
 
-	ConnectionDb dBc = new ConnectionDb();
+    ConnectionDb dBc = new ConnectionDb();
 
-	ArrayList<Customer> customerList;
+    ArrayList<Customer> customerList;
 
-	public ArrayList<Customer> readCustomer() throws SQLException
+    public ArrayList<Customer> readCustomer()
+    {
+	customerList = new ArrayList<Customer>();
+
+	try
 	{
-		customerList = new ArrayList<Customer>();
-		
+	    connect();
+	    prepareStatement = conn.prepareStatement("SELECT * FROM kunde");
+	    result = prepareStatement.executeQuery();
+
+	    while (result.next())
+	    {
+		String id = result.getString("idkunde");
+		String name = result.getString("navn");
+		String address = result.getString("adresse");
+		String mobil = result.getString("mobil");
+		String mail = result.getString("email");
+
+		customerList.add(new Customer(id, name, address, mobil, mail));
+	    }
+	}
+
+	catch (SQLException e)
+	{
+	    System.err.println(e);
+	}
+
+	finally
+	{
+	    if (conn != null)
+	    {
 		try
 		{
-			conn = dBc.getConnection();
-			prepareStatement = conn.prepareStatement("SELECT * FROM kunde");
-			result = prepareStatement.executeQuery();
-
-			while(result.next())
-			{    
-				String name = result.getString("navn");
-				String address = result.getString("adresse");
-				String mobil = result.getString("mobil");
-				String mail = result.getString("email");
-				
-				customerList.add(new Customer(name, address, mobil, mail));
-			}
-		}
-
-		catch (SQLException e)
+		    conn.close();
+		} catch (SQLException e)
 		{
-			System.err.println(e);
+		    e.printStackTrace();
 		}
-
-		finally
-		{
-			if(conn != null)
-			{
-				conn.close();
-			}
-		}
-		return customerList;
-
+	    }
 	}
+	return customerList;
+    }
+
+    public void updateCustomerDb(String idNum, String newData, int row, int column)
+    {
+	connect();
+	try
+	{
+	    prepareStatement = conn.prepareStatement("UPDATE kunde SET navn = ?, adresse = ?, mobil = ?, email = ? WHERE idkunde = " + idNum);
+	    prepareStatement.setString(row, newData);
+	} catch (SQLException e)
+	{
+	    e.printStackTrace();
+	}
+    }
+    
+    public void connect()
+    {
+	conn = dBc.getConnection();
+    }
+    
 }
