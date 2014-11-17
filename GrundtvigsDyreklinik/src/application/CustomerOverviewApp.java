@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
+import dataAccess.CreateCustomerDb;
 import dataAccess.ReadCustomerDb;
 
 public class CustomerOverviewApp
 {
     ReadCustomerDb read = new ReadCustomerDb();
-    DefaultTableModel tableModel;
-    List<Customer> customerList;
-
+    CreateCustomerDb update = new CreateCustomerDb();
+    
+    /**
+     * @return Current tablemodel
+     */
     public DefaultTableModel getTableModel()
     {
-	customerList = new ArrayList<Customer>(read.readCustomer());
-	
-	String[] columns = {"id", "Navn", "Adresse", "Telefon", "Mail"};
-	tableModel = new DefaultTableModel(columns, 0);
-	
+	List<Customer> customerList = new ArrayList<Customer>(read.readCustomer());
+
+	String[] columns = { "id", "Navn", "Adresse", "Telefon", "Mail" };
+	DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+
 	for (int i = 0; i < customerList.size(); ++i)
 	{
 	    String id = customerList.get(i).getId();
@@ -28,20 +30,24 @@ public class CustomerOverviewApp
 	    String address = customerList.get(i).getAddress();
 	    String phone = customerList.get(i).getPhone();
 	    String mail = customerList.get(i).getMail();
-	    
-	    Object[] data = {id, name, address, phone, mail};
-	    
+
+	    Object[] data = { id, name, address, phone, mail };
+
 	    tableModel.addRow(data);
-	}		
+	}
 	return tableModel;
     }
 
-    public void saveChanges(Object id, Object data, int row, int column)
+    /**
+     * Passing data from presentation to dataAccess via a call to updateCustomerDb()
+     * @param nameColumn
+     * @param addressColumn
+     * @param phoneColumn
+     * @param mailColumn
+     * @param customerId
+     */
+    public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
-	String idNum = (String) id;
-	String newData = (String) data;
-	
-	read.updateCustomerDb(idNum, newData, row, column);
+	update.updateCustomerDb(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }
-
 }

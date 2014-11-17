@@ -1,3 +1,8 @@
+/**
+ * @author Kenneth
+ * Contains all info needed to create an animal
+ */
+
 package application;
 
 public class Animal
@@ -46,7 +51,6 @@ public class Animal
     @Override
     public String toString()
     {
-	return "Animal [animal=" + animal + ", animalName=" + animalName
-		+ ", animalAge=" + animalBirth + "]";
+	return "Animal [animal=" + animal + ", animalName=" + animalName + ", animalAge=" + animalBirth + "]";
     }
 }
