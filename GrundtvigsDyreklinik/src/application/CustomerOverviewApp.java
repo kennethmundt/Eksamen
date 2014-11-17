@@ -7,11 +7,12 @@ import javax.swing.table.DefaultTableModel;
 
 import dataAccess.CreateCustomerDb;
 import dataAccess.ReadCustomerDb;
+import dataAccess.UpdateDb;
 
 public class CustomerOverviewApp
 {
     ReadCustomerDb read = new ReadCustomerDb();
-    CreateCustomerDb update = new CreateCustomerDb();
+    UpdateDb update = new UpdateDb();
     
     /**
      * @return Current tablemodel
@@ -49,5 +50,12 @@ public class CustomerOverviewApp
     public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
 	update.updateCustomerDb(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
+    }
+
+    public Customer readCustomer(String phone)
+    {
+	Customer customer = read.readCustomer(phone);
+	
+	return customer;
     }
 }

@@ -16,3 +16,23 @@
 1415874704384	Delete element
 1415874711261	Rename compilation unit 'CreateCustomerDbb.java'
 1415877528818	Rename local variable 'rs'
+1415897916540	Rename compilation unit 'GuiSuper.java'
+1415903086011	Delete elements
+1415903108305	Move compilation unit
+1415903114030	Move compilation unit
+1415903125823	Delete element
+1415910579422	Move package
+1415968653103	Rename method 'writeToFile'
+1415977742539	Encapsulate field 'id'
+1415979965403	Rename field 'CustomerTable'
+1416161662033	Rename local variable 'idValue'
+1416161747640	Rename local variable 'value1'
+1416161793484	Rename local variable 'value2'
+1416161835982	Rename local variable 'value3'
+1416161884969	Rename local variable 'value4'
+1416164495754	Rename local variable 'value1'
+1416164538543	Rename local variable 'value2'
+1416164555638	Rename local variable 'value3'
+1416164584796	Rename local variable 'value4'
+1416164634089	Rename local variable 'idValue'
+1416165324958	Rename field 'prepareStatement'

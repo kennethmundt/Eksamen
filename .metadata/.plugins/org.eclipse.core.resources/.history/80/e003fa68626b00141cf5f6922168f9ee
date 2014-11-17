@@ -1,0 +1,10 @@
+package redo;
+
+import javax.swing.JFrame;
+
+public class MainGui extends JFrame
+{
+
+    
+    this.setVisible(true);
+}

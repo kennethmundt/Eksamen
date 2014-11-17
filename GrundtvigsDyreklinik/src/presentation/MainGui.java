@@ -16,7 +16,7 @@ public class MainGui extends JFrame
     {
 	//Setting up the JFrame
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setSize(1200, 1000);
+	setSize(900, 700);
 	setLocationRelativeTo(null);
 	setResizable(false);
 	contentPane = new JPanel();

@@ -1,0 +1,30 @@
+package application;
+
+import java.util.ArrayList;
+
+import dataAccess.CreateCustomerDb;
+
+public class CreateCustomerApp 
+{ 
+    
+    ArrayList<Animal> animalList = new ArrayList<Animal>();
+    Customer customer;
+    Animal animal;
+    CreateCustomerDb ccdb = new CreateCustomerDb();
+    
+    
+    public void createCustomer(String name, String address, String phone, String mail)
+    {
+	customer = new Customer(name, address, phone, mail);
+	
+	ccdb.insertCustomer(customer);
+    }
+    
+    public void createAnimal(String name, String age, String animal)
+    {
+	animal = new Animal(name, age, animal);
+	
+	
+    }
+
+}

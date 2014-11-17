@@ -66,25 +66,4 @@ public class CreateCustomerDb
 	    System.err.println(e);
 	}
     }
-    
-    public void updateCustomerDb(String value1, String value2, String value3, String value4, String idValue)
-    {
-	conn = dBc.connect();
-	try
-	{
-	    preparedStatement = conn.prepareStatement("UPDATE kunde SET navn = ?, adresse = ?, mobil = ?, email = ? WHERE idkunde = "+ idValue);
-
-	    preparedStatement.setString(1, value1);
-	    preparedStatement.setString(2, value2);
-	    preparedStatement.setString(3, value3);
-	    preparedStatement.setString(4, value4);
-	    preparedStatement.executeUpdate();
-	    preparedStatement.close();
-	    conn.close();
-
-	} catch (SQLException e)
-	{
-	    e.printStackTrace();
-	}
-    }
 }

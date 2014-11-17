@@ -1,0 +1,13 @@
+package presentation;
+
+import javax.swing.JFrame;
+
+public class MainGui extends JFrame
+{
+    public MainGui()
+    {
+	this.setSize(1280, 720);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);;
+	this.setVisible(true);
+    }
+}

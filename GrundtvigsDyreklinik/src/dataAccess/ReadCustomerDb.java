@@ -37,11 +37,38 @@ public class ReadCustomerDb
 	    }
 	    preparedStatement.close();
 	    conn.close();
-	}
-	catch (SQLException e)
+	} catch (SQLException e)
 	{
 	    System.err.println(e);
 	}
 	return customerList;
     }
+
+    public Customer readCustomer(String phone)
+    {
+	Customer customer = null;
+	try
+	{
+	    conn = dBc.connect();
+	    preparedStatement = conn.prepareStatement("SELECT * FROM kunde WHERE mobil = "+ phone);
+	    result = preparedStatement.executeQuery();
+	    while (result.next())
+	    {
+		String id = result.getString("idkunde");
+		String name = result.getString("navn");
+		String address = result.getString("adresse");
+		String mobil = result.getString("mobil");
+		String mail = result.getString("email");
+
+		customer = new Customer(id, name, address, mobil, mail);
+	    }
+
+	} catch (SQLException e)
+	{
+	    e.printStackTrace();
+	}
+
+	return customer;
+    }
+
 }
