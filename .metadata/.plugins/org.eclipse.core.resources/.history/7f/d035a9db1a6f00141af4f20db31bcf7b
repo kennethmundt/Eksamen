@@ -1,0 +1,19 @@
+package application;
+
+import java.util.ArrayList;
+
+import dataAccess.ReadDb;
+
+public class AnimalDropDownApp
+{
+    ReadDb read = new ReadDb();
+
+    public Object[] readAnimal()
+    {
+	ArrayList<String> getAnimalList = new ArrayList<String>(read.readAnimal());
+
+	Object[] animal = getAnimalList.toArray();
+
+	return animal;
+    }
+}

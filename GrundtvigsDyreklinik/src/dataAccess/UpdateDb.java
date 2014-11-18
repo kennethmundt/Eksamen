@@ -10,20 +10,20 @@ public class UpdateDb
     PreparedStatement preparedStatement = null;
     ConnectionDb dBc = new ConnectionDb();
 
-    public void updateCustomerDb(String value1, String value2, String value3,
-	    String value4, String idValue)
+    public void updateCustomer(String name, String address, String phone,
+	    String mail, String id)
     {
 	conn = dBc.connect();
 	try
 	{
 	    preparedStatement = conn
-		    .prepareStatement("UPDATE kunde SET navn = ?, adresse = ?, mobil = ?, email = ? WHERE idkunde = "
-			    + idValue);
+		    .prepareStatement("UPDATE customers SET name = ?, address = ?, phone = ?, mail = ? WHERE idCustomer = "
+			    + id);
 
-	    preparedStatement.setString(1, value1);
-	    preparedStatement.setString(2, value2);
-	    preparedStatement.setString(3, value3);
-	    preparedStatement.setString(4, value4);
+	    preparedStatement.setString(1, name);
+	    preparedStatement.setString(2, address);
+	    preparedStatement.setString(3, phone);
+	    preparedStatement.setString(4, mail);
 	    preparedStatement.executeUpdate();
 	    preparedStatement.close();
 	    conn.close();
@@ -34,14 +34,14 @@ public class UpdateDb
 	}
     }
 
-    public void deleteCustomerDb(String value)
+    public void deleteCustomer(String phone)
     {
 	conn = dBc.connect();
 	try
 	{
 	    preparedStatement = conn
-		    .prepareStatement("DELETE FROM kunde WHERE mobil = '"
-			    + value + "'");
+		    .prepareStatement("DELETE FROM customers WHERE phone = "
+			    + phone);
 	    preparedStatement.executeUpdate();
 	    preparedStatement.close();
 	    conn.close();
@@ -51,5 +51,4 @@ public class UpdateDb
 	    e.printStackTrace();
 	}
     }
-
 }

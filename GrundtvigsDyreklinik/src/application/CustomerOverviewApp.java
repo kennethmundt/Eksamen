@@ -6,13 +6,12 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import dataAccess.CreateCustomerDb;
-import dataAccess.ReadCustomerDb;
+import dataAccess.ReadDb;
 import dataAccess.UpdateDb;
 
 public class CustomerOverviewApp
 {
-    ReadCustomerDb read = new ReadCustomerDb();
-    UpdateDb update = new UpdateDb();
+    ReadDb read = new ReadDb();
     
     /**
      * @return Current tablemodel
@@ -37,19 +36,6 @@ public class CustomerOverviewApp
 	    tableModel.addRow(data);
 	}
 	return tableModel;
-    }
-
-    /**
-     * Passing data from presentation to dataAccess via a call to updateCustomerDb()
-     * @param nameColumn
-     * @param addressColumn
-     * @param phoneColumn
-     * @param mailColumn
-     * @param customerId
-     */
-    public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
-    {
-	update.updateCustomerDb(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }
 
     public Customer readCustomer(String phone)

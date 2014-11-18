@@ -19,7 +19,6 @@
 <fullyQualifiedTypeName name="javax.swing.JTable"/>
 <fullyQualifiedTypeName name="javax.swing.JTabbedPane"/>
 <fullyQualifiedTypeName name="dataAccess.ReadCustomerDb"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 <fullyQualifiedTypeName name="javax.swing.table.TableModel"/>
@@ -28,17 +27,25 @@
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="java.time.LocalDate"/>
 <fullyQualifiedTypeName name="java.sql.Statement"/>
-<fullyQualifiedTypeName name="application.CreateCustomerApp"/>
 <fullyQualifiedTypeName name="dataAccess.CreateCustomerDb"/>
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="application.CustomerOverviewApp"/>
 <fullyQualifiedTypeName name="application.Customer"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
-<fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="application.UpdateApp"/>
+<fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
+<fullyQualifiedTypeName name="application.CreateCustomerApp"/>
+<fullyQualifiedTypeName name="javax.swing.Timer"/>
+<fullyQualifiedTypeName name="application.AnimialDropDownApp"/>
+<fullyQualifiedTypeName name="application.AnimialDropDownApp.AnimalOverviewApp"/>
+<fullyQualifiedTypeName name="presentation.CreateCustomerGui"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.w3c.dom.CDATASection"/>
+<fullyQualifiedTypeName name="dataAccess.ReadDb"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>

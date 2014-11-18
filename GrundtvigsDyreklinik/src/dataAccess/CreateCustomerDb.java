@@ -16,11 +16,11 @@ public class CreateCustomerDb
     ConnectionDb dBc = new ConnectionDb();
     int customerId;
 
-    public void insertCustomer(Customer customer)
+    public void insert(Customer customer)
     {
 	try
 	{
-	    String insert = "INSERT INTO kunde VALUES(default, ?, ?, ?, ?)";
+	    String insert = "INSERT INTO customers VALUES(default, ?, ?, ?, ?)";
 
 	    conn = dBc.connect();
 	    preparedStatement = conn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
@@ -46,16 +46,16 @@ public class CreateCustomerDb
 	}
     }
 
-    public void insertAnimal(Animal a)
+    public void insert(Animal animal)
     {
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn.prepareStatement("INSERT INTO dyr VALUES(default, ?, ?, ?, ?)");
-
-	    preparedStatement.setString(1, a.getAnimalName());
-	    preparedStatement.setString(2, a.getAnimalBirth());
-	    preparedStatement.setString(3, a.getAnimal());
+	    preparedStatement = conn.prepareStatement("INSERT INTO animals VALUES(default, ?, ?, ?, ?)");
+	   
+	    preparedStatement.setString(1, animal.getAnimalBirth());
+	    preparedStatement.setString(2, animal.getAnimalName());
+	    preparedStatement.setInt(3, animal.getSpeciesId());
 	    preparedStatement.setInt(4, customerId);
 	    preparedStatement.executeUpdate();
 	    preparedStatement.close();

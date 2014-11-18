@@ -7,50 +7,51 @@ package application;
 
 public class Animal
 {
-    private String animal;
+    private int speciesId;
     private String animalName;
     private String animalBirth;
-    
-    public Animal(String animalName, String animalAge, String animal)
+
+    public Animal(int speciesId, String animalName, String animalBirth)
     {
+	this.speciesId = speciesId;
 	this.animalName = animalName;
-	this.animalBirth = animalAge;
-	this.animal = animal;
+	this.animalBirth = animalBirth;
     }
 
-    public String getAnimal()
+    public int getSpeciesId()
     {
-        return animal;
+	return speciesId;
     }
 
     public String getAnimalName()
     {
-        return animalName;
+	return animalName;
     }
 
     public String getAnimalBirth()
     {
-        return animalBirth;
+	return animalBirth;
     }
 
-    public void setAnimal(String animal)
+    public void setSpeciesId(int speciesId)
     {
-        this.animal = animal;
+	this.speciesId = speciesId;
     }
 
     public void setAnimalName(String animalName)
     {
-        this.animalName = animalName;
+	this.animalName = animalName;
     }
 
     public void setAnimalBirth(String animalBirth)
     {
-        this.animalBirth = animalBirth;
+	this.animalBirth = animalBirth;
     }
 
     @Override
     public String toString()
     {
-	return "Animal [animal=" + animal + ", animalName=" + animalName + ", animalAge=" + animalBirth + "]";
+	return "Animal [speciesId=" + speciesId + ", animalName=" + animalName
+		+ ", animalBirth=" + animalBirth + "]";
     }
 }

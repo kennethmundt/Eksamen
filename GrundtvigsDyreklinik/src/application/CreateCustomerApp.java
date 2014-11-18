@@ -8,11 +8,12 @@ package application;
 import java.util.ArrayList;
 
 import dataAccess.CreateCustomerDb;
+import dataAccess.ReadDb;
 
 public class CreateCustomerApp
 {
-    ArrayList<Animal> animalList = new ArrayList<Animal>();
     CreateCustomerDb ccdb = new CreateCustomerDb();
+    ReadDb read = new ReadDb();
 
     /**
      * Creates a new customer and passes this customer as a parameter to insertCustomer()
@@ -22,21 +23,29 @@ public class CreateCustomerApp
      * @param phone
      * @param mail
      */
-    public void createCustomer(String name, String address, String phone, String mail)
+    public void create(String name, String address, String phone, String mail)
     {
 	Customer customer = new Customer(name, address, phone, mail);
-
-	ccdb.insertCustomer(customer);
+	
+	ccdb.insert(customer);
     }
 
     /**
      * Creates a new animal and passes it  
      * @param animalName
-     * @param animalAge
+     * @param animalBirth
      * @param animal
      */
-    public void createAnimal(String animalName, String animalAge, String animal)
+    public void create(String animalName, String animalBirth, int id)
     {
-	Animal newAnimal = new Animal(animalName, animalAge, animal);
+	Animal newAnimal = new Animal(id, animalBirth, animalName);
+	ccdb.insert(newAnimal);
     }
+
+    public int readAnimal(String animal)
+    {
+	return read.readSpecies(animal);
+    }
+    
+    
 }
