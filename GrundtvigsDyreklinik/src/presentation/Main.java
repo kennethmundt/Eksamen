@@ -1,5 +1,8 @@
-package presentation;
+/**
+ * @author kenneth
+ */
 
+package presentation;
 
 public class Main
 {

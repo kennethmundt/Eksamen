@@ -1,3 +1,7 @@
+/**
+ * @author kenneth og Tina
+ */
+
 package presentation;
 
 import java.awt.Dimension;
@@ -25,16 +29,15 @@ public class CustomerViewGui extends JPanel implements ActionListener
     private CustomerOverviewApp customerOverviewApp = new CustomerOverviewApp();
     private CreateCustomerApp createCustomerApp = new CreateCustomerApp();
     private UpdateApp updateApp = new UpdateApp();
-    private JTable customerTable;
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
     private JButton opretKundeBtn;
     private JButton sletKundeBtn;
-    
+
     public CustomerViewGui()
     {
 	tableModel = customerOverviewApp.getTableModel();
-	customerTable = new JTable(tableModel);
+	JTable customerTable = new JTable(tableModel);
 	customerTable.setPreferredScrollableViewportSize(new Dimension(800, 500));
 	customerTable.setFillsViewportHeight(true);
 	customerTable.getColumn("id").setWidth(0);
@@ -44,17 +47,18 @@ public class CustomerViewGui extends JPanel implements ActionListener
 	opretKundeBtn = new JButton("Opret Kunde");
 	sletKundeBtn = new JButton("Slet Kunde");
 
-	//Add components to panel
+	// Add components to panel
 	add(scrollPane);
 	add(sletKundeBtn);
 	add(opretKundeBtn);
-	
-	//add actionlisteners
+
+	// add actionlisteners
 	opretKundeBtn.addActionListener(this);
 	sletKundeBtn.addActionListener(this);
-	
-	//Add tableModellistener
-	// Registers changes in customerTable and pass changes to aplicationLayer
+
+	// Add tableModellistener
+	// Registers changes in customerTable and pass changes to
+	// aplicationLayer
 	customerTable.getModel().addTableModelListener(new TableModelListener()
 	{
 	    @Override
@@ -63,12 +67,15 @@ public class CustomerViewGui extends JPanel implements ActionListener
 		int row = e.getFirstRow();
 		String customerId = (String) customerTable.getValueAt(row, 0);
 		String nameColumn = (String) customerTable.getValueAt(row, 1);
-		String addressColumn = (String) customerTable.getValueAt(row, 2);
+		String addressColumn = (String) customerTable
+			.getValueAt(row, 2);
 		String phoneColumn = (String) customerTable.getValueAt(row, 3);
 		String mailColumn = (String) customerTable.getValueAt(row, 4);
 
-//		customerOverviewApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
-		updateApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
+		// customerOverviewApp.saveChanges(nameColumn, addressColumn,
+		// phoneColumn, mailColumn, customerId);
+		updateApp.saveChanges(nameColumn, addressColumn, phoneColumn,
+			mailColumn, customerId);
 
 	    }
 	});
@@ -79,18 +86,19 @@ public class CustomerViewGui extends JPanel implements ActionListener
     {
 	String phone;
 	if (e.getSource() == opretKundeBtn)
-	{  
-	    CreateCustomerGui create = new CreateCustomerGui();
-	}
-	else if (e.getSource() == sletKundeBtn) 
+	{
+	    new CreateCustomerGui();
+	} else if (e.getSource() == sletKundeBtn)
 	{
 	    phone = JOptionPane.showInputDialog("Indtast telefonnr. på kunden du ønsker at slette.");
 	    Customer customer = customerOverviewApp.readCustomer(phone);
-	    
-	    if (JOptionPane.showConfirmDialog(null, customer.toString(), "Slet denne kunde?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+
+	    if (JOptionPane.showConfirmDialog(null, customer.toString(),
+		    "Slet denne kunde?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 	    {
 		updateApp.deleteCustomer(phone);
-		JOptionPane.showMessageDialog(null, "Kunden er slettet", "", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Kunden er slettet", "",
+			JOptionPane.INFORMATION_MESSAGE);
 	    }
 	}
     }

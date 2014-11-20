@@ -12,7 +12,6 @@ public class AnimalDropDownApp
     public Object[] readAnimal()
     {
 	List<String> speciesList = new ArrayList<String>(read.readAnimal());
-	System.out.println(speciesList);
 
 	Object[] animal = speciesList.toArray();
 

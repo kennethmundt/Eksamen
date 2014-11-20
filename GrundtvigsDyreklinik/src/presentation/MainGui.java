@@ -1,3 +1,7 @@
+/**
+ * @author Tina
+ */
+
 package presentation;
 
 import java.awt.BorderLayout;
@@ -21,17 +25,17 @@ public class MainGui extends JFrame
 	setResizable(false);
 	contentPane = new JPanel();
 	contentPane.setLayout(new BorderLayout(0, 0));
-	setContentPane(contentPane); //Usikker på setContentPane funktion. -------------------------------
+	setContentPane(contentPane);
 
 	//Instantiate tabbedPane and add it to the contentpane.
 	tabbedPane = new JTabbedPane();
 	contentPane.add(tabbedPane, BorderLayout.CENTER);
 
-	//This is the different tabs
+	//The different tabs
 	customerOverviewPnl = new CustomerViewGui();
-
+	
 	//Add tabs to the tabbedPane
-	tabbedPane.addTab("Kundeoversigt", new ImageIcon("image/addMeIcon.png"), customerOverviewPnl, null);
+	tabbedPane.addTab("Kundeoversigt", new ImageIcon("image/addMeIcon.png"), customerOverviewPnl, null); //Icon vises ikke
 	
 	setVisible(true);
     }
