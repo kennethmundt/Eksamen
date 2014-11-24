@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;isValidated&apos; in &apos;presentation.CreateCustomerGui.actionPerformed(...)&apos; to &apos;inputIsValidated&apos;&#x0D;&#x0A;- Original project: &apos;GrundtvigsDyreklinik&apos;&#x0D;&#x0A;- Original element: &apos;presentation.CreateCustomerGui.actionPerformed(ActionEvent).isValidated&apos;&#x0D;&#x0A;- Renamed element: &apos;isValidated&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;isValidated&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;presentation{CreateCustomerGui.java[CreateCustomerGui~actionPerformed~QActionEvent;@isValidated!5421!5458!5429!5439!Z!0!false" name="inputIsValidated" references="true" stamp="1416830865883" version="1.0"/>
+</session>

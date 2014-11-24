@@ -38,8 +38,8 @@ public class CreateCustomerApp
      */
     public void create(String animalName, String animalBirth, int id)
     {
-	Animal newAnimal = new Animal(id, animalBirth, animalName);
-	ccdb.insert(newAnimal);
+	Animal animal = new Animal(id, animalBirth, animalName);
+	ccdb.insert(animal);
     }
 
     public int readAnimal(String animal)

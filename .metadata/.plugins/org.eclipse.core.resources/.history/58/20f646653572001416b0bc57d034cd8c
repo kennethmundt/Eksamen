@@ -1,0 +1,6 @@
+package presentation;
+
+public interface ValidateData
+{
+    public void validateMe();
+}

@@ -22,3 +22,17 @@
 1416312187337	Rename local variable 'getAnimalList'
 1416313779128	Rename field 'animalArt'
 1416317339077	Rename field 'Animal'
+1416399733686	Rename field 'btnOpret'
+1416399749435	Rename field 'btnAddAnimal'
+1416399761725	Rename field 'btnOk'
+1416405541370	Rename field 'opretBtn'
+1416485994178	Rename field 'opretKundeBtn'
+1416486008170	Rename field 'sletKundeBtn'
+1416488391794	Rename method 'Confirmation'
+1416491001458	Rename local variable 'newAnimal'
+1416651937280	Delete element
+1416651999199	Delete element
+1416657098289	Rename local variable 'namePattern'
+1416657393826	Rename local variable 'correctInputforName'
+1416657410094	Rename local variable 'correctInputForNameorName'
+1416737101702	Delete element

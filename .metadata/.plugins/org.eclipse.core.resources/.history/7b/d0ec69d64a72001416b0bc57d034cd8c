@@ -1,0 +1,11 @@
+public class Regex
+{
+
+    public static void main(String[] args)
+    {
+	String name = "kenneth@kenng";
+	String patternNameString = "(.+)(@)(.+)$";
+	System.out.println(name.matches(patternNameString));
+    }
+
+}

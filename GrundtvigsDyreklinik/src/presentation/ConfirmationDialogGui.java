@@ -16,7 +16,7 @@ public class ConfirmationDialogGui
     private JOptionPane pane;
     private JDialog dialog;
 
-    public void Confirmation(String paneText, String dialogText)
+    public void confirmation(String paneText, String dialogText)
     {
 	pane = new JOptionPane(paneText);
 	dialog = pane.createDialog(dialogText);

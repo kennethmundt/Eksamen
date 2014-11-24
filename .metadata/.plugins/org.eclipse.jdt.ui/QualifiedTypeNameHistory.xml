@@ -33,14 +33,12 @@
 <fullyQualifiedTypeName name="application.CustomerOverviewApp"/>
 <fullyQualifiedTypeName name="application.Customer"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="application.UpdateApp"/>
 <fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
 <fullyQualifiedTypeName name="application.CreateCustomerApp"/>
-<fullyQualifiedTypeName name="javax.swing.Timer"/>
 <fullyQualifiedTypeName name="application.AnimialDropDownApp"/>
 <fullyQualifiedTypeName name="application.AnimialDropDownApp.AnimalOverviewApp"/>
 <fullyQualifiedTypeName name="presentation.CreateCustomerGui"/>
@@ -48,4 +46,7 @@
 <fullyQualifiedTypeName name="org.w3c.dom.CDATASection"/>
 <fullyQualifiedTypeName name="dataAccess.ReadDb"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="javax.swing.Timer"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
 </qualifiedTypeNameHistroy>

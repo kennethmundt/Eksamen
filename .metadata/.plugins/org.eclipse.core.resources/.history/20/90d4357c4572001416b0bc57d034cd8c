@@ -1,0 +1,11 @@
+public class Regex
+{
+
+    public static void main(String[] args)
+    {
+	String name = "kenneth g9";
+	String patternNameString = "\\w+\\D\\s\\w+\\D";
+	System.out.println(name.matches(patternNameString));
+    }
+
+}

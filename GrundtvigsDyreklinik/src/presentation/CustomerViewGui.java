@@ -31,8 +31,8 @@ public class CustomerViewGui extends JPanel implements ActionListener
     private UpdateApp updateApp = new UpdateApp();
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
-    private JButton opretKundeBtn;
-    private JButton sletKundeBtn;
+    private JButton createCustomerBtn;
+    private JButton deleteCustomerBtn;
 
     public CustomerViewGui()
     {
@@ -44,17 +44,17 @@ public class CustomerViewGui extends JPanel implements ActionListener
 	customerTable.getColumn("id").setMinWidth(0);
 	customerTable.getColumn("id").setMaxWidth(0);
 	scrollPane = new JScrollPane(customerTable);
-	opretKundeBtn = new JButton("Opret Kunde");
-	sletKundeBtn = new JButton("Slet Kunde");
+	createCustomerBtn = new JButton("Opret Kunde");
+	deleteCustomerBtn = new JButton("Slet Kunde");
 
 	// Add components to panel
 	add(scrollPane);
-	add(sletKundeBtn);
-	add(opretKundeBtn);
+	add(deleteCustomerBtn);
+	add(createCustomerBtn);
 
 	// add actionlisteners
-	opretKundeBtn.addActionListener(this);
-	sletKundeBtn.addActionListener(this);
+	createCustomerBtn.addActionListener(this);
+	deleteCustomerBtn.addActionListener(this);
 
 	// Add tableModellistener
 	// Registers changes in customerTable and pass changes to
@@ -85,10 +85,10 @@ public class CustomerViewGui extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
 	String phone;
-	if (e.getSource() == opretKundeBtn)
+	if (e.getSource() == createCustomerBtn)
 	{
 	    new CreateCustomerGui();
-	} else if (e.getSource() == sletKundeBtn)
+	} else if (e.getSource() == deleteCustomerBtn)
 	{
 	    phone = JOptionPane.showInputDialog("Indtast telefonnr. på kunden du ønsker at slette.");
 	    Customer customer = customerOverviewApp.readCustomer(phone);
