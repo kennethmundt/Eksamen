@@ -1,19 +1,14 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import dataAccess.ReadDb;
+import dataAccess.ControllerDb;
 
 public class AnimalDropDownApp
 {
-    ReadDb read = new ReadDb();
-
+    ControllerDb controllerDb = new ControllerDb();
+    
     public Object[] readAnimal()
     {
-	List<String> speciesList = new ArrayList<String>(read.readAnimal());
-
-	Object[] animal = speciesList.toArray();
+	Object[] animal = controllerDb.readAnimal().toArray();
 
 	return animal;
     }

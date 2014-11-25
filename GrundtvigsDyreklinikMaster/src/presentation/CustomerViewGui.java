@@ -20,7 +20,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
-import application.Controller;
+import application.ControllerApp;
 import application.CreateApp;
 import application.Customer;
 import application.OverviewApp;
@@ -28,7 +28,7 @@ import application.UpdateApp;
 
 public class CustomerViewGui extends JPanel implements ActionListener
 {
-    Controller controller = new Controller();
+    ControllerApp controller = new ControllerApp();
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
     private JButton createCustomerBtn;

@@ -15,6 +15,7 @@ public class UpdateDb
 
     /**
      * Updating a specific customer in the database
+     * 
      * @param name
      * @param address
      * @param phone
@@ -46,17 +47,28 @@ public class UpdateDb
     }
 
     /**
-     * Deleting a specific customer in the database
-     * @param phone
+     * Updating a specific treatment in the database
+     * 
+     * @param treatmentName
+     * @param price
+     * @param duration
+     * @param comment
+     * @param id
      */
-    public void deleteCustomer(String phone)
+    public void updateTreatment(String treatmentName, String price,
+	    String duration, String comment, String id)
     {
 	conn = dBc.connect();
 	try
 	{
 	    preparedStatement = conn
-		    .prepareStatement("DELETE FROM customers WHERE phone = "
-			    + phone);
+		    .prepareStatement("UPDATE treatments SET treatmentName = ?, price = ?, duration = ?, comment = ? WHERE idTreatment = "
+			    + id);
+
+	    preparedStatement.setString(1, treatmentName);
+	    preparedStatement.setString(2, price);
+	    preparedStatement.setString(3, duration);
+	    preparedStatement.setString(4, comment);
 	    preparedStatement.executeUpdate();
 	    preparedStatement.close();
 	    conn.close();
@@ -66,53 +78,5 @@ public class UpdateDb
 	    e.printStackTrace();
 	}
     }
-    
-    /**
-     * Updating a specific treatment in the database
-     * @param treatmentName
-     * @param price
-     * @param duration
-     * @param comment
-     * @param id
-     */
-	public void updateTreatment(String treatmentName, String price, String duration, String comment, String id)
-	{
-		conn = dBc.connect();
-		try
-		{
-			preparedStatement = conn.prepareStatement("UPDATE treatments SET treatmentName = ?, price = ?, duration = ?, comment = ? WHERE idTreatment = " + id );
 
-			preparedStatement.setString(1, treatmentName);
-			preparedStatement.setString(2, price);
-			preparedStatement.setString(3, duration);
-			preparedStatement.setString(4, comment);
-			preparedStatement.executeUpdate();
-			preparedStatement.close();
-			conn.close();
-
-		} catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
-    /**
-     * Deleting a specific treatment in the database
-     * @param treatmentName
-     */
-	public void deleteTreatment(String treatmentName)
-	{ 
-		conn = dBc.connect();
-		try
-		{
-			preparedStatement = conn.prepareStatement("DELETE FROM treatments WHERE treatmentName = '" + treatmentName + "'");
-			preparedStatement.executeUpdate();
-			preparedStatement.close();
-			conn.close();
-
-		} catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-	}
 }

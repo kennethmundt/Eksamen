@@ -8,20 +8,21 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import dataAccess.ControllerDb;
 import dataAccess.CreateDb;
 import dataAccess.ReadDb;
 import dataAccess.UpdateDb;
 
 public class OverviewApp
 {
-    ReadDb read = new ReadDb();
+    ControllerDb controllerDb = new ControllerDb();
     
     /**
      * @return Current tablemodel for customers
      */
     public DefaultTableModel getTableModel()
     {
-	List<Customer> customerList = new ArrayList<Customer>(read.readCustomer());
+	List<Customer> customerList = controllerDb.readCustomer();
 
 	String[] columns = { "id", "Navn", "Adresse", "Telefon", "Mail" };
 	DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
@@ -43,7 +44,7 @@ public class OverviewApp
 
     public Customer readCustomer(String phone)
     {
-	Customer customer = read.readCustomer(phone);
+	Customer customer = controllerDb.readCustomer(phone);
 	
 	return customer;
     }
@@ -53,7 +54,7 @@ public class OverviewApp
      */
     public DefaultTableModel getTreatmentTableModel()
 	{
-		List<Treatment> treatmentList = new ArrayList<Treatment>(read.readTreatment());
+		List<Treatment> treatmentList = controllerDb.readTreatment();
 
 		String[] columns = { "id", "Behandling", "Pris", "Varighed", "Kommentar" };
 		DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
@@ -75,7 +76,7 @@ public class OverviewApp
     
     public Treatment readTreatment(String treatmentName)
 	{
-		Treatment treatment = read.readTreatment(treatmentName);
+		Treatment treatment = controllerDb.readTreatment(treatmentName);
 
 		return treatment;
 	}

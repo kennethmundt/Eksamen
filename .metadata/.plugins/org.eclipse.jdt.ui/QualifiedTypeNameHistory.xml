@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.jar.Attributes.Name"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.PRIVATE_MEMBER"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
 <fullyQualifiedTypeName name="view.DummyOpretGui"/>
@@ -34,7 +33,6 @@
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="application.UpdateApp"/>
-<fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
 <fullyQualifiedTypeName name="application.CreateCustomerApp"/>
 <fullyQualifiedTypeName name="application.AnimialDropDownApp"/>
 <fullyQualifiedTypeName name="application.AnimialDropDownApp.AnimalOverviewApp"/>
@@ -53,7 +51,13 @@
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.Panel"/>
 <fullyQualifiedTypeName name="javax.swing.JFormattedTextField"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.util.ResourceBundle.Control"/>
 <fullyQualifiedTypeName name="application.Controller"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
+<fullyQualifiedTypeName name="javax.sound.midi.ControllerEventListener"/>
+<fullyQualifiedTypeName name="dataAccess.ControllerDb"/>
+<fullyQualifiedTypeName name="dataAccess.DeleteDb"/>
+<fullyQualifiedTypeName name="application.DeleteApp"/>
+<fullyQualifiedTypeName name="application.ControllerApp"/>
 </qualifiedTypeNameHistroy>

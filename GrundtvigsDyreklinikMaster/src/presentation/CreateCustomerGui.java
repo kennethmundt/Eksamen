@@ -1,8 +1,8 @@
-package presentation;
-
 /**
- * @author Tina og Elvis
+ * @author Tina og Kenneth
  */
+
+package presentation;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,14 +21,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import application.AnimalDropDownApp;
-import application.Controller;
+import application.ControllerApp;
 import application.CreateApp;
 
 public class CreateCustomerGui extends JFrame implements ActionListener,
 	ValidateData
 {
     ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
-    Controller controller = new Controller();
+    ControllerApp controller = new ControllerApp();
     
     private JPanel customerPanel;
     private JPanel animalPanel;
@@ -186,7 +186,7 @@ public class CreateCustomerGui extends JFrame implements ActionListener,
 	    phone = phoneTxt.getText();
 	    mail = mailTxt.getText();
 
-	    boolean inputIsValidated = validateInput(mail, phone);
+	    boolean inputIsValidated = validateInput(name, address, mail, phone);
 	    if (inputIsValidated)
 	    {
 		controller.create(name, address, phone, mail);
@@ -249,27 +249,38 @@ public class CreateCustomerGui extends JFrame implements ActionListener,
     @Override
     public boolean validateInput(String... strings)
     {
-	String phoneFormat = "\\d{8}"; // Regular expression that allows a
-				       // sequence of 8 digits.
-	String mailFormat = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"; // Fancy
-										  // regex
-										  // from
-										  // tutorialspoint.com
-	String mail = strings[0];
-	String phone = strings[1];
+	String mailFormat = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"; // Fancy regex from tutorialspoint.com
+	String phoneFormat = "\\d{8}"; // Regular expression that allows a sequence of 8 digits.
+										  
+	String name = strings[0];
+	String address = strings[1];
+	String mail = strings[2];
+	String phone = strings[3];
 	
+	if (name.isEmpty())
+	{
+	    JOptionPane.showMessageDialog(null, "Navnefeltet må ikke være tomt");
+	    nameTxt.setText("");
+	    nameTxt.requestFocus();
+	    return false;
+	}
+	if (address.isEmpty())
+	{
+	    JOptionPane.showMessageDialog(null, "Addressefeltet må ikke være tomt");
+	    addressTxt.setText("");
+	    addressTxt.requestFocus();
+	    return false;
+	}
 	if (!mail.matches(mailFormat))
 	{
-	    JOptionPane.showMessageDialog(null,
-		    "Fejl i indtastning af email-adresse");
+	    JOptionPane.showMessageDialog(null, "Fejl i indtastning af email-adresse");
 	    mailTxt.setText("");
 	    mailTxt.requestFocus();
 	    return false;
 	}
 	if (!phone.matches(phoneFormat))
 	{
-	    JOptionPane.showMessageDialog(null,
-		    "Fejl i indtastning af telefonnr.");
+	    JOptionPane.showMessageDialog(null, "Fejl i indtastning af telefonnr.");
 	    phoneTxt.setText("");
 	    phoneTxt.requestFocus();
 	    return false;
