@@ -22,8 +22,7 @@ import javax.swing.border.LineBorder;
 import application.AnimalDropDownApp;
 import application.CreateCustomerApp;
 
-public class CreateCustomerGui extends JFrame implements ActionListener,
-	ValidateData
+public class CreateCustomerGui extends JFrame implements ActionListener, ValidateData
 {
     ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
     CreateCustomerApp createCustomer = new CreateCustomerApp();
@@ -185,8 +184,8 @@ public class CreateCustomerGui extends JFrame implements ActionListener,
 	    phone = phoneTxt.getText();
 	    mail = mailTxt.getText();
 
-	    boolean inputIsValidated = validateInput();
-	    if (inputIsValidated)
+	    boolean isInputValidated = validateInput(mail, phone);
+	    if (isInputValidated)
 	    {
 		createCustomer.create(name, address, phone, mail);
 
@@ -246,14 +245,20 @@ public class CreateCustomerGui extends JFrame implements ActionListener,
     }
 
     @Override
-    public boolean validateInput()
+    public boolean validateInput(String... var)
     {
 	String phoneFormat = "\\d{8}"; // Regular expression that allows a
 				       // sequence of 8 digits.
 	String mailFormat = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"; // Fancy
-										  // regex
-										  // from
-										  // tutorialspoint.com
+										  // regex									  // tutorialspoint.com
+	if (!mail.matches(mailFormat))
+	{
+	    JOptionPane.showMessageDialog(null,
+		    "Fejl i indtastning af email-adresse");
+	    mailTxt.setText("");
+	    mailTxt.requestFocus();
+	    return false;
+	}
 
 	if (!phone.matches(phoneFormat))
 	{
@@ -263,15 +268,6 @@ public class CreateCustomerGui extends JFrame implements ActionListener,
 	    phoneTxt.requestFocus();
 	    return false;
 	}
-	if (!mail.matches(mailFormat))
-	{
-	    JOptionPane.showMessageDialog(null,
-		    "Fejl i indtastning af email-adresse");
-	    mailTxt.setText("");
-	    mailTxt.requestFocus();
-	    return false;
-	}
 	return true;
     }
-
 }

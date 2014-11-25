@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.omg.CosNaming.NamingContextExtPackage.AddressHelper"/>
 <fullyQualifiedTypeName name="java.util.jar.Attributes.Name"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.PRIVATE_MEMBER"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
@@ -32,10 +31,8 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="application.CustomerOverviewApp"/>
 <fullyQualifiedTypeName name="application.Customer"/>
-<fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="application.UpdateApp"/>
 <fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
 <fullyQualifiedTypeName name="application.CreateCustomerApp"/>
@@ -45,8 +42,18 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.w3c.dom.CDATASection"/>
 <fullyQualifiedTypeName name="dataAccess.ReadDb"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="javax.swing.Timer"/>
+<fullyQualifiedTypeName name="presentation.ValidateData"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="javax.swing.InputVerifier"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="org.omg.CosNaming.NamingContextExtPackage.AddressHelper"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="java.awt.Panel"/>
+<fullyQualifiedTypeName name="javax.swing.JFormattedTextField"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.util.ResourceBundle.Control"/>
+<fullyQualifiedTypeName name="application.Controller"/>
 </qualifiedTypeNameHistroy>
