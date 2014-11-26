@@ -11700,3 +11700,40 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2014-11-25 20:43:35.326 -----------------------------------------------
+eclipse.buildId=4.4.0.I20140606-1215
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=da_DK
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.standard.product
+
+!ENTRY com.objectaid.uml @ com.objectaid.uml.util.extend.ExecutableExtensionManager.get(107) 4 0 2014-11-25 20:43:48.048
+!MESSAGE duplicate id 'JPEG' for com.objectaid.uml.renderFormats
+!STACK 0
+com.objectaid.uml.UMLException: duplicate id 'JPEG' for com.objectaid.uml.renderFormats
+	at com.objectaid.uml.util.extend.ExecutableExtensionManager.get(ExecutableExtensionManager.java:107)
+	at com.objectaid.uml.model.persistence.PersistedDiagram.getAutomaticImage(PersistedDiagram.java:186)
+	at com.objectaid.uml.model.definition.DiagramDefinition.updateModel(DiagramDefinition.java:43)
+	at com.objectaid.uml.cls.model.definition.ClassDiagramDefinition.updateModel(ClassDiagramDefinition.java:42)
+	at com.objectaid.uml.cls.model.definition.ClassDiagramDefinition.updateModel(ClassDiagramDefinition.java:22)
+	at com.objectaid.uml.model.definition.ModelDefinition.create(ModelDefinition.java:185)
+	at com.objectaid.uml.model.persistence.UnmarshalDiagramVisitor.doVisit(UnmarshalDiagramVisitor.java:77)
+	at com.objectaid.uml.model.persistence.UnmarshalDiagramVisitor.doVisit(UnmarshalDiagramVisitor.java:26)
+	at com.objectaid.uml.util.collection.GenericVisitor.visit(GenericVisitor.java:40)
+	at com.objectaid.uml.model.persistence.PersistedDiagram.accept(PersistedDiagram.java:40)
+	at com.objectaid.uml.model.diagram.DiagramFactory.unmarshal(DiagramFactory.java:243)
+	at com.objectaid.uml.model.DiagramHandle.unmarshalModel(DiagramHandle.java:211)
+	at com.objectaid.uml.model.DiagramHandle.unmarshal(DiagramHandle.java:160)
+	at com.objectaid.uml.model.manage.DiagramManager.add(DiagramManager.java:104)
+	at com.objectaid.uml.model.manage.StartupJob$2.run(StartupJob.java:83)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-11-25 20:43:56.098
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\kenneth'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

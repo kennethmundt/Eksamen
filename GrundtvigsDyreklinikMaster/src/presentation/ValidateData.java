@@ -6,5 +6,5 @@ package presentation;
 
 public interface ValidateData
 {
-    public boolean validateInput(String... strings);
+    public boolean validateInput();
 }

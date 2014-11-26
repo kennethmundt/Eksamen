@@ -7,7 +7,6 @@ package presentation;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ResourceBundle.Control;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,16 +19,14 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import application.AnimalDropDownApp;
 import application.ControllerApp;
-import application.CreateApp;
 
 public class CreateCustomerGui extends JFrame implements ActionListener,
-	ValidateData
+ValidateData
 {
     ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
     ControllerApp controller = new ControllerApp();
-    
+
     private JPanel customerPanel;
     private JPanel animalPanel;
     private JTextField nameTxt;
@@ -186,45 +183,30 @@ public class CreateCustomerGui extends JFrame implements ActionListener,
 	    phone = phoneTxt.getText();
 	    mail = mailTxt.getText();
 
-	    boolean inputIsValidated = validateInput(name, address, mail, phone);
+	    boolean inputIsValidated = validateInput();
 	    if (inputIsValidated)
 	    {
 		controller.create(name, address, phone, mail);
 
 		// Dialog box is only showing in 2 sec.
-		confirmationTime
-			.confirmation(
-				"Kunden er oprettet, tilføj gerne en dyr. Dette vindue lukker ned om 2 sek.",
-				"Velkommen");
+		confirmationTime.confirmation("Kunden er oprettet, tilføj gerne en dyr. Dette vindue lukker ned om 2 sek.", "Velkommen");
 
 		nameTxt.setText("");
 		addressTxt.setText("");
 		phoneTxt.setText("");
 		mailTxt.setText("");
 
-		// Make the button and JTextfields non-editable
-		createCustomerBtn.setVisible(false);
-		nameTxt.setEditable(false);
-		addressTxt.setEditable(false);
-		phoneTxt.setEditable(false);
-		mailTxt.setEditable(false);
-		customerLbl.setVisible(false);
-
-		// Make the button and JTextfields editable
-		addAnimalBtn.setEnabled(true);
-		animalCombo.setEnabled(true);
-		animalNameTxt.setEditable(true);
-		ageTxt.setEditable(true);
-		okBtn.setEnabled(true);
+		switchToAnimalPnl();
 	    }
-	    
+
 	} else if (e.getSource() == addAnimalBtn)
 	{
 	    animalName = animalNameTxt.getText();
 	    animalAge = ageTxt.getText();
 
-	    animalArea.append(animal + " " + animalName + " " + animalAge
-		    + "\n");
+	    validateInput();
+
+	    animalArea.append(animal + " " + animalName + " " + animalAge + "\n");
 
 	    controller.create(animalName, animalAge, id);
 
@@ -247,45 +229,76 @@ public class CreateCustomerGui extends JFrame implements ActionListener,
     }
 
     @Override
-    public boolean validateInput(String... strings)
+    public boolean validateInput()
     {
 	String mailFormat = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"; // Fancy regex from tutorialspoint.com
 	String phoneFormat = "\\d{8}"; // Regular expression that allows a sequence of 8 digits.
-										  
-	String name = strings[0];
-	String address = strings[1];
-	String mail = strings[2];
-	String phone = strings[3];
-	
-	if (name.isEmpty())
+	boolean customerNotCreated = true;
+
+	if (customerNotCreated)
 	{
-	    JOptionPane.showMessageDialog(null, "Navnefeltet må ikke være tomt");
-	    nameTxt.setText("");
-	    nameTxt.requestFocus();
-	    return false;
-	}
-	if (address.isEmpty())
+	    if (name.isEmpty())
+	    {
+		JOptionPane.showMessageDialog(null, "Navnefeltet må ikke være tomt");
+		nameTxt.requestFocus();
+		return false;
+	    }
+	    if (address.isEmpty())
+	    {
+		JOptionPane.showMessageDialog(null, "Addressefeltet må ikke være tomt");
+		addressTxt.requestFocus();
+		return false;
+	    }
+	    if (!mail.matches(mailFormat))
+	    {
+		JOptionPane.showMessageDialog(null, "Fejl i indtastning af email-adresse");
+		mailTxt.setText("");
+		mailTxt.requestFocus();
+		return false;
+	    }
+	    if (!phone.matches(phoneFormat))
+	    {
+		JOptionPane.showMessageDialog(null, "Fejl i indtastning af telefonnr.");
+		phoneTxt.setText("");
+		phoneTxt.requestFocus();
+		return false;
+	    }
+	    customerNotCreated = false;
+	} 
+	else
 	{
-	    JOptionPane.showMessageDialog(null, "Addressefeltet må ikke være tomt");
-	    addressTxt.setText("");
-	    addressTxt.requestFocus();
-	    return false;
-	}
-	if (!mail.matches(mailFormat))
-	{
-	    JOptionPane.showMessageDialog(null, "Fejl i indtastning af email-adresse");
-	    mailTxt.setText("");
-	    mailTxt.requestFocus();
-	    return false;
-	}
-	if (!phone.matches(phoneFormat))
-	{
-	    JOptionPane.showMessageDialog(null, "Fejl i indtastning af telefonnr.");
-	    phoneTxt.setText("");
-	    phoneTxt.requestFocus();
-	    return false;
-	}
+	    if (animalName.isEmpty())
+	    {
+		JOptionPane.showMessageDialog(null, "NavneFeltet må ikke være tomt");
+		animalNameTxt.requestFocus();
+		return false;
+	    }
+//	    if (/*! animalAge == rightFormat*/)
+//	    {
+//		JOptionPane.showMessageDialog(null, "Navnefeltet må ikke være tomt");
+//		nameTxt.setText("");
+//		nameTxt.requestFocus();
+//		return false;
+//	    }
+	    
+	}					  
 	return true;
+    }
+
+    public void switchToAnimalPnl()
+    {
+	createCustomerBtn.setVisible(false);
+	nameTxt.setEditable(false);
+	addressTxt.setEditable(false);
+	phoneTxt.setEditable(false);
+	mailTxt.setEditable(false);
+	customerLbl.setVisible(false);
+
+	addAnimalBtn.setEnabled(true);
+	animalCombo.setEnabled(true);
+	animalNameTxt.setEditable(true);
+	ageTxt.setEditable(true);
+	okBtn.setEnabled(true);
     }
 
 }

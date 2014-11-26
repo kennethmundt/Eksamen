@@ -40,7 +40,7 @@ public class CreateDb
 	    preparedStatement.executeUpdate();
 
 	    ResultSet rs = preparedStatement.getGeneratedKeys();
-	    
+
 	    if (rs.next())
 	    {
 		customerId = rs.getInt(1);
@@ -53,7 +53,7 @@ public class CreateDb
 	    System.err.println(e);
 	}
     }
-    
+
     /**
      * Adding a new animal to the database
      * @param animal
@@ -65,7 +65,7 @@ public class CreateDb
 	{
 	    conn = dBc.connect();
 	    preparedStatement = conn.prepareStatement("INSERT INTO animals VALUES(default, ?, ?, ?, ?)");
-	   
+
 	    preparedStatement.setString(1, animal.getAnimalBirth());
 	    preparedStatement.setString(2, animal.getAnimalName());
 	    preparedStatement.setInt(3, animal.getSpeciesId());
@@ -79,29 +79,29 @@ public class CreateDb
 	    System.err.println(e);
 	}
     }
-    
+
     /**
      * Adding a new treatment to the database
      * @param treatment
      */
     public void insert(Treatment treatment)
+    {
+	try
 	{
-		try
-		{
-			conn = dBc.connect();
-			preparedStatement = conn.prepareStatement("INSERT INTO treatments VALUES(default, ?, ?, ?, ?)");
+	    conn = dBc.connect();
+	    preparedStatement = conn.prepareStatement("INSERT INTO treatments VALUES(default, ?, ?, ?, ?)");
 
-			preparedStatement.setString(1, treatment.getTreatmentName());
-			preparedStatement.setString(2, treatment.getPrice());
-			preparedStatement.setString(3, treatment.getDuration());
-			preparedStatement.setString(4, treatment.getComment());
-			preparedStatement.executeUpdate();
-			preparedStatement.close();
-			conn.close();
-		}
-		catch (SQLException e)
-		{
-			System.err.println(e);
-		}
+	    preparedStatement.setString(1, treatment.getTreatmentName());
+	    preparedStatement.setString(2, treatment.getPrice());
+	    preparedStatement.setString(3, treatment.getDuration());
+	    preparedStatement.setString(4, treatment.getComment());
+	    preparedStatement.executeUpdate();
+	    preparedStatement.close();
+	    conn.close();
 	}
+	catch (SQLException e)
+	{
+	    System.err.println(e);
+	}
+    }
 }

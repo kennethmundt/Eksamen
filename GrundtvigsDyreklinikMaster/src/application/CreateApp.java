@@ -10,7 +10,7 @@ import dataAccess.ControllerDb;
 public class CreateApp
 {
     ControllerDb controllerDb = new ControllerDb();
-    
+
     /**
      * Creates a new customer and passes this customer as a parameter to insert()
      * in the dataAccess layer.
@@ -22,7 +22,7 @@ public class CreateApp
     public void create(String name, String address, String phone, String mail)
     {
 	Customer customer = new Customer(name, address, phone, mail);
-	
+
 	controllerDb.insert(customer);
     }
 
@@ -45,15 +45,15 @@ public class CreateApp
      * @param comment
      */
     public void createTreatment(String treatmentName, String price, String duration, String comment)
-	{
-		Treatment newTreatment= new Treatment(treatmentName, price, duration, comment);
-		controllerDb.insert(newTreatment);
-	}
+    {
+	Treatment newTreatment= new Treatment(treatmentName, price, duration, comment);
+	controllerDb.insert(newTreatment);
+    }
 
     public int readAnimal(String animal)
     {
 	return controllerDb.readSpecies(animal);
     }
-    
-    
+
+
 }

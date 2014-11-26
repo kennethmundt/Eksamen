@@ -17,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import application.ControllerApp;
-import application.CreateApp;
 
 public class CreateTreatmentGui extends JFrame implements ActionListener,
 	ValidateData
@@ -30,8 +29,12 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
     private JTextField priceTxt;
     private JTextField durationTxt;
     private JTextField commentTxt;
-    private JButton createTreatmentBtn;
+    private JButton okBtn;
     private JLabel TreatmentLbl;
+    String price;
+    String duration;
+    String treatmentName;
+    String comment;
 
     public CreateTreatmentGui()
     {
@@ -89,10 +92,10 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
 	commentTxt.setBounds(112, 297, 263, 28);
 	treatmentPanel.add(commentTxt);
 
-	createTreatmentBtn = new JButton("Opret");
-	createTreatmentBtn.setBounds(227, 444, 117, 29);
-	treatmentPanel.add(createTreatmentBtn);
-	createTreatmentBtn.addActionListener(this);
+	okBtn = new JButton("Opret");
+	okBtn.setBounds(227, 444, 117, 29);
+	treatmentPanel.add(okBtn);
+	okBtn.addActionListener(this);
 
 	setVisible(true);
     }
@@ -100,22 +103,21 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
     @Override
     public void actionPerformed(ActionEvent e)
     {
-	if (e.getSource() == createTreatmentBtn)
+	if (e.getSource() == okBtn)
 	{
-	    String treatmentName = treatmentNameTxt.getText();
-	    String price = priceTxt.getText();
-	    String duration = durationTxt.getText();
-	    String comment = commentTxt.getText();
+	    treatmentName = treatmentNameTxt.getText();
+	    comment = commentTxt.getText();
+	    price = priceTxt.getText();
+	    duration = durationTxt.getText();
 
-	    boolean inputIsValidated = validateInput(price, duration);
-	    if (inputIsValidated && treatmentName.isEmpty())
+	    boolean isInputValidated = validateInput();
+	    
+	    if (isInputValidated)
 	    {
-		controllerApp.createTreatment(treatmentName, price, duration,
-			comment);
+		controllerApp.createTreatment(treatmentName, price, duration, comment);
 
 		// Dialog box is only showing in 2 sec.
-		confirmationTime.confirmation("Behandlingen er oprettet",
-			"Velkommen");
+		confirmationTime.confirmation("Behandlingen er oprettet", "Velkommen");
 
 		treatmentNameTxt.setText("");
 		priceTxt.setText("");
@@ -128,15 +130,19 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
 
     }
 
-    public boolean validateInput(String... strings)
+    public boolean validateInput()
     {
 	// Regular ekspressions that only allows digits.
 	String priceFormat = "\\d+";
 	String durationFormat = "\\d+";
 
-	String price = strings[0];
-	String duration = strings[1];
-
+	if (treatmentName.isEmpty())
+	{
+	    JOptionPane.showMessageDialog(null, "Behandlingen skal have et navn");
+	    treatmentNameTxt.requestFocus();
+	    return false;
+	}
+	
 	if (!price.matches(priceFormat))
 	{
 	    JOptionPane.showMessageDialog(null, "Fejl i indtastning af pris");
@@ -147,10 +153,16 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
 
 	if (!duration.matches(durationFormat))
 	{
-	    JOptionPane
-		    .showMessageDialog(null, "Fejl i indtastning af varihed");
+	    JOptionPane.showMessageDialog(null, "Fejl i indtastning af varighed");
 	    durationTxt.setText("");
 	    durationTxt.requestFocus();
+	    return false;
+	}
+	
+	if (comment.length() > 250 )
+	{
+	    JOptionPane.showMessageDialog(null, "Kommentarfeltet kan max indeholde 250 tegn.");
+	    commentTxt.requestFocus();
 	    return false;
 	}
 	return true;

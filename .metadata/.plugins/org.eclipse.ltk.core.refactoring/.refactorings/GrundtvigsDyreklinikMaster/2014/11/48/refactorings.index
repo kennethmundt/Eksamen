@@ -1,2 +1,5 @@
 1416910022424	Delete element
 1416918875504	Rename type 'Controller'
+1416989009449	Rename local variable 'inputIsValidated'
+1416990901799	Rename field 'createCustomer'
+1416991226881	Rename field 'createTreatmentBtn'
