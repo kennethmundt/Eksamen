@@ -10,7 +10,5 @@ public class Main
     {
 	MainGui mainGui = new MainGui();
 	mainGui.setVisible(true);
-	
-//	new CreateBookingGui("66666666");
     }
 }

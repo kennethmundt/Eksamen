@@ -3648,3 +3648,125 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2014-12-01 20:29:24.396 -----------------------------------------------
+eclipse.buildId=4.4.0.I20140606-1215
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=da_DK
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.208
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\icu4j-3.4.4.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.223
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.223
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.223
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-1.9.2-lite.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.239
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.239
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-acegisecurity-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.239
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-acegisecurity-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.254
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-acegisecurity-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.254
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-hibernate3-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.254
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-hibernate3-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.254
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-hibernate3-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.270
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-hibernate4-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.270
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-hibernate4-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.270
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-hibernate4-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.270
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring2-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.286
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring2-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.286
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring2-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.286
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring3-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.286
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring3-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.286
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring3-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.301
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring31-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.301
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring31-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.301
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-spring31-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.301
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-springsecurity2-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.301
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-springsecurity2-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.317
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-springsecurity2-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.317
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-springsecurity3-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.317
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-springsecurity3-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.317
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-springsecurity3-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.333
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-wicket13-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.333
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-wicket13-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.333
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-wicket13-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.333
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-wicket15-1.9.2.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.348
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-wicket15-1.9.2-javadoc.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.348
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jasypt-1.9.2\lib\jasypt-wicket15-1.9.2-sources.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2014-12-01 20:29:32.348
+!MESSAGE Invalid ZIP archive: C:\Users\kenneth\Desktop\jcalendar-1.4.jar
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-12-01 20:29:44.567
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\kenneth'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
