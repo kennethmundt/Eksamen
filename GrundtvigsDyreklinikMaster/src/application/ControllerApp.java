@@ -2,13 +2,17 @@ package application;
 
 import javax.swing.table.DefaultTableModel;
 
+import dataAccess.ControllerDb;
+
 public class ControllerApp
 {
+    ControllerDb controllerDb = new ControllerDb();
     UpdateApp updateApp = new UpdateApp();
     DeleteApp deleteApp = new DeleteApp();
     OverviewApp customerOverviewApp = new OverviewApp();
-    CreateApp create = new CreateApp();
-    AnimalDropDownApp readAnimal = new AnimalDropDownApp();
+    CreateApp createApp = new CreateApp();
+    DropDownApp readDropDown = new DropDownApp();
+    ReadApp readApp = new ReadApp();
 
     /**
      * Passing data from presentation to controller.
@@ -21,12 +25,9 @@ public class ControllerApp
      */
 
     // Reads values from CustomerViewGui and send it to UpdateApp class
-    public void saveChanges(String nameColumn, String addressColumn,
-	    String phoneColumn, String mailColumn, String customerId)
+    public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
-	updateApp.saveChanges(nameColumn, addressColumn, phoneColumn,
-		mailColumn, customerId);
-
+	updateApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }
 
     // Reads values from CustomerViewGui and send it to UpdateApp class
@@ -46,37 +47,48 @@ public class ControllerApp
 
     public Customer readCustomer(String phone)
     {
-
 	return customerOverviewApp.readCustomer(phone);
     }
 
     // Get values from CreateCustomerGui and send to the CreateCustomerApp
     public void create(String name, String address, String phone, String mail)
     {
-	create.create(name, address, phone, mail);
-
+	createApp.create(name, address, phone, mail);
     }
 
     // Get Animal from CreateCustomerGui and send to CustomerOverviewApp
     public void create(String animalName, String animalBirth, int id)
     {
-	create.create(animalName, animalBirth, id);
-
+	createApp.create(animalName, animalBirth, id);
+    }
+    
+    public void create(String treatmentId, int animalId, String dateString, String time)
+    {
+	createApp.create(treatmentId, animalId, dateString, time);
     }
 
     // Get animal from AnimalDropDown and send to CreateCustomerGui
     public int readAnimal(String animal)
     {
-	return create.readAnimal(animal);
-
+	return readApp.readAnimal(animal);
+    }
+    
+    public int readAnimal(String animal, String customerId)
+    {
+	return readApp.readAnimal(animal, customerId);
     }
 
     // Get animal from AnimalDropDown and send to CreateCustomerGui
     public Object[] getAnimal()
     {
-	return readAnimal.readAnimal();
-
+	return readDropDown.readAnimal();
     }
+    
+    public Object[] getAnimal(Customer customer)
+    {
+	return readDropDown.readAnimal(customer);
+    }
+    
     // Reads values from CustomerOverViewApp class and send values to the
     // TreatmentViewGui JTable
     public DefaultTableModel getTreatmentTableModel()
@@ -85,26 +97,43 @@ public class ControllerApp
 
 	return data;
     }
+    
     //Get variabel treatmentName, price, duration and comment from the CreateTreatmentGui
     public void createTreatment(String treatmentName, String price, String duration, String comment)
     {
-	create.createTreatment(treatmentName, price, duration, comment);
-
+	createApp.createTreatment(treatmentName, price, duration, comment);
     }
+    
     //If JTable in TreatmentViewGui is change then save changes
     public void saveChangesTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
     {
 	updateApp.saveChangesTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
     }
+    
     //Take the variable from JTable and send to OverviewApp
     public Treatment readTreatment(String treatmentName)
     {
 	return customerOverviewApp.readTreatment(treatmentName);
     }
+    
     //Delete treatment from JTable
     public void deleteTreatment(String treatmentName)
     {
 	deleteApp.deleteTreatment(treatmentName);
     }
+    
+    public Object[] getTreatment()
+    {
+	return readDropDown.readTreatment();
+    }
+    
+    public Object[] getTime()
+    {
+	return readDropDown.readTime();
+    }
 
+    public String getPassword(String username)
+    {
+	return controllerDb.getPassword(username);
+    }
 }

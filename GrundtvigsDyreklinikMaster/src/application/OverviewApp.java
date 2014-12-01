@@ -3,15 +3,11 @@
  */
 package application;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
 import dataAccess.ControllerDb;
-import dataAccess.CreateDb;
-import dataAccess.ReadDb;
-import dataAccess.UpdateDb;
 
 public class OverviewApp
 {
@@ -75,9 +71,9 @@ public class OverviewApp
 	}
     
     public Treatment readTreatment(String treatmentName)
-	{
-		Treatment treatment = controllerDb.readTreatment(treatmentName);
+    {
+	Treatment treatment = controllerDb.readTreatment(treatmentName);
 
-		return treatment;
-	}
+	return treatment;
+    }
 }

@@ -12,6 +12,7 @@ public class Treatment
     String price;
     String duration;
     String comment;
+    
     public Treatment(String id, String treatmentName, String price, String duration, String comment)
     {
 	this.id = id;
@@ -82,6 +83,6 @@ public class Treatment
     @Override
     public String toString()
     {
-	return treatmentName;
+	return treatmentName + " " + duration + " min" + " " + price + " kr";
     }
 }

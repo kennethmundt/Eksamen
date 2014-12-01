@@ -1,6 +1,0 @@
-package presentation;
-
-public interface ValidateData
-{
-    public void validateInput();
-}

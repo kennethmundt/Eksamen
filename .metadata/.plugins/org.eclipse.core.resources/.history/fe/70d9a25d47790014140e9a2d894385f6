@@ -1,0 +1,51 @@
+package application;
+
+public class Booking
+{
+    private String dataTime;
+    private int animalId;
+    private int treatmentId;
+    
+    public Booking(String dateTime, int animalId, int treatmentId)
+    {
+	this.dataTime = dateTime;
+	this.animalId = animalId;
+	this.treatmentId = treatmentId;
+    }
+
+    public String getDataTime()
+    {
+        return dataTime;
+    }
+
+    public int getAnimalId()
+    {
+        return animalId;
+    }
+
+    public int getTreatmentId()
+    {
+        return treatmentId;
+    }
+
+    public void setDataTime(String dataTime)
+    {
+        this.dataTime = dataTime;
+    }
+
+    public void setAnimalId(int animalId)
+    {
+        this.animalId = animalId;
+    }
+
+    public void setTreatmentId(int treatmentId)
+    {
+        this.treatmentId = treatmentId;
+    }
+
+    @Override
+    public String toString()
+    {
+	return "Booking [dataTime=" + dataTime + ", animalId=" + animalId + ", treatmentId=" + treatmentId + "]";
+    }
+}

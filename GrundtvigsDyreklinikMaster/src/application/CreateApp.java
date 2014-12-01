@@ -37,6 +37,15 @@ public class CreateApp
 	Animal animal = new Animal(id, animalBirth, animalName);
 	controllerDb.insert(animal);
     }
+    
+    public void create(String treatmentId, int animalId, String dateString, String time)
+    {
+	int treatId = Integer.parseInt(treatmentId);
+	String dateTime = dateString + " - " + time;
+	Booking booking = new Booking(dateTime, animalId, treatId);
+	controllerDb.insert(booking);
+    }
+    
     /**
      * Creates a new Treatment and and passes this Treatment as a parameter to insert()
      * @param treatmentName
@@ -49,11 +58,4 @@ public class CreateApp
 	Treatment newTreatment= new Treatment(treatmentName, price, duration, comment);
 	controllerDb.insert(newTreatment);
     }
-
-    public int readAnimal(String animal)
-    {
-	return controllerDb.readSpecies(animal);
-    }
-
-
 }

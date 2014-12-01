@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.Animal;
+import application.Booking;
 import application.Customer;
 import application.Treatment;
 
@@ -23,6 +24,13 @@ public class ControllerDb
     {
 	List<String> speciesList = new ArrayList<String>(readDb.readAnimal());
 	return speciesList;
+    }
+    
+    public List<Animal> readAnimal(Customer customer)
+    {
+	List<Animal> animalInfoList = new ArrayList<Animal>(readDb.readAnimal(customer));
+	
+	return animalInfoList;
     }
     
     //Send Customer to the CreateDb
@@ -43,10 +51,20 @@ public class ControllerDb
 	createDb.insert(treatment);
     }
     
+    public void insert(Booking booking)
+    {
+	createDb.insert(booking);
+    }
+    
     //Send animalSpecies to the ReadDb
     public int readSpecies(String animal) 
     {
 	return readDb.readSpecies(animal);
+    }
+    
+    public int readSpecies(String animal, String customerId) 
+    {
+	return readDb.readSpecies(animal, customerId);
     }
     
     //Reads in the ReadDb and send to the OverviewApp
@@ -69,20 +87,25 @@ public class ControllerDb
 	return treatmentList;
     }
     
+    public List<String> readTime()
+    {
+	List<String> timeList = new ArrayList<String>(readDb.readTime());
+	
+	return timeList;
+    }
+    
     //
     public Treatment readTreatment(String treatmentName) 
     {
 	return readDb.readTreatment(treatmentName);
     }
 
-    public void updateCustomer(String nameColumn, String addressColumn,
-	    String phoneColumn, String mailColumn, String customerId)
+    public void updateCustomer(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
 	updateDb.updateCustomer(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }
 
-    public void updateTreatment(String treatmentColumn, String priceColumn,
-	    String durationColumn, String commentColumn, String customerId)
+    public void updateTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
     {
 	updateDb.updateTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
     }
@@ -95,5 +118,10 @@ public class ControllerDb
     public void deleteTreatment(String treatmentName)
     {
 	deleteDb.deleteTreatment(treatmentName);
+    }
+
+    public String getPassword(String username)
+    {
+	return readDb.getPassword(username);
     }
 }

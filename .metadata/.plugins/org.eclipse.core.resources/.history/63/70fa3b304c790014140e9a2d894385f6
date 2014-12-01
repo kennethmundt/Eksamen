@@ -1,0 +1,207 @@
+package presentation;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import application.Animal;
+import application.ControllerApp;
+import application.Customer;
+import application.Treatment;
+
+import com.toedter.calendar.JDateChooser;
+
+public class CreateBookingGui extends JFrame implements ActionListener
+{
+    private ControllerApp controllerApp = new ControllerApp();
+
+    private JPanel contentPane;
+    private JButton bookBtn;
+    private JDateChooser dateChooserCal;
+    private String dateString;
+    private String animal;
+    private String time;
+    private int animalId;
+    private String treatmentId;
+    private Date date;
+    private JComboBox chooseTimeBox;
+
+    /**
+     * Create the frame.
+     */
+    public CreateBookingGui(String phone)
+    {
+
+	setTitle("Book behandling");
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setBounds(100, 100, 520, 550);
+	contentPane = new JPanel();
+	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	setContentPane(contentPane);
+	GridBagLayout gbl_contentPane = new GridBagLayout();
+	gbl_contentPane.columnWidths = new int[]
+	{ 30, 150, 30, 0, 0 };
+	gbl_contentPane.rowHeights = new int[]
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	gbl_contentPane.columnWeights = new double[]
+	{ 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+	gbl_contentPane.rowWeights = new double[]
+	{ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		0.0, 0.0, 0.0, Double.MIN_VALUE };
+	contentPane.setLayout(gbl_contentPane);
+
+	JLabel welcomeLbl = new JLabel("Velkommen");
+	GridBagConstraints gbc_welcomeLbl = new GridBagConstraints();
+	gbc_welcomeLbl.anchor = GridBagConstraints.EAST;
+	gbc_welcomeLbl.insets = new Insets(0, 0, 5, 5);
+	gbc_welcomeLbl.gridx = 1;
+	gbc_welcomeLbl.gridy = 1;
+	contentPane.add(welcomeLbl, gbc_welcomeLbl);
+
+	Customer customer = controllerApp.readCustomer(phone);
+	String name = customer.getName();
+
+	JLabel nameLbl = new JLabel(name);
+	GridBagConstraints gbc_nameLbl = new GridBagConstraints();
+	gbc_nameLbl.anchor = GridBagConstraints.WEST;
+	gbc_nameLbl.insets = new Insets(0, 0, 5, 0);
+	gbc_nameLbl.gridx = 3;
+	gbc_nameLbl.gridy = 1;
+	contentPane.add(nameLbl, gbc_nameLbl);
+
+	JLabel chooseAnimalLbl = new JLabel("Vælg dyr");
+	GridBagConstraints gbc_chooseAnimalLbl = new GridBagConstraints();
+	gbc_chooseAnimalLbl.anchor = GridBagConstraints.WEST;
+	gbc_chooseAnimalLbl.insets = new Insets(0, 0, 5, 5);
+	gbc_chooseAnimalLbl.gridx = 1;
+	gbc_chooseAnimalLbl.gridy = 3;
+	contentPane.add(chooseAnimalLbl, gbc_chooseAnimalLbl);
+
+	JComboBox chooseAnimalBox = new JComboBox(
+		controllerApp.getAnimal(customer));
+	GridBagConstraints gbc_chooseAnimalBox = new GridBagConstraints();
+	gbc_chooseAnimalBox.insets = new Insets(0, 0, 5, 0);
+	gbc_chooseAnimalBox.fill = GridBagConstraints.HORIZONTAL;
+	gbc_chooseAnimalBox.gridx = 3;
+	gbc_chooseAnimalBox.gridy = 3;
+	contentPane.add(chooseAnimalBox, gbc_chooseAnimalBox);
+	chooseAnimalBox.addActionListener(new ActionListener()
+	{
+	    public void actionPerformed(ActionEvent event)
+	    {
+		JComboBox chooseAnimal = (JComboBox) event.getSource();
+
+		Animal animal = (Animal) chooseAnimal.getSelectedItem();
+		animalId = animal.getSpeciesId();
+
+	    }
+	});
+
+	JLabel chooseTreatmentLbl = new JLabel("Vælg behandling");
+	GridBagConstraints gbc_chooseTreatmentLbl = new GridBagConstraints();
+	gbc_chooseTreatmentLbl.anchor = GridBagConstraints.WEST;
+	gbc_chooseTreatmentLbl.insets = new Insets(0, 0, 5, 5);
+	gbc_chooseTreatmentLbl.gridx = 1;
+	gbc_chooseTreatmentLbl.gridy = 5;
+	contentPane.add(chooseTreatmentLbl, gbc_chooseTreatmentLbl);
+
+	JComboBox chooseTreatmentBox = new JComboBox(
+		controllerApp.getTreatment());
+	GridBagConstraints gbc_chooseTreatmentBox = new GridBagConstraints();
+	gbc_chooseTreatmentBox.insets = new Insets(0, 0, 5, 0);
+	gbc_chooseTreatmentBox.fill = GridBagConstraints.HORIZONTAL;
+	gbc_chooseTreatmentBox.gridx = 3;
+	gbc_chooseTreatmentBox.gridy = 5;
+	contentPane.add(chooseTreatmentBox, gbc_chooseTreatmentBox);
+	chooseTreatmentBox.addActionListener(new ActionListener()
+	{
+	    public void actionPerformed(ActionEvent event)
+	    {
+		JComboBox chooseTreatment = (JComboBox) event.getSource();
+		Treatment treat = (Treatment) chooseTreatment.getSelectedItem();
+		treatmentId = treat.getId();
+
+	    }
+	});
+
+	JLabel chooseDateLbl = new JLabel("Vælg dato");
+	GridBagConstraints gbc_chooseDateLbl = new GridBagConstraints();
+	gbc_chooseDateLbl.anchor = GridBagConstraints.WEST;
+	gbc_chooseDateLbl.insets = new Insets(0, 0, 5, 5);
+	gbc_chooseDateLbl.gridx = 1;
+	gbc_chooseDateLbl.gridy = 7;
+	contentPane.add(chooseDateLbl, gbc_chooseDateLbl);
+
+	dateChooserCal = new JDateChooser();
+	GridBagConstraints gbc_dateChooserCal = new GridBagConstraints();
+	gbc_dateChooserCal.insets = new Insets(0, 0, 5, 0);
+	gbc_dateChooserCal.fill = GridBagConstraints.BOTH;
+	gbc_dateChooserCal.gridx = 3;
+	gbc_dateChooserCal.gridy = 7;
+	contentPane.add(dateChooserCal, gbc_dateChooserCal);
+
+	JLabel chooseTimeLbl = new JLabel("Vælg tid");
+	GridBagConstraints gbc_chooseTimeLbl = new GridBagConstraints();
+	gbc_chooseTimeLbl.anchor = GridBagConstraints.WEST;
+	gbc_chooseTimeLbl.insets = new Insets(0, 0, 5, 5);
+	gbc_chooseTimeLbl.gridx = 1;
+	gbc_chooseTimeLbl.gridy = 9;
+	contentPane.add(chooseTimeLbl, gbc_chooseTimeLbl);
+
+	chooseTimeBox = new JComboBox(controllerApp.getTime());
+
+	GridBagConstraints gbc_chooseTimeBox = new GridBagConstraints();
+	gbc_chooseTimeBox.insets = new Insets(0, 0, 5, 0);
+	gbc_chooseTimeBox.fill = GridBagConstraints.HORIZONTAL;
+	gbc_chooseTimeBox.gridx = 3;
+	gbc_chooseTimeBox.gridy = 9;
+	contentPane.add(chooseTimeBox, gbc_chooseTimeBox);
+	chooseTimeBox.addActionListener(new ActionListener()
+	{
+	    public void actionPerformed(ActionEvent event)
+	    {
+
+		JComboBox chooseTime = (JComboBox) event.getSource();
+		time = (String) chooseTime.getSelectedItem();
+
+	    }
+	});
+
+	bookBtn = new JButton("Book");
+	GridBagConstraints gbc_bookBtn = new GridBagConstraints();
+	gbc_bookBtn.anchor = GridBagConstraints.EAST;
+	gbc_bookBtn.insets = new Insets(0, 0, 5, 0);
+	gbc_bookBtn.gridx = 3;
+	gbc_bookBtn.gridy = 12;
+	contentPane.add(bookBtn, gbc_bookBtn);
+	bookBtn.addActionListener(this);
+
+	setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+
+	if (e.getSource() == bookBtn)
+	{
+	    date = dateChooserCal.getDate();
+	    dateString = String.format("%1$td-%1$tm-%1$tY", date);
+
+	    controllerApp.create(treatmentId, animalId, dateString, time);
+
+	}
+
+    }
+
+}

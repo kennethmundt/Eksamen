@@ -1,0 +1,302 @@
+/**
+ * @author Tina og Kenneth
+ */
+
+package presentation;
+
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
+import dataAccess.ReadDb;
+
+public class MainGui extends JFrame implements ActionListener
+{
+    ReadDb readDb = new ReadDb();
+    
+    private JPanel contentPane;
+    private JPanel startCard;
+    private JPanel customerOverviewPnl;
+    private JPanel treatmentOverviewPnl;
+    private JPanel employeePnl;
+    private JPanel customerPnl;
+    private JTabbedPane tabbedPane;
+    private JTextField userField;
+    private JTextField customerField;
+    private JPasswordField passwordField;
+    private JButton employeeLoginBtn;
+    int loginAttempts = 0;
+    
+    CardLayout cardLayout = new CardLayout();
+
+    public MainGui()
+    {
+	final int FRAME_HEIGHT = 900;
+	final int FRAME_WIDTH = 700;
+	setTitle("Grundtvigs Dyreklinik");
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setSize(FRAME_HEIGHT, FRAME_WIDTH);
+	setLocationRelativeTo(null);
+	setResizable(false);
+	contentPane = new JPanel(cardLayout);
+	setContentPane(contentPane);
+	
+	startCard = new JPanel(new GridLayout(1, 2));
+	setEmployeePnl();
+	setCustomerPnl();
+	
+	contentPane.add(startCard, "start");
+    }
+
+    private void setCustomerPnl()
+    {
+	customerPnl = new JPanel(new GridBagLayout());
+	customerPnl.setBorder(new LineBorder(new Color(0, 0, 0)));
+	customerPnl.setBackground(Color.WHITE);
+	startCard.add(customerPnl);
+	
+	JLabel customerLbl = new JLabel("Kunde login");
+	GridBagConstraints customerLblConstraints = new GridBagConstraints();
+	customerLblConstraints.insets = new Insets(0, 0, 30, 0);
+	customerLblConstraints.fill = GridBagConstraints.HORIZONTAL;
+	customerLblConstraints.gridx = 1;
+	customerLblConstraints.gridy = 0;
+	customerPnl.add(customerLbl, customerLblConstraints);
+	
+	customerField = new JTextField();
+	GridBagConstraints customerFieldConstraints = new GridBagConstraints();
+	customerFieldConstraints.insets = new Insets(0, 0, 5, 0);
+	customerFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+	customerFieldConstraints.gridx = 1;
+	customerFieldConstraints.gridy = 2;
+	customerPnl.add(customerField, customerFieldConstraints);
+	customerField.setColumns(10);	
+	
+	JLabel customerInputLbl = new JLabel("Indtast telefonnr.");
+	GridBagConstraints customerInputLblConstraints = new GridBagConstraints();
+	customerInputLblConstraints.insets = new Insets(0, 0, 5, 5);
+	customerInputLblConstraints.fill = GridBagConstraints.HORIZONTAL;
+	customerInputLblConstraints.gridx = 0;
+	customerInputLblConstraints.gridy = 2;
+	customerPnl.add(customerInputLbl, customerInputLblConstraints);
+	
+	JButton customerLoginBtn = new JButton("Login");
+	GridBagConstraints customerLoginBtnConstraints = new GridBagConstraints();
+	customerLoginBtnConstraints.fill = GridBagConstraints.HORIZONTAL;
+	customerLoginBtnConstraints.gridx = 1;
+	customerLoginBtnConstraints.gridy = 3;
+	customerPnl.add(customerLoginBtn, customerLoginBtnConstraints);
+    }
+
+    private void setEmployeePnl()
+    {
+//	employeePnl = new JPanel(new GridBagLayout());
+//	employeePnl.setBorder(new LineBorder(new Color(0, 0, 0)));
+//	employeePnl.setBackground(Color.WHITE);
+//	startCard.add(employeePnl);
+//	
+//	try
+//	{
+//	    BufferedImage logo = ImageIO.read(new File("images/logo.png"));
+//	    JLabel picLabel = new JLabel(new ImageIcon(logo));
+//	    
+//	    GridBagConstraints picLabelConstraints = new GridBagConstraints();
+//	    picLabelConstraints.weighty = 1;
+//	    picLabelConstraints.anchor = GridBagConstraints.NORTHWEST;
+//	    employeePnl.add(picLabel, picLabelConstraints);
+//	} catch (IOException e)
+//	{
+//	    e.printStackTrace();
+//	}
+//	
+//	
+//	
+//	
+//	
+//	JLabel employeeLbl = new JLabel("Medarbejder login");
+//	GridBagConstraints employeeLblConstraints = new GridBagConstraints();
+//	employeeLblConstraints.insets = new Insets(0, 0, 30, 0);
+//	employeeLblConstraints.fill = GridBagConstraints.HORIZONTAL;
+//	employeeLblConstraints.gridx = 1;
+//	employeeLblConstraints.gridy = 0;
+//	employeePnl.add(employeeLbl, employeeLblConstraints);
+//	
+//	userField = new JTextField();
+//	GridBagConstraints userFieldconstraints = new GridBagConstraints();
+//	userFieldconstraints.insets = new Insets(0, 0, 5, 0);
+//	userFieldconstraints.fill = GridBagConstraints.HORIZONTAL;
+//	userFieldconstraints.gridx = 1;
+//	userFieldconstraints.gridy = 2;
+//	employeePnl.add(userField, userFieldconstraints);
+//	userField.setColumns(10);
+//	
+//	JLabel userLbl = new JLabel("Brugernavn:");
+//	GridBagConstraints userLblConstraints = new GridBagConstraints();
+//	userLblConstraints.insets = new Insets(0, 0, 5, 5);
+//	userLblConstraints.fill = GridBagConstraints.HORIZONTAL;
+//	userLblConstraints.gridx = 0;
+//	userLblConstraints.gridy = 2;
+//	employeePnl.add(userLbl, userLblConstraints);
+//	
+//	passwordField = new JPasswordField();
+//	GridBagConstraints passFieldConstraints = new GridBagConstraints();
+//	passFieldConstraints.insets = new Insets(0, 0, 5, 0);
+//	passFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+//	passFieldConstraints.gridx = 1;
+//	passFieldConstraints.gridy = 3;
+//	employeePnl.add(passwordField, passFieldConstraints);
+//	
+//	JLabel passLbl = new JLabel("Password:");
+//	GridBagConstraints passLblConstraints = new GridBagConstraints();
+//	passLblConstraints.insets = new Insets(0, 0, 5, 5);
+//	passLblConstraints.fill = GridBagConstraints.HORIZONTAL;
+//	passLblConstraints.gridx = 0;
+//	passLblConstraints.gridy = 3;
+//	employeePnl.add(passLbl, passLblConstraints);
+//	
+//	employeeLoginBtn = new JButton("Login");
+//	GridBagConstraints loginBtnConstraints = new GridBagConstraints();
+//	loginBtnConstraints.fill = GridBagConstraints.HORIZONTAL;
+//	loginBtnConstraints.gridx = 1;
+//	loginBtnConstraints.gridy = 4;
+//	employeePnl.add(employeeLoginBtn, loginBtnConstraints);
+//	employeeLoginBtn.addActionListener(this);
+	
+	
+	
+	
+	
+	
+	employeePnl = new JPanel();
+	employeePnl.setBorder(new LineBorder(new Color(0, 0, 0)));
+	employeePnl.setBackground(Color.WHITE);
+	startCard.add(employeePnl);
+	
+	try
+	{
+	    BufferedImage logo = ImageIO.read(new File("images/logo.png"));
+	    employeePnl.setLayout(null);
+	    JLabel picLabel = new JLabel(new ImageIcon(logo));
+	    picLabel.setBounds(35, 17, 0, 0);
+	    employeePnl.add(picLabel);
+	} catch (IOException e)
+	{
+	    e.printStackTrace();
+	}	
+	
+	JLabel employeeLbl = new JLabel("Medarbejder login");
+	employeeLbl.setBounds(40, 9, 104, 16);
+	employeePnl.add(employeeLbl);
+	
+	userField = new JTextField();
+	userField.setBounds(180, 370, 116, 22);
+	employeePnl.add(userField);
+	userField.setColumns(10);
+	
+	JLabel userLbl = new JLabel("Brugernavn:");
+	userLbl.setBounds(98, 349, 70, 16);
+	employeePnl.add(userLbl);
+	
+	passwordField = new JPasswordField();
+	passwordField.setBounds(180, 346, 116, 22);
+	employeePnl.add(passwordField);
+	
+	JLabel passLbl = new JLabel("Password:");
+	passLbl.setBounds(98, 378, 70, 16);
+	employeePnl.add(passLbl);
+	
+	employeeLoginBtn = new JButton("Login");
+	employeeLoginBtn.setBounds(180, 410, 116, 25);
+	employeePnl.add(employeeLoginBtn);
+	employeeLoginBtn.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+	if (e.getSource() == employeeLoginBtn )
+	{
+	    StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+
+	    String username = userField.getText();
+	    char[] password = passwordField.getPassword();
+	    String passwordInput = new String(password);
+	    String hashedPassword = readDb.getPassword(username);
+	    
+	    if (hashedPassword.length() == 0) // if username is not in database
+	    {
+		checkLoginAttempts();
+	    }
+	    else 
+	    {
+		if (passwordEncryptor.checkPassword(passwordInput, hashedPassword))
+		{
+		    createAndShowEmployeeUI();
+		    loginAttempts = 0;
+		}
+		else 
+		{
+		    checkLoginAttempts();
+		}
+	    }
+	} 
+	else
+	{
+	    //If customerBtn is pressed, do something else
+	}
+    }
+    
+    private void createAndShowEmployeeUI()
+    {
+	tabbedPane = new JTabbedPane();
+	contentPane.add(tabbedPane, "employeeUi");
+
+	//The different tabs
+	customerOverviewPnl = new CustomerViewGui();
+	treatmentOverviewPnl = new TreatmentViewGui();
+	
+	tabbedPane.addTab("Kundeoversigt", new ImageIcon("image/addMeIcon.png"), customerOverviewPnl, null); //Icon vises ikke
+	tabbedPane.addTab("Behandlingsoversigt", new ImageIcon("image/addMeIcon.png"), treatmentOverviewPnl, null); //Icon vises ikke
+	
+	cardLayout.show(contentPane, "employeeUi");
+    }
+
+    public void checkLoginAttempts()
+    {
+	String firstTwoAttempts = "Brugernavn og/eller password passer ikke";
+	String afterTwoAttempts = "Du har indtastet forkert brugernavn og/eller password for mange gange.\n\tDin ip-adresse er spærret 1 time.";
+	
+	if (loginAttempts < 2)
+	{
+	    JOptionPane.showMessageDialog(null, firstTwoAttempts );
+	} 
+	else
+	{
+	    JOptionPane.showMessageDialog(null, afterTwoAttempts );
+	    System.exit(0);
+	}
+	loginAttempts++;
+    }
+}

@@ -1,0 +1,19 @@
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+
+public class Encrypt
+{
+
+    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException
+    {
+	// TODO Auto-generated method stub
+	String text = "KennethMundt";
+	MessageDigest digest = MessageDigest.getInstance("SHA-256");
+	byte[] hash = digest.digest(text.getBytes("UTF-8"));
+	
+	System.out.println(hash);
+    }
+
+}

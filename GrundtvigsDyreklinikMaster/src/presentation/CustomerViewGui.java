@@ -67,16 +67,13 @@ public class CustomerViewGui extends JPanel implements ActionListener
 		int row = e.getFirstRow();
 		String customerId = (String) customerTable.getValueAt(row, 0);
 		String nameColumn = (String) customerTable.getValueAt(row, 1);
-		String addressColumn = (String) customerTable
-			.getValueAt(row, 2);
+		String addressColumn = (String) customerTable.getValueAt(row, 2);
 		String phoneColumn = (String) customerTable.getValueAt(row, 3);
 		String mailColumn = (String) customerTable.getValueAt(row, 4);
 
 		// customerOverviewApp.saveChanges(nameColumn, addressColumn,
 		// phoneColumn, mailColumn, customerId);
-		controller.saveChanges(nameColumn, addressColumn, phoneColumn,
-			mailColumn, customerId);
-
+		controller.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
 	    }
 	});
     }
@@ -93,12 +90,10 @@ public class CustomerViewGui extends JPanel implements ActionListener
 	    phone = JOptionPane.showInputDialog("Indtast telefonnr. på kunden du ønsker at slette.");
 	    Customer customer = controller.readCustomer(phone);
 
-	    if (JOptionPane.showConfirmDialog(null, customer.toString(),
-		    "Slet denne kunde?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+	    if (JOptionPane.showConfirmDialog(null, customer.toString(), "Slet denne kunde?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 	    {
 		controller.deleteCustomer(phone);
-		JOptionPane.showMessageDialog(null, "Kunden er slettet", "",
-			JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Kunden er slettet", "", JOptionPane.INFORMATION_MESSAGE);
 	    }
 	}
     }

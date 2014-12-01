@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import application.Animal;
+import application.Booking;
 import application.Customer;
 import application.Treatment;
 
@@ -95,6 +96,27 @@ public class CreateDb
 	    preparedStatement.setString(2, treatment.getPrice());
 	    preparedStatement.setString(3, treatment.getDuration());
 	    preparedStatement.setString(4, treatment.getComment());
+	    preparedStatement.executeUpdate();
+	    preparedStatement.close();
+	    conn.close();
+	}
+	catch (SQLException e)
+	{
+	    System.err.println(e);
+	}
+    }
+
+    public void insert(Booking booking)
+    {
+	try
+	{
+	    conn = dBc.connect();
+	    preparedStatement = conn.prepareStatement("INSERT INTO bookings VALUES(default, ?, ?, ?)");
+
+	    preparedStatement.setString(1, booking.getDateTime());
+	    
+	    preparedStatement.setInt(2, booking.getTreatmentId());
+	    preparedStatement.setInt(3, booking.getAnimalId());
 	    preparedStatement.executeUpdate();
 	    preparedStatement.close();
 	    conn.close();

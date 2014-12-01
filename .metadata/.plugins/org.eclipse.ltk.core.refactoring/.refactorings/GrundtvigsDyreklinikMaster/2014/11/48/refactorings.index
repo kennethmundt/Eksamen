@@ -3,3 +3,23 @@
 1416989009449	Rename local variable 'inputIsValidated'
 1416990901799	Rename field 'createCustomer'
 1416991226881	Rename field 'createTreatmentBtn'
+1417006842663	Rename field 'textField_1'
+1417007740325	Rename local variable 'gbc_passwordField_1'
+1417007762744	Rename local variable 'passwordConstraint'
+1417007836690	Rename field 'textField'
+1417007885382	Rename local variable 'gbc_textField_1'
+1417008170758	Rename method 'setCustomerPnl'
+1417008461705	Rename local variable 'passFieldConstraint'
+1417008475949	Rename local variable 'userFieldconstraint'
+1417089483456	Rename local variable 'customerLbl'
+1417089539761	Rename local variable 'customerLblConstraints'
+1417092937916	Rename local variable 'loginBtn'
+1417264585460	Delete element
+1417264588945	Delete element
+1417278658427	Rename field 'eployeeLoginBtn'
+1417284595127	Rename local variable 'insert'
+1417356383769	Rename field 'startCardPnl'
+1417357967777	Rename method 'createEmployeeUI'
+1417365080211	Delete element
+1417365397484	Rename resource 'DyreklinikLogo.png'
+1417385401903	Rename field 'customerField'

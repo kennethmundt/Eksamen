@@ -23,5 +23,4 @@ public class DeleteApp
     {
 	controllerDb.deleteTreatment(treatmentName);
     }
-
 }

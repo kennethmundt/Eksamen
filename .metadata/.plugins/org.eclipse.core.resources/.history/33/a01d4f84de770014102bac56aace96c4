@@ -1,0 +1,38 @@
+import org.jasypt.digest.StandardStringDigester;
+
+
+
+public class Encrypt
+{
+
+    public static void main(String[] args)
+    {
+	String myMessage = "midz";
+	String checkMessage = "midz";
+
+	StandardStringDigester digester = new StandardStringDigester();
+	digester.setAlgorithm("SHA-256");   // optionally set the algorithm
+	digester.setIterations(50000);  // increase security by performing 50000 hashing iterations
+	String digest = digester.digest(myMessage);
+	String digest2 = digester.digest(checkMessage);
+	
+	if (digester.matches(myMessage, checkMessage));
+	{
+	    System.out.println("Du har en midz");
+	}
+	else 
+	{
+	    System.out.println("pis os");
+	    
+	}
+	
+//	System.out.println(digest);
+	
+//	StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+//	String encryptedPassword = passwordEncryptor.encryptPassword(myMessage);
+//	
+//	System.out.println(encryptedPassword);
+	
+    }
+
+}
