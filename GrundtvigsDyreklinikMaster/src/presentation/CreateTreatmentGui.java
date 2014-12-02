@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,8 +19,7 @@ import javax.swing.border.LineBorder;
 
 import application.ControllerApp;
 
-public class CreateTreatmentGui extends JFrame implements ActionListener,
-	ValidateData
+public class CreateTreatmentGui extends JFrame implements ActionListener, ValidateData
 {
     ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
     ControllerApp controllerApp = new ControllerApp();
@@ -27,7 +27,7 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
     private JPanel treatmentPanel;
     private JTextField treatmentNameTxt;
     private JTextField priceTxt;
-    private JTextField durationTxt;
+    private JComboBox durationCombo;
     private JTextField commentTxt;
     private JButton okBtn;
     private JLabel TreatmentLbl;
@@ -80,9 +80,12 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
 	durationLbl.setBounds(16, 229, 120, 16);
 	treatmentPanel.add(durationLbl);
 
-	durationTxt = new JTextField();
-	durationTxt.setBounds(112, 223, 263, 28);
-	treatmentPanel.add(durationTxt);
+	Object[] durationTime = {"15", "30", "45", "60" };
+	durationCombo = new JComboBox(durationTime);
+	durationCombo.setSelectedIndex(-1);
+	durationCombo.setBounds(112, 223, 263, 28);
+	treatmentPanel.add(durationCombo);
+	durationCombo.addActionListener(this);
 
 	JLabel commentLbl = new JLabel("Kommentar :");
 	commentLbl.setBounds(16, 303, 120, 16);
@@ -108,7 +111,6 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
 	    treatmentName = treatmentNameTxt.getText();
 	    comment = commentTxt.getText();
 	    price = priceTxt.getText();
-	    duration = durationTxt.getText();
 
 	    boolean isInputValidated = validateInput();
 	    
@@ -119,22 +121,19 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
 		// Dialog box is only showing in 2 sec.
 		confirmationTime.confirmation("Behandlingen er oprettet", "Velkommen");
 
-		treatmentNameTxt.setText("");
-		priceTxt.setText("");
-		commentTxt.setText("");
-		durationTxt.setText("");
-
 		dispose();
 	    }
 	}
-
+	else if (e.getSource() == durationCombo)
+	{
+	    duration = (String) durationCombo.getSelectedItem();
+	}
     }
 
     public boolean validateInput()
     {
 	// Regular ekspressions that only allows digits.
 	String priceFormat = "\\d+";
-	String durationFormat = "\\d+";
 
 	if (treatmentName.isEmpty())
 	{
@@ -151,14 +150,6 @@ public class CreateTreatmentGui extends JFrame implements ActionListener,
 	    return false;
 	}
 
-	if (!duration.matches(durationFormat))
-	{
-	    JOptionPane.showMessageDialog(null, "Fejl i indtastning af varighed");
-	    durationTxt.setText("");
-	    durationTxt.requestFocus();
-	    return false;
-	}
-	
 	if (comment.length() > 250 )
 	{
 	    JOptionPane.showMessageDialog(null, "Kommentarfeltet kan max indeholde 250 tegn.");

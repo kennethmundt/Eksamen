@@ -30,10 +30,10 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import application.ControllerApp;
 
-public class MainGui extends JFrame implements ActionListener
+public class MainGui extends JFrame implements ActionListener, ValidateData
 {
     private ControllerApp controller = new ControllerApp();
-    
+
     private JPanel contentPane;
     private JPanel startCard;
     private JPanel customerOverviewPnl;
@@ -48,7 +48,9 @@ public class MainGui extends JFrame implements ActionListener
     private JButton employeeLoginBtn;
     private JButton customerLoginBtn;
     private int loginAttempts = 0;
-    
+    private String passwordInput;
+    private String hashedPassword;
+
     private CardLayout cardLayout = new CardLayout();
 
     public MainGui()
@@ -62,11 +64,11 @@ public class MainGui extends JFrame implements ActionListener
 	setResizable(false);
 	contentPane = new JPanel(cardLayout);
 	setContentPane(contentPane);
-	
+
 	startCard = new JPanel(new GridLayout(1, 2));
 	setEmployeePnl();
 	setCustomerPnl();
-	
+
 	contentPane.add(startCard, "start");
     }
 
@@ -77,25 +79,27 @@ public class MainGui extends JFrame implements ActionListener
 	customerPnl.setBackground(Color.WHITE);
 	startCard.add(customerPnl);
 	customerPnl.setLayout(null);
-	
+
 	JLabel customerLbl = new JLabel("Kunde login");
 	customerLbl.setFont(new Font("Tahoma", Font.PLAIN, 18));
 	customerLbl.setBounds(88, 296, 98, 22);
 	customerPnl.add(customerLbl);
-	
+
 	phoneField = new JTextField();
 	phoneField.setBounds(190, 346, 132, 22);
 	customerPnl.add(phoneField);
 	phoneField.setColumns(10);	
-	
+
 	JLabel customerInputLbl = new JLabel("Indtast telefonnr.");
 	customerInputLbl.setBounds(88, 349, 98, 16);
 	customerPnl.add(customerInputLbl);
-	
+
 	customerLoginBtn = new JButton("Login");
 	customerLoginBtn.setBounds(190, 400, 132, 41);
 	customerPnl.add(customerLoginBtn);
 	customerLoginBtn.addActionListener(this);
+
+
     }
 
     private void setEmployeePnl()
@@ -104,7 +108,7 @@ public class MainGui extends JFrame implements ActionListener
 	employeePnl.setBorder(new LineBorder(new Color(0, 0, 0)));
 	employeePnl.setBackground(Color.WHITE);
 	startCard.add(employeePnl);
-	
+
 	try
 	{
 	    BufferedImage logo = ImageIO.read(new File("images/logo.png"));
@@ -117,29 +121,29 @@ public class MainGui extends JFrame implements ActionListener
 	{
 	    e.printStackTrace();
 	}	
-	
+
 	JLabel employeeLbl = new JLabel("Medarbejder login");
 	employeeLbl.setFont(new Font("Tahoma", Font.PLAIN, 18));
 	employeeLbl.setBounds(98, 296, 141, 22);
 	employeePnl.add(employeeLbl);
-	
+
 	userField = new JTextField();
 	userField.setBounds(180, 346, 132, 22);
 	employeePnl.add(userField);
 	userField.setColumns(10);
-	
+
 	JLabel userLbl = new JLabel("Brugernavn:");
 	userLbl.setBounds(98, 349, 70, 16);
 	employeePnl.add(userLbl);
-	
+
 	passwordField = new JPasswordField();
 	passwordField.setBounds(180, 372, 132, 22);
 	employeePnl.add(passwordField);
-	
+
 	JLabel passLbl = new JLabel("Password:");
 	passLbl.setBounds(98, 378, 70, 16);
 	employeePnl.add(passLbl);
-	
+
 	employeeLoginBtn = new JButton("Login");
 	employeeLoginBtn.setBounds(180, 400, 132, 41);
 	employeePnl.add(employeeLoginBtn);
@@ -151,38 +155,22 @@ public class MainGui extends JFrame implements ActionListener
     {
 	if (e.getSource() == employeeLoginBtn)
 	{
-	    StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-
 	    String username = userField.getText();
 	    char[] password = passwordField.getPassword();
-	    String passwordInput = new String(password);
-	    String hashedPassword = controller.getPassword(username);
-	    
-	    if (hashedPassword.length() == 0) // if username is not in database
-	    {
-		checkLoginAttempts();
-	    }
-	    else 
-	    {
-		if (passwordEncryptor.checkPassword(passwordInput, hashedPassword))
-		{
-		    createAndShowEmployeeUI();
-		    loginAttempts = 0;
-		}
-		else 
-		{
-		    checkLoginAttempts();
-		}
-	    }
+	    passwordInput = new String(password);
+	    hashedPassword = controller.getPassword(username);
+
+	    validateInput();
 	} 
 	else if (e.getSource() == customerLoginBtn) 
 	{
 	    //Mangler validering
-	     String phone = phoneField.getText();
-	     createAndShowCustomerUI(phone);
+	    String phone = phoneField.getText();
+	    //Metode der validerer phone
+	    createAndShowCustomerUI(phone);
 	}
     }
-    
+
     private void createAndShowCustomerUI(String phone)
     {
 	createBookingPnl = new CreateBookingGui(phone);
@@ -198,10 +186,10 @@ public class MainGui extends JFrame implements ActionListener
 	//The different tabs
 	customerOverviewPnl = new CustomerViewGui();
 	treatmentOverviewPnl = new TreatmentViewGui();
-	
+
 	tabbedPane.addTab("Kundeoversigt", new ImageIcon("image/addMeIcon.png"), customerOverviewPnl, null); //Icon vises ikke
 	tabbedPane.addTab("Behandlingsoversigt", new ImageIcon("image/addMeIcon.png"), treatmentOverviewPnl, null); //Icon vises ikke
-	
+
 	cardLayout.show(contentPane, "employeeUi");
     }
 
@@ -209,7 +197,7 @@ public class MainGui extends JFrame implements ActionListener
     {
 	String firstTwoAttempts = "Brugernavn og/eller password passer ikke";
 	String afterTwoAttempts = "Du har indtastet forkert brugernavn og/eller password for mange gange.\n\tDin ip-adresse er spærret 1 time.";
-	
+
 	if (loginAttempts < 2)
 	{
 	    JOptionPane.showMessageDialog(null, firstTwoAttempts );
@@ -220,5 +208,29 @@ public class MainGui extends JFrame implements ActionListener
 	    System.exit(0);
 	}
 	loginAttempts++;
+    }
+
+    @Override
+    public boolean validateInput()
+    {
+	StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+
+	if (hashedPassword.length() == 0) // if username is not in database
+	{
+	    checkLoginAttempts();
+	}
+	else 
+	{
+	    if (passwordEncryptor.checkPassword(passwordInput, hashedPassword))
+	    {
+		createAndShowEmployeeUI();
+		loginAttempts = 0;
+	    }
+	    else 
+	    {
+		checkLoginAttempts();
+	    }
+	}
+	return true;
     }
 }

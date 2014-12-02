@@ -199,7 +199,8 @@ ValidateData
 		switchToAnimalPnl();
 	    }
 
-	} else if (e.getSource() == addAnimalBtn)
+	} 
+	else if (e.getSource() == addAnimalBtn)
 	{
 	    animalName = animalNameTxt.getText();
 	    animalAge = ageTxt.getText();
@@ -213,18 +214,15 @@ ValidateData
 	    animalNameTxt.setText("");
 	    ageTxt.setText("");
 
-	} else if (e.getSource() == okBtn)
+	} 
+	else if (e.getSource() == okBtn)
 	{
 	    dispose();
-	} else
+	} 
+	else if (e.getSource() == animalCombo)
 	{
-	    JComboBox cb = (JComboBox) e.getSource();
-
-	    if (e.getSource() == cb)
-	    {
-		animal = (String) cb.getSelectedItem();
-		id = controller.readAnimal(animal);
-	    }
+	    animal = (String) animalCombo.getSelectedItem();
+	    id = controller.readAnimal(animal);
 	}
     }
 
@@ -300,5 +298,4 @@ ValidateData
 	ageTxt.setEditable(true);
 	okBtn.setEnabled(true);
     }
-
 }

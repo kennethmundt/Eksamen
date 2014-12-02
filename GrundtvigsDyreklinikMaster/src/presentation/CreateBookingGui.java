@@ -28,6 +28,8 @@ public class CreateBookingGui extends JPanel implements ActionListener
     private String treatmentId;
     private Date date;
     private JComboBox chooseTimeBox;
+    private JComboBox chooseTreatmentBox;
+    private JComboBox chooseAnimalBox;
 
     public CreateBookingGui(String phone)
     {
@@ -48,36 +50,19 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	chooseAnimalLbl.setBounds(35, 89, 51, 16);
 	add(chooseAnimalLbl);
 
-	JComboBox chooseAnimalBox = new JComboBox(controllerApp.getAnimal(customer));
+	chooseAnimalBox = new JComboBox(controllerApp.getAnimal(customer));
 	chooseAnimalBox.setBounds(215, 86, 282, 22);
 	add(chooseAnimalBox);
-	chooseAnimalBox.addActionListener(new ActionListener()
-	{
-	    public void actionPerformed(ActionEvent event)
-	    {
-		JComboBox chooseAnimal = (JComboBox) event.getSource();
-
-		Animal animal = (Animal) chooseAnimal.getSelectedItem();
-		animalId = animal.getSpeciesId();
-	    }
-	});
+	chooseAnimalBox.addActionListener(this);
 
 	JLabel chooseTreatmentLbl = new JLabel("Vælg behandling");
 	chooseTreatmentLbl.setBounds(35, 146, 95, 16);
 	add(chooseTreatmentLbl);
 
-	JComboBox chooseTreatmentBox = new JComboBox(controllerApp.getTreatment());
+	chooseTreatmentBox = new JComboBox(controllerApp.getTreatment());
 	chooseTreatmentBox.setBounds(215, 143, 282, 22);
 	add(chooseTreatmentBox);
-	chooseTreatmentBox.addActionListener(new ActionListener()
-	{
-	    public void actionPerformed(ActionEvent event)
-	    {
-		JComboBox chooseTreatment = (JComboBox) event.getSource();
-		Treatment treat = (Treatment) chooseTreatment.getSelectedItem();
-		treatmentId = treat.getId();
-	    }
-	});
+	chooseTreatmentBox.addActionListener(this);
 
 	JLabel chooseDateLbl = new JLabel("Vælg dato");
 	chooseDateLbl.setBounds(35, 205, 58, 16);
@@ -94,15 +79,7 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	chooseTimeBox = new JComboBox(controllerApp.getTime());
 	chooseTimeBox.setBounds(215, 261, 282, 22);
 	add(chooseTimeBox);
-	chooseTimeBox.addActionListener(new ActionListener()
-	{
-	    public void actionPerformed(ActionEvent event)
-	    {
-
-		JComboBox chooseTime = (JComboBox) event.getSource();
-		time = (String) chooseTime.getSelectedItem();
-	    }
-	});
+	chooseTimeBox.addActionListener(this);
 
 	bookBtn = new JButton("Book");
 	bookBtn.setBounds(438, 348, 59, 25);
@@ -119,6 +96,20 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	    dateString = String.format("%1$td-%1$tm-%1$tY", date); //Crazy shit fra nettet (Jogvan er skyldig)
 
 	    controllerApp.create(treatmentId, animalId, dateString, time);
+	}
+	else if (e.getSource() == chooseTimeBox)  // Test
+	{
+	    time = (String) chooseTimeBox.getSelectedItem();
+	}
+	else if (e.getSource() == chooseTreatmentBox) // Test
+	{
+	    Treatment treat = (Treatment) chooseTreatmentBox.getSelectedItem();
+	    treatmentId = treat.getId();
+	}
+	else if (e.getSource() == chooseAnimalBox) 
+	{
+	    Animal animal = (Animal) chooseAnimalBox.getSelectedItem();
+	    animalId = animal.getSpeciesId();
 	}
     }
 }
