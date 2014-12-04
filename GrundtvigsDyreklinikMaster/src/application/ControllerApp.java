@@ -1,15 +1,23 @@
+/**
+ * @author kenneth, Tina, Elvis og Jogvan
+ * First class to receive input from the presentation layer.
+ * Distributes data to other classes in the application layer.
+ */
+
 package application;
 
 import javax.swing.table.DefaultTableModel;
 
 import dataAccess.ControllerDb;
+import dataAccess.ReadDb;
 
 public class ControllerApp
 {
+    ReadDb readDb = new ReadDb();
     ControllerDb controllerDb = new ControllerDb();
     UpdateApp updateApp = new UpdateApp();
     DeleteApp deleteApp = new DeleteApp();
-    OverviewApp customerOverviewApp = new OverviewApp();
+    OverviewApp overviewApp = new OverviewApp();
     CreateApp createApp = new CreateApp();
     DropDownApp readDropDown = new DropDownApp();
     ReadApp readApp = new ReadApp();
@@ -40,14 +48,14 @@ public class ControllerApp
     // CustomerViewGui JTable
     public DefaultTableModel getTableModel()
     {
-	DefaultTableModel data = customerOverviewApp.getTableModel();
+	DefaultTableModel data = overviewApp.getTableModel();
 
 	return data;
     }
 
     public Customer readCustomer(String phone)
     {
-	return customerOverviewApp.readCustomer(phone);
+	return overviewApp.readCustomer(phone);
     }
 
     // Get values from CreateCustomerGui and send to the CreateCustomerApp
@@ -93,7 +101,7 @@ public class ControllerApp
     // TreatmentViewGui JTable
     public DefaultTableModel getTreatmentTableModel()
     {
-	DefaultTableModel data = customerOverviewApp.getTreatmentTableModel();
+	DefaultTableModel data = overviewApp.getTreatmentTableModel();
 
 	return data;
     }
@@ -113,7 +121,7 @@ public class ControllerApp
     //Take the variable from JTable and send to OverviewApp
     public Treatment readTreatment(String treatmentName)
     {
-	return customerOverviewApp.readTreatment(treatmentName);
+	return overviewApp.readTreatment(treatmentName);
     }
     
     //Delete treatment from JTable
@@ -135,5 +143,16 @@ public class ControllerApp
     public String getPassword(String username)
     {
 	return controllerDb.getPassword(username);
+    }
+
+    public DefaultTableModel getBookingTableModel()
+    {
+	DefaultTableModel data = overviewApp.getBookingTableModel();
+	return data;
+    }
+
+    public boolean getPhone(String phone)
+    {
+	return readDb.getPhone(phone);
     }
 }

@@ -1,5 +1,5 @@
 /**
- * @author Kenneth
+ * @author Kenneth, Tina, Elvis og Jogvan
  * Contains all info needed to create an animal
  */
 

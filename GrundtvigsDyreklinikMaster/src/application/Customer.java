@@ -1,6 +1,8 @@
 /**
- * @author Kenneth, Jogvan, Elvis
+ * @author kenneth, Tina, Elvis og Jogvan
+ * Contains all information needed to create a customer
  */
+
 package application;
 
 public class Customer

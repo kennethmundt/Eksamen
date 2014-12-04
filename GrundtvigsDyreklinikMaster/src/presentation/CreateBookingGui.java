@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import application.Animal;
@@ -54,6 +55,7 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	chooseAnimalBox.setBounds(215, 86, 282, 22);
 	add(chooseAnimalBox);
 	chooseAnimalBox.addActionListener(this);
+	chooseAnimalBox.setSelectedIndex(-1);
 
 	JLabel chooseTreatmentLbl = new JLabel("Vælg behandling");
 	chooseTreatmentLbl.setBounds(35, 146, 95, 16);
@@ -63,6 +65,7 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	chooseTreatmentBox.setBounds(215, 143, 282, 22);
 	add(chooseTreatmentBox);
 	chooseTreatmentBox.addActionListener(this);
+	chooseTreatmentBox.setSelectedIndex(-1);
 
 	JLabel chooseDateLbl = new JLabel("Vælg dato");
 	chooseDateLbl.setBounds(35, 205, 58, 16);
@@ -71,7 +74,8 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	dateChooserCal = new JDateChooser();
 	dateChooserCal.setBounds(215, 200, 282, 26);
 	add(dateChooserCal);
-
+	dateChooserCal.getDateEditor().setEnabled(false);
+	
 	JLabel chooseTimeLbl = new JLabel("Vælg tid");
 	chooseTimeLbl.setBounds(35, 264, 47, 16);
 	add(chooseTimeLbl);
@@ -80,6 +84,7 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	chooseTimeBox.setBounds(215, 261, 282, 22);
 	add(chooseTimeBox);
 	chooseTimeBox.addActionListener(this);
+	chooseTimeBox.setSelectedIndex(-1);
 
 	bookBtn = new JButton("Book");
 	bookBtn.setBounds(438, 348, 59, 25);
@@ -95,13 +100,22 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	    date = dateChooserCal.getDate();
 	    dateString = String.format("%1$td-%1$tm-%1$tY", date); //Crazy shit fra nettet (Jogvan er skyldig)
 
-	    controllerApp.create(treatmentId, animalId, dateString, time);
+	    if (treatmentId != null && animalId != 0 && dateString != null && time != null) 
+	    {
+		controllerApp.create(treatmentId, animalId, dateString, time);
+
+		JOptionPane.showMessageDialog(null, "Bookning er nu oprettet");
+	    } 
+	    else 
+	    {
+		JOptionPane.showMessageDialog(null, "Udfyld venligst alle felter");
+	    }
 	}
-	else if (e.getSource() == chooseTimeBox)  // Test
+	else if (e.getSource() == chooseTimeBox)
 	{
 	    time = (String) chooseTimeBox.getSelectedItem();
 	}
-	else if (e.getSource() == chooseTreatmentBox) // Test
+	else if (e.getSource() == chooseTreatmentBox) 
 	{
 	    Treatment treat = (Treatment) chooseTreatmentBox.getSelectedItem();
 	    treatmentId = treat.getId();

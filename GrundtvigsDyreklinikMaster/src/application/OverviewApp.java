@@ -76,4 +76,27 @@ public class OverviewApp
 
 	return treatment;
     }
+
+    public DefaultTableModel getBookingTableModel()
+    {
+	List<Booking> bookingList = controllerDb.readBooking();
+
+	String[] columns = { "Navn", "Telefon", "Dato", "Dyrenavn", "Art", "Behandling" };
+	DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+
+	for (int i = 0; i < bookingList.size(); ++i)
+	{
+	    String customerName = bookingList.get(i).getCustomerName();
+	    String customerPhone = bookingList.get(i).getCustomerPhone();
+	    String date = bookingList.get(i).getDateTime();
+	    String animalName = bookingList.get(i).getAnimalName();
+	    String species = bookingList.get(i).getSpecies();
+	    String treatmentName = bookingList.get(i).getTreatmentName();
+
+	    Object[] data = { customerName, customerPhone, date, animalName, species, treatmentName };
+
+	    tableModel.addRow(data);
+	}
+	return tableModel;
+    }
 }

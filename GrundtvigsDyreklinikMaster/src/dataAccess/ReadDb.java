@@ -8,9 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import application.Animal;
+import application.Booking;
 import application.Customer;
 import application.Treatment;
 
@@ -288,5 +290,59 @@ public class ReadDb
 	    System.err.println(e);
 	}
 	return password;
+    }
+
+    public ArrayList<Booking> readBooking()
+    {
+	ArrayList<Booking> bookingList = new ArrayList<Booking>();
+
+	try
+	{
+	    conn = dBc.connect();
+	    preparedStatement = conn.prepareStatement("SELECT customers.name, customers.phone, bookings.dateTime, animals.animalName, animalspecies.speciesName, treatments.treatmentName FROM bookings JOIN animals ON bookings.fk_idAnimal = animals.idAnimal JOIN treatments ON bookings.fk_idTreatment = treatments.idTreatment	JOIN customers ON animals.fk_idCustomer = customers.idCustomer JOIN animalspecies ON animals.fk_idAnimalSpecies = animalspecies.idAnimalSpecies");
+		result = preparedStatement.executeQuery();
+
+	    while (result.next())
+	    {
+		String customerName = result.getString("name");
+		String customerPhone = result.getString("phone");
+		String animalName = result.getString("animalName");
+		String species = result.getString("speciesName");
+		String dateTime = result.getString("dateTime");
+		String treatmentName = result.getString("treatmentName");
+
+		bookingList.add(new Booking(customerName, customerPhone, animalName, species, dateTime, treatmentName));
+	    }
+	    preparedStatement.close();
+	    conn.close();
+
+	} catch (SQLException e)
+	{
+	    System.err.println(e);
+	}
+	return bookingList;
+    }
+
+    public boolean getPhone(String phone)
+    {
+	String phoneNum = "";
+	
+	try
+	{
+	    conn = dBc.connect();
+	    preparedStatement = conn.prepareStatement("SELECT * FROM customers WHERE phone = ?");
+	    preparedStatement.setString(1, phone);
+	    result = preparedStatement.executeQuery();
+
+	    while (result.next())
+	    {
+		phoneNum = result.getString("phone");
+	    }
+	}
+	catch (SQLException e)
+	{
+	    e.printStackTrace();
+	}
+	return phoneNum.equals(phoneNum);
     }
 }

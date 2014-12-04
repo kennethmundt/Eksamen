@@ -1,6 +1,10 @@
+import java.awt.PageAttributes;
 import java.io.File;
 import java.util.Scanner;
+import java.util.function.ToDoubleBiFunction;
 
+import org.jasypt.exceptions.PasswordAlreadyCleanedException;
+import org.jasypt.util.password.PasswordEncryptor;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 public class Encrypt
@@ -49,9 +53,23 @@ public class Encrypt
 //	    System.out.println("DOH!");
 //	}	
 	
+//	---------------------------------------------------------------------------------
+	//To encrypt a password from userInput.
+	
+	//StrongPasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+	// String password = userInput
+	// String encryptedPassword = passwordEncryptor.encryptPassword(password);
+	//Insert encryptedPassword into database.
 	
 	
+	// to "decrypt" you do this.
 	
+	//StrongPasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+	//String userInput = Det brugeren indtaster
+	
+	//passwordEncryptor.checkPassword(userInput, encryptedPassword) Denne returner true eller false.
+	
+//	--------------------------------------------------------------------------------------
 	
 //	String passwordT = "KennethErAwesome";
 //	String encryptedPassword = passwordEncryptor.encryptPassword(passwordT);

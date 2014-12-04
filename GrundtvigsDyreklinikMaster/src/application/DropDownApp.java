@@ -28,8 +28,8 @@ ControllerDb controllerDb = new ControllerDb();
 
     public Object[] readTime()
     {
-	Object[] time = controllerDb.readTime().toArray();
-	return time;
+	Object[] timeList = controllerDb.readTime().toArray();
+	return timeList;
     }
 
 }

@@ -94,6 +94,13 @@ public class ControllerDb
 	return timeList;
     }
     
+    public List<Booking> readBooking()
+    {
+	List<Booking> bookingList = new ArrayList<Booking>(readDb.readBooking());
+	
+	return bookingList;
+    }
+    
     //
     public Treatment readTreatment(String treatmentName) 
     {

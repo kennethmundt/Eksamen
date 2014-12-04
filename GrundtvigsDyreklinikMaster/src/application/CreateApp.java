@@ -1,6 +1,6 @@
 /**
- * @author Kenneth, Jogvan and Elvis
- * Creates a new customer, animals and treatments
+ * @author kenneth, Tina, Elvis og Jogvan
+ * Responsible for creating objects of customers, animals, treatments and bookings
  */
 
 package application;

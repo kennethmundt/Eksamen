@@ -38,6 +38,7 @@ public class MainGui extends JFrame implements ActionListener, ValidateData
     private JPanel startCard;
     private JPanel customerOverviewPnl;
     private JPanel treatmentOverviewPnl;
+    private JPanel bookingOverviewPnl;
     private JPanel employeePnl;
     private JPanel customerPnl;
     private JPanel createBookingPnl;
@@ -166,8 +167,14 @@ public class MainGui extends JFrame implements ActionListener, ValidateData
 	{
 	    //Mangler validering
 	    String phone = phoneField.getText();
-	    //Metode der validerer phone
-	    createAndShowCustomerUI(phone);
+	    if (controller.getPhone(phone))
+	    {
+		createAndShowCustomerUI(phone);
+	    } 
+	    else
+	    {
+		JOptionPane.showMessageDialog(null, "Forkert telefonnummer.");
+	    }
 	}
     }
 
@@ -186,10 +193,12 @@ public class MainGui extends JFrame implements ActionListener, ValidateData
 	//The different tabs
 	customerOverviewPnl = new CustomerViewGui();
 	treatmentOverviewPnl = new TreatmentViewGui();
+	bookingOverviewPnl = new BookingViewGui();
+	
 
 	tabbedPane.addTab("Kundeoversigt", new ImageIcon("image/addMeIcon.png"), customerOverviewPnl, null); //Icon vises ikke
 	tabbedPane.addTab("Behandlingsoversigt", new ImageIcon("image/addMeIcon.png"), treatmentOverviewPnl, null); //Icon vises ikke
-
+	tabbedPane.addTab("Vis bookinger", new ImageIcon("image/addMeIcon.png"), bookingOverviewPnl, null);
 	cardLayout.show(contentPane, "employeeUi");
     }
 
