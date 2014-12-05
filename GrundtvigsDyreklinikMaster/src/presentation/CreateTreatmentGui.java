@@ -18,11 +18,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import application.ControllerApp;
+import application.InputValidater;
 
-public class CreateTreatmentGui extends JFrame implements ActionListener, ValidateData
+public class CreateTreatmentGui extends JFrame implements ActionListener
 {
     ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
     ControllerApp controllerApp = new ControllerApp();
+    InputValidater validater = new InputValidater();
     
     private JPanel treatmentPanel;
     private JTextField treatmentNameTxt;
@@ -38,13 +40,11 @@ public class CreateTreatmentGui extends JFrame implements ActionListener, Valida
 
     public CreateTreatmentGui()
     {
-	// Set up JFrame
 	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	setBounds(100, 100, 520, 550);
 	setResizable(false);
 	setLocationRelativeTo(null);
 
-	// Set up create treatment panel
 	JPanel contentPaneCustomer = new JPanel();
 	contentPaneCustomer.setBorder(new EmptyBorder(5, 5, 5, 5));
 	contentPaneCustomer.setLayout(null);
@@ -112,50 +112,45 @@ public class CreateTreatmentGui extends JFrame implements ActionListener, Valida
 	    comment = commentTxt.getText();
 	    price = priceTxt.getText();
 
-	    boolean isInputValidated = validateInput();
-	    
-	    if (isInputValidated)
+	    boolean treatmentNameNotValidated = validater.checkForEmptyString(treatmentName);
+	    if (treatmentNameNotValidated)
 	    {
-		controllerApp.createTreatment(treatmentName, price, duration, comment);
-
-		// Dialog box is only showing in 2 sec.
-		confirmationTime.confirmation("Behandlingen er oprettet", "Velkommen");
-
-		dispose();
+		JOptionPane.showMessageDialog(null, "Behandlingen skal have et navn");
+		treatmentNameTxt.requestFocus();
+		return;
 	    }
+	    
+	    boolean priceNotValidated = validater.validatedigits(price);
+	    if (priceNotValidated)
+	    {
+		JOptionPane.showMessageDialog(null, "Fejl i indtastning af pris");
+		priceTxt.setText("");
+		priceTxt.requestFocus();
+		return;
+	    }
+	    
+	    boolean durationNotSelected = validater.isComboBoxEmpty(durationCombo.getSelectedItem());
+	    if (durationNotSelected)
+	    {
+		 JOptionPane.showMessageDialog(null, "Du skal vælge varighed af behandlingen.");
+		 return;
+	    }
+	    
+	    boolean inputLengthNotValidated = validater.validateInputLength(comment);
+	    if (inputLengthNotValidated)
+	    {
+		 JOptionPane.showMessageDialog(null, "Kommentarfeltet kan max indeholde 250 tegn.");
+		 commentTxt.requestFocus();
+		 return;
+	    }
+	    
+	    controllerApp.createTreatment(treatmentName, price, duration, comment);
+	    confirmationTime.confirmation("Behandlingen er oprettet", "Velkommen");
+	    dispose();
 	}
 	else if (e.getSource() == durationCombo)
 	{
 	    duration = (String) durationCombo.getSelectedItem();
 	}
-    }
-
-    public boolean validateInput()
-    {
-	// Regular ekspressions that only allows digits.
-	String priceFormat = "\\d+";
-
-	if (treatmentName.isEmpty())
-	{
-	    JOptionPane.showMessageDialog(null, "Behandlingen skal have et navn");
-	    treatmentNameTxt.requestFocus();
-	    return false;
-	}
-	
-	if (!price.matches(priceFormat))
-	{
-	    JOptionPane.showMessageDialog(null, "Fejl i indtastning af pris");
-	    priceTxt.setText("");
-	    priceTxt.requestFocus();
-	    return false;
-	}
-
-	if (comment.length() > 250 )
-	{
-	    JOptionPane.showMessageDialog(null, "Kommentarfeltet kan max indeholde 250 tegn.");
-	    commentTxt.requestFocus();
-	    return false;
-	}
-	return true;
     }
 }

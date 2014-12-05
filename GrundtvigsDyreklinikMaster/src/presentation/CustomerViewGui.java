@@ -85,7 +85,8 @@ public class CustomerViewGui extends JPanel implements ActionListener
 	if (e.getSource() == createCustomerBtn)
 	{
 	    new CreateCustomerGui();
-	} else if (e.getSource() == deleteCustomerBtn)
+	} 
+	else if (e.getSource() == deleteCustomerBtn)
 	{
 	    phone = JOptionPane.showInputDialog("Indtast telefonnr. på kunden du ønsker at slette.");
 	    Customer customer = controller.readCustomer(phone);

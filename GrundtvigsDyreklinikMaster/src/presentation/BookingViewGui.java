@@ -19,8 +19,7 @@ public class BookingViewGui extends JPanel
     {
 	tableModel = controller.getBookingTableModel();
 	JTable bookingTable = new JTable(tableModel);
-	bookingTable
-		.setPreferredScrollableViewportSize(new Dimension(800, 500));
+	bookingTable.setPreferredScrollableViewportSize(new Dimension(800, 500));
 	bookingTable.setFillsViewportHeight(true);
 
 	scrollPane = new JScrollPane(bookingTable);
@@ -33,6 +32,4 @@ public class BookingViewGui extends JPanel
 	// aplicationLayer
 
     }
-
-
 }

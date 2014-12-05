@@ -1,0 +1,16 @@
+package application;
+
+public class InputValidater
+{
+    
+    public boolean validateBooking(String treatmentId, int animalId, String date, String time)
+    {
+	if (treatmentId != null && animalId != 0 && date != null && time != null)
+	{
+	    return true;
+	}
+	return false;
+	
+    }
+
+}

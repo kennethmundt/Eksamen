@@ -1,0 +1,23 @@
+package application;
+
+import java.util.Date;
+
+public class InputValidater
+{
+    
+    public boolean validateBooking(String treatmentId, int animalId, Date date, String time)
+    {
+	if (treatmentId != null && animalId != 0 && date != null && time != null)
+	{
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean validateCustomer(String name, String address, String phone, String mail)
+    {
+	// TODO Auto-generated method stub
+	return false;
+    }
+
+}

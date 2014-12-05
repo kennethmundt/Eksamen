@@ -1,0 +1,34 @@
+package application;
+
+import java.util.Date;
+
+import javax.swing.JOptionPane;
+
+public class InputValidater
+{
+    
+    public boolean validateBooking(String treatmentId, int animalId, Date date, String time)
+    {
+	if (treatmentId != null && animalId != 0 && date != null && time != null)
+	{
+	    return true;
+	}
+	return false;
+    }
+    
+    public boolean validateCustomerName(String name)
+    {
+	if (name.isEmpty())
+	{
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean validateAddress(boolean address)
+    {
+	// TODO Auto-generated method stub
+	return false;
+    }
+
+}

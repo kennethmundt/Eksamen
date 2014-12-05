@@ -30,8 +30,7 @@ public class ReadDb
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn
-		    .prepareStatement("SELECT * FROM customers");
+	    preparedStatement = conn.prepareStatement("SELECT * FROM customers");
 	    result = preparedStatement.executeQuery();
 
 	    while (result.next())
@@ -59,7 +58,8 @@ public class ReadDb
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn.prepareStatement("SELECT * FROM customers WHERE phone = " + phone);
+	    preparedStatement = conn.prepareStatement("SELECT * FROM customers WHERE phone = ?");
+	    preparedStatement.setString(1, phone);
 	    result = preparedStatement.executeQuery();
 	    while (result.next())
 	    {
@@ -114,7 +114,8 @@ public class ReadDb
 	{
 	    conn = dBc.connect();
 	    preparedStatement = conn
-		    .prepareStatement("SELECT * FROM animals WHERE animals.fk_idCustomer = " + id);
+		    .prepareStatement("SELECT * FROM animals WHERE animals.fk_idCustomer = ?");
+	    preparedStatement.setString(1, id);
 	    result = preparedStatement.executeQuery();
 
 	    while (result.next())
@@ -143,8 +144,8 @@ public class ReadDb
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn
-		    .prepareStatement("SELECT idAnimalSpecies FROM dyreklinik.animalspecies WHERE speciesName = '" + animal + "'");
+	    preparedStatement = conn.prepareStatement("SELECT idAnimalSpecies FROM dyreklinik.animalspecies WHERE speciesName = ?");
+	    preparedStatement.setString(1, animal);
 	    result = preparedStatement.executeQuery();
 	    while (result.next())
 	    {
@@ -164,8 +165,9 @@ public class ReadDb
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn
-		    .prepareStatement("SELECT idAnimal FROM dyreklinik.animals WHERE animalName = '" + animal + "' AND fk_idCustomer = '" + customerId + "'");
+	    preparedStatement = conn.prepareStatement("SELECT idAnimal FROM dyreklinik.animals WHERE animalName = ? AND fk_idCustomer = ?");
+	    preparedStatement.setString(1, animal);
+	    preparedStatement.setString(2, customerId);
 	    result = preparedStatement.executeQuery();
 	    while (result.next())
 	    {
@@ -216,7 +218,8 @@ public class ReadDb
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn.prepareStatement("SELECT * FROM treatments WHERE treatmentName = '" + name +"'");
+	    preparedStatement = conn.prepareStatement("SELECT * FROM treatments WHERE treatmentName = ?");
+	    preparedStatement.setString(1, name);
 	    result = preparedStatement.executeQuery();
 	    while (result.next())
 	    {
@@ -299,8 +302,8 @@ public class ReadDb
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn.prepareStatement("SELECT customers.name, customers.phone, bookings.dateTime, animals.animalName, animalspecies.speciesName, treatments.treatmentName FROM bookings JOIN animals ON bookings.fk_idAnimal = animals.idAnimal JOIN treatments ON bookings.fk_idTreatment = treatments.idTreatment	JOIN customers ON animals.fk_idCustomer = customers.idCustomer JOIN animalspecies ON animals.fk_idAnimalSpecies = animalspecies.idAnimalSpecies");
-		result = preparedStatement.executeQuery();
+	    preparedStatement = conn.prepareStatement("SELECT customers.name, customers.phone, bookings.dateTime, animals.animalName, animalspecies.speciesName, treatments.treatmentName FROM bookings JOIN animals ON bookings.fk_idAnimal = animals.idAnimal JOIN treatments ON bookings.fk_idTreatment = treatments.idTreatment JOIN customers ON animals.fk_idCustomer = customers.idCustomer JOIN animalspecies ON animals.fk_idAnimalSpecies = animalspecies.idAnimalSpecies");
+	    result = preparedStatement.executeQuery();
 
 	    while (result.next())
 	    {
@@ -343,6 +346,6 @@ public class ReadDb
 	{
 	    e.printStackTrace();
 	}
-	return phoneNum.equals(phoneNum);
+	return phoneNum.equals(phone);
     }
 }

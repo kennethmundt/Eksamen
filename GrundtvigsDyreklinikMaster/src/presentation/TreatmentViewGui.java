@@ -36,8 +36,7 @@ public class TreatmentViewGui extends JPanel implements ActionListener
     {
 	tableModel = controllerApp.getTreatmentTableModel();
 	JTable treatmentTable = new JTable(tableModel);
-	treatmentTable.setPreferredScrollableViewportSize(new Dimension(800,
-		500));
+	treatmentTable.setPreferredScrollableViewportSize(new Dimension(800, 500));
 	treatmentTable.setFillsViewportHeight(true);
 	treatmentTable.getColumn("id").setWidth(0);
 	treatmentTable.getColumn("id").setMinWidth(0);
@@ -46,42 +45,28 @@ public class TreatmentViewGui extends JPanel implements ActionListener
 	createTreatmentBtn = new JButton("Opret Behandling");
 	deleteTreatmentBtn = new JButton("Slet Behandling");
 
-	// Add components to panel
 	add(scrollPane);
 	add(deleteTreatmentBtn);
 	add(createTreatmentBtn);
 
-	// add actionlisteners
 	createTreatmentBtn.addActionListener(this);
 	deleteTreatmentBtn.addActionListener(this);
 
-	// Add tableModellistener
-	// Registers changes in treatmentTable and pass changes to
-	// aplicationLayer
-	treatmentTable.getModel().addTableModelListener(
-		new TableModelListener()
-		{
-		    @Override
-		    public void tableChanged(TableModelEvent e)
-		    {
-			int row = e.getFirstRow();
-			String treatmentId = (String) treatmentTable
-				.getValueAt(row, 0);
-			String teatmentColumn = (String) treatmentTable
-				.getValueAt(row, 1);
-			String priceColumn = (String) treatmentTable
-				.getValueAt(row, 2);
-			String durationColumn = (String) treatmentTable
-				.getValueAt(row, 3);
-			String commentColumn = (String) treatmentTable
-				.getValueAt(row, 4);
+	treatmentTable.getModel().addTableModelListener(new TableModelListener()
+	{
+	    @Override
+	    public void tableChanged(TableModelEvent e)
+	    {
+		int row = e.getFirstRow();
+		String treatmentId = (String) treatmentTable.getValueAt(row, 0);
+		String teatmentColumn = (String) treatmentTable.getValueAt(row, 1);
+		String priceColumn = (String) treatmentTable.getValueAt(row, 2);
+		String durationColumn = (String) treatmentTable.getValueAt(row, 3);
+		String commentColumn = (String) treatmentTable.getValueAt(row, 4);
 
-			controllerApp.saveChangesTreatment(teatmentColumn,
-				priceColumn, durationColumn, commentColumn,
-				treatmentId);
-
-		    }
-		});
+		controllerApp.saveChangesTreatment(teatmentColumn, priceColumn, durationColumn, commentColumn, treatmentId);
+	    }
+	});
     }
 
     @Override
@@ -93,17 +78,13 @@ public class TreatmentViewGui extends JPanel implements ActionListener
 	    new CreateTreatmentGui();
 	} else if (e.getSource() == deleteTreatmentBtn)
 	{
-	    treatmentName = JOptionPane
-		    .showInputDialog("Indtast navn på behandling du ønsker at slette.");
+	    treatmentName = JOptionPane.showInputDialog("Indtast navn på behandling du ønsker at slette.");
 	    Treatment treatment = controllerApp.readTreatment(treatmentName);
 
-	    if (JOptionPane.showConfirmDialog(null, treatment.toString(),
-		    "Slet denne behandling?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+	    if (JOptionPane.showConfirmDialog(null, treatment.toString(), "Slet denne behandling?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 	    {
 		controllerApp.deleteTreatment(treatmentName);
-		confirmationTime.confirmation("Behandlingen er Slettet",
-			"Velkommen");
-
+		confirmationTime.confirmation("Behandlingen er Slettet", "Velkommen");
 	    }
 	}
     }

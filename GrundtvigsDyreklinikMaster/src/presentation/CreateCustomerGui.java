@@ -20,13 +20,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import application.ControllerApp;
+import application.InputValidater;
 
-public class CreateCustomerGui extends JFrame implements ActionListener,
-ValidateData
+public class CreateCustomerGui extends JFrame implements ActionListener
 {
-    ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
-    ControllerApp controller = new ControllerApp();
-
+    private ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
+    private ControllerApp controller = new ControllerApp();
+    private InputValidater validater = new InputValidater();
+    
     private JPanel customerPanel;
     private JPanel animalPanel;
     private JTextField nameTxt;
@@ -43,23 +44,20 @@ ValidateData
     private String animal;
     private String animalName;
     private String animalAge;
+    private String name;
+    private String address;
+    private String phone;
+    private String mail;
     private JLabel customerLbl;
     private int id;
 
-    String name;
-    String address;
-    String phone;
-    String mail;
-
     public CreateCustomerGui()
     {
-	// Set up JFrame
 	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	setBounds(100, 100, 656, 550);
 	setResizable(false);
 	setLocationRelativeTo(null);
 
-	// Set up create customer panel
 	JPanel contentPaneCustomer = new JPanel();
 	contentPaneCustomer.setBorder(new EmptyBorder(5, 5, 5, 5));
 	contentPaneCustomer.setLayout(null);
@@ -112,7 +110,6 @@ ValidateData
 	customerPanel.add(createCustomerBtn);
 	createCustomerBtn.addActionListener(this);
 
-	// Set up add animal panel
 	animalPanel = new JPanel();
 	animalPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 	animalPanel.setBounds(394, 6, 250, 504);
@@ -150,20 +147,17 @@ ValidateData
 	animalPanel.add(addAnimalBtn);
 	addAnimalBtn.addActionListener(this);
 
-	// Make the buttons and JTextfields non-editable
 	addAnimalBtn.setEnabled(false);
 	animalCombo.setEditable(false);
 	animalCombo.setEnabled(false);
 	animalNameTxt.setEditable(false);
 	ageTxt.setEditable(false);
 
-	// Add textArea to show animals
 	animalArea = new JTextArea();
 	animalArea.setBounds(41, 259, 178, 133);
 	animalPanel.add(animalArea);
 	animalArea.setEditable(false);
 
-	// Ok button to close the JFrame
 	okBtn = new JButton("OK");
 	okBtn.setBounds(111, 452, 117, 29);
 	animalPanel.add(okBtn);
@@ -182,30 +176,79 @@ ValidateData
 	    address = addressTxt.getText();
 	    phone = phoneTxt.getText();
 	    mail = mailTxt.getText();
-
-	    boolean inputIsValidated = validateInput();
-	    if (inputIsValidated)
+	    
+	    boolean nameNotValidated = validater.checkForEmptyString(name);
+	    if (nameNotValidated)
 	    {
-		controller.create(name, address, phone, mail);
-
-		// Dialog box is only showing in 2 sec.
-		confirmationTime.confirmation("Kunden er oprettet, tilføj gerne en dyr. Dette vindue lukker ned om 2 sek.", "Velkommen");
-
-		nameTxt.setText("");
-		addressTxt.setText("");
-		phoneTxt.setText("");
-		mailTxt.setText("");
-
-		switchToAnimalPnl();
+		JOptionPane.showMessageDialog(null, "Navnefeltet må ikke være tomt");
+		nameTxt.requestFocus();
+		return;
 	    }
+	    
+	    boolean addressNotValidated = validater.checkForEmptyString(address);
+	    if (addressNotValidated)
+	    {
+		JOptionPane.showMessageDialog(null, "Addressefeltet må ikke være tomt");
+		addressTxt.requestFocus();
+		return;
+	    }
+	    
+	    boolean mailNotValidated = validater.validateMail(mail);
+	    if (mailNotValidated)
+	    {
+		JOptionPane.showMessageDialog(null, "Fejl i indtastning af email-adresse");
+		mailTxt.setText("");
+		mailTxt.requestFocus();
+		return;
+	    }
+	    
+	    boolean phoneNotValidated = validater.validatePhone(phone);
+	    if (phoneNotValidated)
+	    {
+		JOptionPane.showMessageDialog(null, "Fejl i indtastning af telefonnr.");
+		phoneTxt.setText("");
+		phoneTxt.requestFocus();
+		return;
+	    }
+	   
+	    controller.create(name, address, phone, mail);
+
+	    confirmationTime.confirmation("Kunden er oprettet, tilføj gerne en dyr. Dette vindue lukker ned om 2 sek.", "Velkommen");
+
+	    nameTxt.setText("");
+	    addressTxt.setText("");
+	    phoneTxt.setText("");
+	    mailTxt.setText("");
+
+	    switchToAnimalPnl();
 
 	} 
 	else if (e.getSource() == addAnimalBtn)
 	{
 	    animalName = animalNameTxt.getText();
 	    animalAge = ageTxt.getText();
+	    
+	    boolean isAnimalComboEmpty = validater.isComboBoxEmpty(animalCombo.getSelectedItem());
+	    if (isAnimalComboEmpty)
+	    {
+		JOptionPane.showMessageDialog(null, "Du skal vælge et dyr.");
+		return;
+	    }
+	    
+	    boolean animalNameNotValidated = validater.checkForEmptyString(animalName);
+	    if (animalNameNotValidated)
+	    {
+		JOptionPane.showMessageDialog(null, "NavneFeltet må ikke være tomt");
+		animalNameTxt.requestFocus();
+		return;
+	    }
 
-	    validateInput();
+//	    boolean animalAgeNotValidated = validater.validateAge(animalAge);
+//	    if (animalAgeNotValidated)
+//	    {
+//		//do something
+//		//return;
+//	    }
 
 	    animalArea.append(animal + " " + animalName + " " + animalAge + "\n");
 
@@ -213,7 +256,6 @@ ValidateData
 
 	    animalNameTxt.setText("");
 	    ageTxt.setText("");
-
 	} 
 	else if (e.getSource() == okBtn)
 	{
@@ -224,63 +266,6 @@ ValidateData
 	    animal = (String) animalCombo.getSelectedItem();
 	    id = controller.readAnimal(animal);
 	}
-    }
-
-    @Override
-    public boolean validateInput()
-    {
-	String mailFormat = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"; // Fancy regex from tutorialspoint.com
-	String phoneFormat = "\\d{8}"; // Regular expression that allows a sequence of 8 digits.
-	boolean customerNotCreated = true;
-
-	if (customerNotCreated)
-	{
-	    if (name.isEmpty())
-	    {
-		JOptionPane.showMessageDialog(null, "Navnefeltet må ikke være tomt");
-		nameTxt.requestFocus();
-		return false;
-	    }
-	    if (address.isEmpty())
-	    {
-		JOptionPane.showMessageDialog(null, "Addressefeltet må ikke være tomt");
-		addressTxt.requestFocus();
-		return false;
-	    }
-	    if (!mail.matches(mailFormat))
-	    {
-		JOptionPane.showMessageDialog(null, "Fejl i indtastning af email-adresse");
-		mailTxt.setText("");
-		mailTxt.requestFocus();
-		return false;
-	    }
-	    if (!phone.matches(phoneFormat))
-	    {
-		JOptionPane.showMessageDialog(null, "Fejl i indtastning af telefonnr.");
-		phoneTxt.setText("");
-		phoneTxt.requestFocus();
-		return false;
-	    }
-	    customerNotCreated = false;
-	} 
-	else
-	{
-	    if (animalName.isEmpty())
-	    {
-		JOptionPane.showMessageDialog(null, "NavneFeltet må ikke være tomt");
-		animalNameTxt.requestFocus();
-		return false;
-	    }
-//	    if (/*! animalAge == rightFormat*/)
-//	    {
-//		JOptionPane.showMessageDialog(null, "Navnefeltet må ikke være tomt");
-//		nameTxt.setText("");
-//		nameTxt.requestFocus();
-//		return false;
-//	    }
-	    
-	}					  
-	return true;
     }
 
     public void switchToAnimalPnl()
