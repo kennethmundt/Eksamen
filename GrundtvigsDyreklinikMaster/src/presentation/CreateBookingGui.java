@@ -107,7 +107,6 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	    dateString = String.format("%1$td-%1$tm-%1$tY", date); //Crazy shit fra nettet (Jogvan er skyldig)
 
 	    boolean bookingNotValidated = validate.validateBooking(treatmentId, animalId, date, time);
-	    
 	    if (bookingNotValidated) 
 	    {
 		JOptionPane.showMessageDialog(null, "Udfyld venligst alle felter");
