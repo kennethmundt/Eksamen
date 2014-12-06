@@ -7,42 +7,32 @@ package presentation;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ResourceBundle.Control;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import application.ControllerApp;
-import application.CreateApp;
 import application.Customer;
-import application.OverviewApp;
-import application.UpdateApp;
 
 public class CustomerViewGui extends JPanel implements ActionListener
 {
-    ControllerApp controller = new ControllerApp();
+    private ControllerApp controller = new ControllerApp();
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
     private JButton createCustomerBtn;
     private JButton deleteCustomerBtn;
+    private boolean firstShow = true;
+    private JTable customerTable;
 
     public CustomerViewGui()
     {
-	tableModel = controller.getTableModel();
-	JTable customerTable = new JTable(tableModel);
-	customerTable.setPreferredScrollableViewportSize(new Dimension(800, 500));
-	customerTable.setFillsViewportHeight(true);
-	customerTable.getColumn("id").setWidth(0);
-	customerTable.getColumn("id").setMinWidth(0);
-	customerTable.getColumn("id").setMaxWidth(0);
+	createAndShowTable();
 	scrollPane = new JScrollPane(customerTable);
 	createCustomerBtn = new JButton("Opret Kunde");
 	deleteCustomerBtn = new JButton("Slet Kunde");
@@ -95,7 +85,29 @@ public class CustomerViewGui extends JPanel implements ActionListener
 	    {
 		controller.deleteCustomer(phone);
 		JOptionPane.showMessageDialog(null, "Kunden er slettet", "", JOptionPane.INFORMATION_MESSAGE);
+		createAndShowTable();
 	    }
 	}
+    }
+
+    private void createAndShowTable()
+    {
+	if (firstShow)
+	{
+	    tableModel = controller.getTableModel();
+	    customerTable = new JTable(tableModel);
+	    firstShow = false;
+	}
+	else
+	{
+	    tableModel = controller.getTableModel();
+	    customerTable.setModel(tableModel);
+	    
+	}
+	customerTable.setPreferredScrollableViewportSize(new Dimension(800, 500));
+	customerTable.setFillsViewportHeight(true);
+	customerTable.getColumn("id").setWidth(0);
+	customerTable.getColumn("id").setMinWidth(0);
+	customerTable.getColumn("id").setMaxWidth(0);
     }
 }

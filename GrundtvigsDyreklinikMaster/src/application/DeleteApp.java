@@ -1,10 +1,10 @@
 package application;
 
-import dataAccess.ControllerDb;
+import dataAccess.DeleteDb;
 
 public class DeleteApp
 {
-    ControllerDb controllerDb = new ControllerDb();
+    DeleteDb deleteDb = new DeleteDb();
     
     /**
      * Passing data from presentation to dataAccess
@@ -12,7 +12,7 @@ public class DeleteApp
      */
     public void deleteCustomer(String phone)
     {
-	controllerDb.deleteCustomer(phone);
+	deleteDb.deleteCustomer(phone);
     }
 
     /**
@@ -21,6 +21,6 @@ public class DeleteApp
      */
     public void deleteTreatment(String treatmentName)
     {
-	controllerDb.deleteTreatment(treatmentName);
+	deleteDb.deleteTreatment(treatmentName);
     }
 }

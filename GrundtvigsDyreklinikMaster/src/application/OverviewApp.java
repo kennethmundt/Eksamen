@@ -3,22 +3,23 @@
  */
 package application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import dataAccess.ControllerDb;
+import dataAccess.ReadDb;
 
 public class OverviewApp
 {
-    ControllerDb controllerDb = new ControllerDb();
+    ReadDb readDb = new ReadDb();
     
     /**
      * @return Current tablemodel for customers
      */
     public DefaultTableModel getTableModel()
     {
-	List<Customer> customerList = controllerDb.readCustomer();
+	List<Customer> customerList = new ArrayList<Customer>(readDb.readCustomer());
 
 	String[] columns = { "id", "Navn", "Adresse", "Telefon", "Mail" };
 	DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
@@ -40,7 +41,7 @@ public class OverviewApp
 
     public Customer readCustomer(String phone)
     {
-	Customer customer = controllerDb.readCustomer(phone);
+	Customer customer = readDb.readCustomer(phone);
 	
 	return customer;
     }
@@ -50,7 +51,7 @@ public class OverviewApp
      */
     public DefaultTableModel getTreatmentTableModel()
 	{
-		List<Treatment> treatmentList = controllerDb.readTreatment();
+		List<Treatment> treatmentList = new ArrayList<Treatment>(readDb.readTreatment());
 
 		String[] columns = { "id", "Behandling", "Pris", "Varighed", "Kommentar" };
 		DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
@@ -72,14 +73,14 @@ public class OverviewApp
     
     public Treatment readTreatment(String treatmentName)
     {
-	Treatment treatment = controllerDb.readTreatment(treatmentName);
+	Treatment treatment = readDb.readTreatment(treatmentName);
 
 	return treatment;
     }
 
     public DefaultTableModel getBookingTableModel()
     {
-	List<Booking> bookingList = controllerDb.readBooking();
+	List<Booking> bookingList = new ArrayList<Booking>(readDb.readBooking());
 
 	String[] columns = { "Navn", "Telefon", "Dato", "Dyrenavn", "Art", "Behandling" };
 	DefaultTableModel tableModel = new DefaultTableModel(columns, 0);

@@ -173,7 +173,6 @@ public class ReadDb
 	    {
 		id = result.getInt("idAnimal");
 	    }
-
 	} 
 	catch (SQLException e)
 	{
@@ -182,9 +181,9 @@ public class ReadDb
 	return id;
     }
 
-    public ArrayList<Treatment> readTreatment()
+    public List<Treatment> readTreatment()
     {
-	ArrayList<Treatment> treatmentList = new ArrayList<Treatment>();
+	List<Treatment> treatmentList = new ArrayList<Treatment>();
 
 	try
 	{
@@ -302,7 +301,7 @@ public class ReadDb
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn.prepareStatement("SELECT customers.name, customers.phone, bookings.dateTime, animals.animalName, animalspecies.speciesName, treatments.treatmentName FROM bookings JOIN animals ON bookings.fk_idAnimal = animals.idAnimal JOIN treatments ON bookings.fk_idTreatment = treatments.idTreatment JOIN customers ON animals.fk_idCustomer = customers.idCustomer JOIN animalspecies ON animals.fk_idAnimalSpecies = animalspecies.idAnimalSpecies");
+	    preparedStatement = conn.prepareStatement("SELECT customers.name, customers.phone, bookings.dateTime, animals.animalName, animalspecies.speciesName, treatments.treatmentName FROM bookings JOIN animals ON bookings.fk_idAnimal = animals.idAnimal JOIN treatments ON bookings.fk_idTreatment = treatments.idTreatment JOIN customers ON bookings.fk_idcustomer = customers.idCustomer JOIN animalspecies ON animals.fk_idAnimalSpecies = animalspecies.idAnimalSpecies ORDER BY idBooking DESC");
 	    result = preparedStatement.executeQuery();
 
 	    while (result.next())

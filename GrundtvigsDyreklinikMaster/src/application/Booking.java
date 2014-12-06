@@ -15,12 +15,14 @@ public class Booking
     private String animalName;
     private String species;
     private String treatmentName;
+    private int customerId;
 
-    public Booking(String dateTime, int animalId, int treatmentId)
+    public Booking(String dateTime, int animalId, int treatmentId, int customerId)
     {
 	this.dateTime = dateTime;
 	this.animalId = animalId;
 	this.treatmentId = treatmentId;
+	this.customerId = customerId;
     }
 
     public Booking(String customerName, String customerPhone, String animalName, String species, String dateTime, String treatmentName) 
@@ -33,44 +35,63 @@ public class Booking
 	this.treatmentName = treatmentName;
     }
 
-
-    public String getCustomerName() {
+    public String getCustomerName() 
+    {
 	return customerName;
     }
 
-    public void setCustomerName(String customerName) {
+    public void setCustomerName(String customerName) 
+    {
 	this.customerName = customerName;
     }
 
-    public String getCustomerPhone() {
+    public String getCustomerPhone() 
+    {
 	return customerPhone;
     }
 
-    public void setCustomerPhone(String customerPhone) {
+    public void setCustomerPhone(String customerPhone) 
+    {
 	this.customerPhone = customerPhone;
     }
 
-    public String getAnimalName() {
+    public String getAnimalName()
+    {
 	return animalName;
     }
 
-    public void setAnimalName(String animalName) {
+    public void setAnimalName(String animalName) 
+    {
 	this.animalName = animalName;
     }
 
-    public String getSpecies() {
+    public String getSpecies() 
+    {
 	return species;
     }
 
-    public void setSpecies(String species) {
+    public void setSpecies(String species) 
+    {
 	this.species = species;
     }
+    
+    public void setCustomerId(int customerId)
+    {
+	this.customerId = customerId;
+    }
+    
+    public int getCustomerId()
+    {
+	return customerId;
+    }
 
-    public String getTreatmentName() {
+    public String getTreatmentName()
+    {
 	return treatmentName;
     }
 
-    public void setTreatmentName(String treatmentName) {
+    public void setTreatmentName(String treatmentName)
+    {
 	this.treatmentName = treatmentName;
     }
 

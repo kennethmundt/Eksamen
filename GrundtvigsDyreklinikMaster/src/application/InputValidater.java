@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 public class InputValidater
 {
     public boolean validateBooking(String treatmentId, int animalId, Date date, String time)
@@ -77,6 +79,26 @@ public class InputValidater
 	}
 	return false;
     }
+
+    public boolean validateLogin(String passwordInput, String hashedPassword)
+    {
+	StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+
+	if (hashedPassword.length() == 0) // if username is not in database
+	{
+	    return true;
+	}
+	else 
+	{
+	    if (passwordEncryptor.checkPassword(passwordInput, hashedPassword))
+	    {
+		return false;
+	    }
+	    return true;
+	}
+    }
+    
+    
 
 //    public boolean validateAge(String animalAge)
 //    {

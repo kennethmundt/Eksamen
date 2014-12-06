@@ -1,0 +1,19 @@
+package application;
+
+import dataAccess.ControllerDb;
+import dataAccess.ReadDb;
+
+public class ReadApp
+{
+    ReadDb readDb = new ReadDb();
+    
+    public int readAnimal(String animal)
+    {
+	return readDb.readSpecies(animal);
+    }
+    
+    public int readAnimal(String animal, String customerId)
+    {
+	return readDb.readSpecies(animal, customerId);
+    }
+}

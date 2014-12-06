@@ -8,13 +8,11 @@ package application;
 
 import javax.swing.table.DefaultTableModel;
 
-import dataAccess.ControllerDb;
 import dataAccess.ReadDb;
 
 public class ControllerApp
 {
     ReadDb readDb = new ReadDb();
-    ControllerDb controllerDb = new ControllerDb();
     UpdateApp updateApp = new UpdateApp();
     DeleteApp deleteApp = new DeleteApp();
     OverviewApp overviewApp = new OverviewApp();
@@ -70,9 +68,9 @@ public class ControllerApp
 	createApp.create(animalName, animalBirth, id);
     }
     
-    public void create(String treatmentId, int animalId, String dateString, String time)
+    public void create(String treatmentId, int animalId, String dateString, String time, int customerId)
     {
-	createApp.create(treatmentId, animalId, dateString, time);
+	createApp.create(treatmentId, animalId, dateString, time, customerId);
     }
 
     // Get animal from AnimalDropDown and send to CreateCustomerGui
@@ -142,7 +140,7 @@ public class ControllerApp
 
     public String getPassword(String username)
     {
-	return controllerDb.getPassword(username);
+	return readDb.getPassword(username);
     }
 
     public DefaultTableModel getBookingTableModel()

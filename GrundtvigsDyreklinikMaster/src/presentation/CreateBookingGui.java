@@ -28,8 +28,9 @@ public class CreateBookingGui extends JPanel implements ActionListener
     private JDateChooser dateChooserCal;
     private String dateString;
     private String time;
-    private int animalId;
     private String treatmentId;
+    private int customerId;
+    private int animalId;
     private Date date;
     private Object dates;
     private JComboBox chooseTimeBox;
@@ -48,6 +49,7 @@ public class CreateBookingGui extends JPanel implements ActionListener
 
 	Customer customer = controllerApp.readCustomer(phone);
 	String name = customer.getName();
+	customerId = Integer.parseInt(customer.getId());
 
 	JLabel nameLbl = new JLabel(name);
 	nameLbl.setBounds(414, 35, 115, 16);
@@ -112,7 +114,7 @@ public class CreateBookingGui extends JPanel implements ActionListener
 		JOptionPane.showMessageDialog(null, "Udfyld venligst alle felter");
 		return;
 	    } 
-	    controllerApp.create(treatmentId, animalId, dateString, time);
+	    controllerApp.create(treatmentId, animalId, dateString, time, customerId);
 	    JOptionPane.showMessageDialog(null, "Bookning er nu oprettet");
 	    
 	}

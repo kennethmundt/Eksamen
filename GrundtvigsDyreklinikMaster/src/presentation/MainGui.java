@@ -29,10 +29,12 @@ import javax.swing.border.LineBorder;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import application.ControllerApp;
+import application.InputValidater;
 
-public class MainGui extends JFrame implements ActionListener, ValidateData
+public class MainGui extends JFrame implements ActionListener
 {
     private ControllerApp controller = new ControllerApp();
+    private InputValidater validater = new InputValidater();
 
     private JPanel contentPane;
     private JPanel startCard;
@@ -159,19 +161,27 @@ public class MainGui extends JFrame implements ActionListener, ValidateData
 	    passwordInput = new String(password);
 	    hashedPassword = controller.getPassword(username);
 
-	    validateInput();
+	    boolean loginNotValidated = validater.validateLogin(passwordInput, hashedPassword);
+	    if (loginNotValidated)
+	    {
+		checkLoginAttempts();
+		return;
+	    }
+	    createAndShowEmployeeUI();
 	} 
 	else if (e.getSource() == customerLoginBtn) 
 	{
-	    //Mangler validering
 	    String phone = phoneField.getText();
-	    if (controller.getPhone(phone) == true)
+	    boolean phoneIsValid = controller.getPhone(phone);
+	    if (phoneIsValid)
 	    {
 		createAndShowCustomerUI(phone);
 	    } 
 	    else
 	    {
 		JOptionPane.showMessageDialog(null, "Forkert telefonnummer.");
+		phoneField.setText("");
+		phoneField.requestFocus();
 	    }
 	}
     }
@@ -192,7 +202,6 @@ public class MainGui extends JFrame implements ActionListener, ValidateData
 	customerOverviewPnl = new CustomerViewGui();
 	treatmentOverviewPnl = new TreatmentViewGui();
 	bookingOverviewPnl = new BookingViewGui();
-	
 
 	tabbedPane.addTab("Kundeoversigt", new ImageIcon("image/addMeIcon.png"), customerOverviewPnl, null); //Icon vises ikke
 	tabbedPane.addTab("Behandlingsoversigt", new ImageIcon("image/addMeIcon.png"), treatmentOverviewPnl, null); //Icon vises ikke
@@ -200,7 +209,7 @@ public class MainGui extends JFrame implements ActionListener, ValidateData
 	cardLayout.show(contentPane, "employeeUi");
     }
 
-    public void checkLoginAttempts()
+    private void checkLoginAttempts()
     {
 	String firstTwoAttempts = "Brugernavn og/eller password passer ikke";
 	String afterTwoAttempts = "Du har indtastet forkert brugernavn og/eller password for mange gange.\n\tDin ip-adresse er spærret 1 time.";
@@ -215,29 +224,5 @@ public class MainGui extends JFrame implements ActionListener, ValidateData
 	    System.exit(0);
 	}
 	loginAttempts++;
-    }
-
-    @Override
-    public boolean validateInput()
-    {
-	StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-
-	if (hashedPassword.length() == 0) // if username is not in database
-	{
-	    checkLoginAttempts();
-	}
-	else 
-	{
-	    if (passwordEncryptor.checkPassword(passwordInput, hashedPassword))
-	    {
-		createAndShowEmployeeUI();
-		loginAttempts = 0;
-	    }
-	    else 
-	    {
-		checkLoginAttempts();
-	    }
-	}
-	return true;
     }
 }

@@ -111,12 +111,11 @@ public class CreateDb
 	try
 	{
 	    conn = dBc.connect();
-	    preparedStatement = conn.prepareStatement("INSERT INTO bookings VALUES(default, ?, ?, ?)");
-
+	    preparedStatement = conn.prepareStatement("INSERT INTO bookings VALUES(default, ?, ?, ?, ?)");
 	    preparedStatement.setString(1, booking.getDateTime());
-	    
 	    preparedStatement.setInt(2, booking.getTreatmentId());
 	    preparedStatement.setInt(3, booking.getAnimalId());
+	    preparedStatement.setInt(4, booking.getCustomerId());
 	    preparedStatement.executeUpdate();
 	    preparedStatement.close();
 	    conn.close();

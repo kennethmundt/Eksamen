@@ -4,11 +4,11 @@
 
 package application;
 
-import dataAccess.ControllerDb;
+import dataAccess.UpdateDb;
 
 public class UpdateApp
 {
-    ControllerDb controllerDb = new ControllerDb();
+    UpdateDb updateDb = new UpdateDb();
 
     /**
      * Passing data from presentation to dataAccess.
@@ -20,7 +20,7 @@ public class UpdateApp
      */
     public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
-	controllerDb.updateCustomer(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
+	updateDb.updateCustomer(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }
 
     /**
@@ -34,6 +34,6 @@ public class UpdateApp
 
     public void saveChangesTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
     {
-	controllerDb.updateTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
+	updateDb.updateTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
     }
 }

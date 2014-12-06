@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.InputVerifier"/>
-<fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="org.omg.CosNaming.NamingContextExtPackage.AddressHelper"/>
 <fullyQualifiedTypeName name="java.awt.Panel"/>
 <fullyQualifiedTypeName name="javax.swing.JFormattedTextField"/>
 <fullyQualifiedTypeName name="java.util.ResourceBundle.Control"/>
 <fullyQualifiedTypeName name="application.Controller"/>
-<fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
 <fullyQualifiedTypeName name="javax.sound.midi.ControllerEventListener"/>
-<fullyQualifiedTypeName name="dataAccess.DeleteDb"/>
 <fullyQualifiedTypeName name="application.DeleteApp"/>
 <fullyQualifiedTypeName name="javax.lang.model.element.QualifiedNameable"/>
 <fullyQualifiedTypeName name="java.awt.Frame"/>
@@ -52,7 +47,6 @@
 <fullyQualifiedTypeName name="org.jasypt.util.password.StrongPasswordEncryptor"/>
 <fullyQualifiedTypeName name="org.jasypt.util.password.PasswordEncryptor"/>
 <fullyQualifiedTypeName name="presentation.CustomerViewGui"/>
-<fullyQualifiedTypeName name="dataAccess.ReadDb"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
@@ -60,4 +54,10 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="javax.swing.JTable"/>
+<fullyQualifiedTypeName name="java.util.concurrent.CountDownLatch"/>
+<fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
+<fullyQualifiedTypeName name="dataAccess.DeleteDb"/>
+<fullyQualifiedTypeName name="dataAccess.CreateDb"/>
+<fullyQualifiedTypeName name="dataAccess.ReadDb"/>
 </qualifiedTypeNameHistroy>

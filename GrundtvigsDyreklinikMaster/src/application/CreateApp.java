@@ -5,11 +5,11 @@
 
 package application;
 
-import dataAccess.ControllerDb;
+import dataAccess.CreateDb;
 
 public class CreateApp
 {
-    ControllerDb controllerDb = new ControllerDb();
+    CreateDb createDb = new CreateDb();
 
     /**
      * Creates a new customer and passes this customer as a parameter to insert()
@@ -23,7 +23,7 @@ public class CreateApp
     {
 	Customer customer = new Customer(name, address, phone, mail);
 
-	controllerDb.insert(customer);
+	createDb.insert(customer);
     }
 
     /**
@@ -35,15 +35,15 @@ public class CreateApp
     public void create(String animalName, String animalBirth, int id)
     {
 	Animal animal = new Animal(id, animalBirth, animalName);
-	controllerDb.insert(animal);
+	createDb.insert(animal);
     }
     
-    public void create(String treatmentId, int animalId, String dateString, String time)
+    public void create(String treatmentId, int animalId, String dateString, String time, int customerId)
     {
 	int treatId = Integer.parseInt(treatmentId);
 	String dateTime = dateString + " - " + time;
-	Booking booking = new Booking(dateTime, animalId, treatId);
-	controllerDb.insert(booking);
+	Booking booking = new Booking(dateTime, animalId, treatId, customerId);
+	createDb.insert(booking);
     }
     
     /**
@@ -56,6 +56,6 @@ public class CreateApp
     public void createTreatment(String treatmentName, String price, String duration, String comment)
     {
 	Treatment newTreatment= new Treatment(treatmentName, price, duration, comment);
-	controllerDb.insert(newTreatment);
+	createDb.insert(newTreatment);
     }
 }

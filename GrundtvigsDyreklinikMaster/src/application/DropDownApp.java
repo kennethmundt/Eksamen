@@ -1,34 +1,35 @@
 package application;
 
-import dataAccess.ControllerDb;
+import dataAccess.ReadDb;
+
 
 public class DropDownApp
 {
-ControllerDb controllerDb = new ControllerDb();
+    ReadDb readDb = new ReadDb();
     
     public Object[] readAnimal()
     {
-	Object[] animal = controllerDb.readAnimal().toArray();
+	Object[] animal = readDb.readAnimal().toArray();
 
 	return animal;
     }
 
     public Object[] readAnimal(Customer customer)
     {
-	Object[] animal = controllerDb.readAnimal(customer).toArray();
+	Object[] animal = readDb.readAnimal(customer).toArray();
 
 	return animal;
     }
 
     public Object[] readTreatment()
     {
-	Object[] treatment = controllerDb.readTreatment().toArray();
+	Object[] treatment = readDb.readTreatment().toArray();
 	return treatment;
     }
 
     public Object[] readTime()
     {
-	Object[] timeList = controllerDb.readTime().toArray();
+	Object[] timeList = readDb.readTime().toArray();
 	return timeList;
     }
 
