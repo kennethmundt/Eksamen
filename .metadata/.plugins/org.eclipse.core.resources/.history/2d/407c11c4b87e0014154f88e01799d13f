@@ -99,12 +99,12 @@ public class TreatmentViewGui extends JPanel implements ActionListener
 	    boolean nameIsValid = controllerApp.getName(treatmentName);
 	    if (nameIsValid)
 	    {
-		if (JOptionPane.showConfirmDialog(null, treatment.toString(), "Slet denne behandling?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-		{
-		    controllerApp.deleteTreatment(treatmentName);
-		    confirmationTime.confirmation("Behandlingen er Slettet", "Velkommen");
-		    createAndShowTable();
-		}
+		 if (JOptionPane.showConfirmDialog(null, treatment.toString(), "Slet denne behandling?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+		    {
+			controllerApp.deleteTreatment(treatmentName);
+			confirmationTime.confirmation("Behandlingen er Slettet", "Velkommen");
+			createAndShowTable();
+		    }
 	    } 
 	    else
 	    {

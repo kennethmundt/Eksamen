@@ -21,16 +21,13 @@ public class ControllerApp
     ReadApp readApp = new ReadApp();
 
     ///////////////////////////////// Update/Write ////////////////////////////////////////////
-    
     public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
 	updateApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }
     
-    public void saveChangesTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
-    {
-	updateApp.saveChangesTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
-    }
+    
+    
     
     public void create(String name, String address, String phone, String mail)
     {
@@ -46,14 +43,10 @@ public class ControllerApp
     {
 	createApp.create(treatmentId, animalId, dateString, time, customerId);
     }
+
     
-    public void createTreatment(String treatmentName, String price, String duration, String comment)
-    {
-	createApp.createTreatment(treatmentName, price, duration, comment);
-    }
     
     ///////////////////////////////// Read ////////////////////////////////////////////
-    
     public DefaultTableModel getTableModel()
     {
 	DefaultTableModel data = overviewApp.getTableModel();
@@ -93,9 +86,38 @@ public class ControllerApp
 	return data;
     }
     
+    
+    ///////////////////////////////// Delete ////////////////////////////////////////////
+    public void deleteCustomer(String phone)
+    {
+	deleteApp.deleteCustomer(phone);
+    }
+
+    
+
+    
+
+    
+   
+    
+    public void createTreatment(String treatmentName, String price, String duration, String comment)
+    {
+	createApp.createTreatment(treatmentName, price, duration, comment);
+    }
+    
+    public void saveChangesTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
+    {
+	updateApp.saveChangesTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
+    }
+    
     public Treatment readTreatment(String treatmentName)
     {
 	return overviewApp.readTreatment(treatmentName);
+    }
+    
+    public void deleteTreatment(String treatmentName)
+    {
+	deleteApp.deleteTreatment(treatmentName);
     }
     
     public Object[] getTreatment()
@@ -122,22 +144,5 @@ public class ControllerApp
     public boolean getPhone(String phone)
     {
 	return readDb.getPhone(phone);
-    }
-    
-    public boolean getName(String treatmentName)
-    {
-	return readDb.getName(treatmentName);
-    }
-    
-    ///////////////////////////////// Delete ////////////////////////////////////////////
-    
-    public void deleteCustomer(String phone)
-    {
-	deleteApp.deleteCustomer(phone);
-    }
-    
-    public void deleteTreatment(String treatmentName)
-    {
-	deleteApp.deleteTreatment(treatmentName);
     }
 }

@@ -22,12 +22,15 @@ public class UpdateDb
      * @param mail
      * @param id
      */
-    public void updateCustomer(String name, String address, String phone, String mail, String id)
+    public void updateCustomer(String name, String address, String phone,
+	    String mail, String id)
     {
 	conn = dBc.connect();
 	try
 	{
-	    preparedStatement = conn.prepareStatement("UPDATE customers SET name = ?, address = ?, phone = ?, mail = ? WHERE idCustomer = " + id);
+	    preparedStatement = conn
+		    .prepareStatement("UPDATE customers SET name = ?, address = ?, phone = ?, mail = ? WHERE idCustomer = "
+			    + id);
 
 	    preparedStatement.setString(1, name);
 	    preparedStatement.setString(2, address);
@@ -52,12 +55,15 @@ public class UpdateDb
      * @param comment
      * @param id
      */
-    public void updateTreatment(String treatmentName, String price, String duration, String comment, String id)
+    public void updateTreatment(String treatmentName, String price,
+	    String duration, String comment, String id)
     {
 	conn = dBc.connect();
 	try
 	{
-	    preparedStatement = conn.prepareStatement("UPDATE treatments SET treatmentName = ?, price = ?, duration = ?, comment = ? WHERE idTreatment = " + id);
+	    preparedStatement = conn
+		    .prepareStatement("UPDATE treatments SET treatmentName = ?, price = ?, duration = ?, comment = ? WHERE idTreatment = "
+			    + id);
 
 	    preparedStatement.setString(1, treatmentName);
 	    preparedStatement.setString(2, price);

@@ -20,23 +20,49 @@ public class ControllerApp
     DropDownApp readDropDown = new DropDownApp();
     ReadApp readApp = new ReadApp();
 
-    ///////////////////////////////// Update/Write ////////////////////////////////////////////
-    
+    /**
+     * Passing data from presentation to controller.
+     * 
+     * @param nameColumn
+     * @param addressColumn
+     * @param phoneColumn
+     * @param mailColumn
+     * @param customerId
+     */
+
+    // Reads values from CustomerViewGui and send it to UpdateApp class
     public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
 	updateApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }
-    
-    public void saveChangesTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
+
+    // Reads values from CustomerViewGui and send it to UpdateApp class
+    public void deleteCustomer(String phone)
     {
-	updateApp.saveChangesTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
+	deleteApp.deleteCustomer(phone);
     }
-    
+
+    // Reads values from CustomerOverViewApp class and send values to the
+    // CustomerViewGui JTable
+    public DefaultTableModel getTableModel()
+    {
+	DefaultTableModel data = overviewApp.getTableModel();
+
+	return data;
+    }
+
+    public Customer readCustomer(String phone)
+    {
+	return overviewApp.readCustomer(phone);
+    }
+
+    // Get values from CreateCustomerGui and send to the CreateCustomerApp
     public void create(String name, String address, String phone, String mail)
     {
 	createApp.create(name, address, phone, mail);
     }
 
+    // Get Animal from CreateCustomerGui and send to CustomerOverviewApp
     public void create(String animalName, String animalBirth, int id)
     {
 	createApp.create(animalName, animalBirth, id);
@@ -46,26 +72,8 @@ public class ControllerApp
     {
 	createApp.create(treatmentId, animalId, dateString, time, customerId);
     }
-    
-    public void createTreatment(String treatmentName, String price, String duration, String comment)
-    {
-	createApp.createTreatment(treatmentName, price, duration, comment);
-    }
-    
-    ///////////////////////////////// Read ////////////////////////////////////////////
-    
-    public DefaultTableModel getTableModel()
-    {
-	DefaultTableModel data = overviewApp.getTableModel();
 
-	return data;
-    }
-    
-    public Customer readCustomer(String phone)
-    {
-	return overviewApp.readCustomer(phone);
-    }
-    
+    // Get animal from AnimalDropDown and send to CreateCustomerGui
     public int readAnimal(String animal)
     {
 	return readApp.readAnimal(animal);
@@ -76,6 +84,7 @@ public class ControllerApp
 	return readApp.readAnimal(animal, customerId);
     }
 
+    // Get animal from AnimalDropDown and send to CreateCustomerGui
     public Object[] getAnimal()
     {
 	return readDropDown.readAnimal();
@@ -86,6 +95,8 @@ public class ControllerApp
 	return readDropDown.readAnimal(customer);
     }
     
+    // Reads values from CustomerOverViewApp class and send values to the
+    // TreatmentViewGui JTable
     public DefaultTableModel getTreatmentTableModel()
     {
 	DefaultTableModel data = overviewApp.getTreatmentTableModel();
@@ -93,9 +104,28 @@ public class ControllerApp
 	return data;
     }
     
+    //Get variabel treatmentName, price, duration and comment from the CreateTreatmentGui
+    public void createTreatment(String treatmentName, String price, String duration, String comment)
+    {
+	createApp.createTreatment(treatmentName, price, duration, comment);
+    }
+    
+    //If JTable in TreatmentViewGui is change then save changes
+    public void saveChangesTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
+    {
+	updateApp.saveChangesTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
+    }
+    
+    //Take the variable from JTable and send to OverviewApp
     public Treatment readTreatment(String treatmentName)
     {
 	return overviewApp.readTreatment(treatmentName);
+    }
+    
+    //Delete treatment from JTable
+    public void deleteTreatment(String treatmentName)
+    {
+	deleteApp.deleteTreatment(treatmentName);
     }
     
     public Object[] getTreatment()
@@ -122,22 +152,5 @@ public class ControllerApp
     public boolean getPhone(String phone)
     {
 	return readDb.getPhone(phone);
-    }
-    
-    public boolean getName(String treatmentName)
-    {
-	return readDb.getName(treatmentName);
-    }
-    
-    ///////////////////////////////// Delete ////////////////////////////////////////////
-    
-    public void deleteCustomer(String phone)
-    {
-	deleteApp.deleteCustomer(phone);
-    }
-    
-    public void deleteTreatment(String treatmentName)
-    {
-	deleteApp.deleteTreatment(treatmentName);
     }
 }

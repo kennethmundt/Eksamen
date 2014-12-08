@@ -124,11 +124,6 @@ public class ControllerApp
 	return readDb.getPhone(phone);
     }
     
-    public boolean getName(String treatmentName)
-    {
-	return readDb.getName(treatmentName);
-    }
-    
     ///////////////////////////////// Delete ////////////////////////////////////////////
     
     public void deleteCustomer(String phone)
@@ -139,5 +134,10 @@ public class ControllerApp
     public void deleteTreatment(String treatmentName)
     {
 	deleteApp.deleteTreatment(treatmentName);
+    }
+
+    public boolean getName(String treatmentName)
+    {
+	return readDb.getName(treatmentName);
     }
 }

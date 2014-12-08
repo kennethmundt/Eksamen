@@ -346,27 +346,4 @@ public class ReadDb
 	}
 	return phoneNum.equals(phone);
     }
-
-    public boolean getName(String treatmentName) 
-    {
-	String nameCheck = "";
-
-	try
-	{
-	    conn = dBc.connect();
-	    preparedStatement = conn.prepareStatement("SELECT * FROM treatments WHERE treatmentName = ?");
-	    preparedStatement.setString(1, treatmentName);
-	    result = preparedStatement.executeQuery();
-
-	    while (result.next())
-	    {
-		nameCheck = result.getString("treatmentName");
-	    }
-	}
-	catch (SQLException e)
-	{
-	    e.printStackTrace();
-	}
-	return nameCheck.equalsIgnoreCase(treatmentName);
-    }
 }

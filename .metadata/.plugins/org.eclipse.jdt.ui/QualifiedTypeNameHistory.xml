@@ -32,7 +32,6 @@
 <fullyQualifiedTypeName name="presentation.CustomerLoginPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
-<fullyQualifiedTypeName name="presentation.MainGui"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
@@ -53,11 +52,12 @@
 <fullyQualifiedTypeName name="application.InputValidater"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="javax.swing.JTable"/>
 <fullyQualifiedTypeName name="java.util.concurrent.CountDownLatch"/>
 <fullyQualifiedTypeName name="dataAccess.UpdateDb"/>
 <fullyQualifiedTypeName name="dataAccess.DeleteDb"/>
 <fullyQualifiedTypeName name="dataAccess.CreateDb"/>
 <fullyQualifiedTypeName name="dataAccess.ReadDb"/>
+<fullyQualifiedTypeName name="presentation.MainGui"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>

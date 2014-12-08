@@ -22,7 +22,8 @@ public class UpdateDb
      * @param mail
      * @param id
      */
-    public void updateCustomer(String name, String address, String phone, String mail, String id)
+    public void updateCustomer(String name, String address, String phone,
+	    String mail, String id)
     {
 	conn = dBc.connect();
 	try

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class DeleteDb
 {
     
-    private Connection conn = null;
-    private PreparedStatement preparedStatement = null;
-    private ConnectionDb dBc = new ConnectionDb();
+    Connection conn = null;
+    PreparedStatement preparedStatement = null;
+    ConnectionDb dBc = new ConnectionDb();
     
     /**
      * Deleting a specific customer in the database

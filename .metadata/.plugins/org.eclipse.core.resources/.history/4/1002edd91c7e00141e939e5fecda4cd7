@@ -21,7 +21,6 @@ public class ControllerApp
     ReadApp readApp = new ReadApp();
 
     ///////////////////////////////// Update/Write ////////////////////////////////////////////
-    
     public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
 	updateApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
@@ -53,7 +52,6 @@ public class ControllerApp
     }
     
     ///////////////////////////////// Read ////////////////////////////////////////////
-    
     public DefaultTableModel getTableModel()
     {
 	DefaultTableModel data = overviewApp.getTableModel();
@@ -98,6 +96,18 @@ public class ControllerApp
 	return overviewApp.readTreatment(treatmentName);
     }
     
+    
+    ///////////////////////////////// Delete ////////////////////////////////////////////
+    public void deleteCustomer(String phone)
+    {
+	deleteApp.deleteCustomer(phone);
+    }
+    
+    public void deleteTreatment(String treatmentName)
+    {
+	deleteApp.deleteTreatment(treatmentName);
+    }
+    
     public Object[] getTreatment()
     {
 	return readDropDown.readTreatment();
@@ -124,20 +134,5 @@ public class ControllerApp
 	return readDb.getPhone(phone);
     }
     
-    public boolean getName(String treatmentName)
-    {
-	return readDb.getName(treatmentName);
-    }
-    
-    ///////////////////////////////// Delete ////////////////////////////////////////////
-    
-    public void deleteCustomer(String phone)
-    {
-	deleteApp.deleteCustomer(phone);
-    }
-    
-    public void deleteTreatment(String treatmentName)
-    {
-	deleteApp.deleteTreatment(treatmentName);
-    }
+  
 }

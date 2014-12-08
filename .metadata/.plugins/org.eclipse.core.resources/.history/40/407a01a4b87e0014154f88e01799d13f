@@ -95,20 +95,12 @@ public class TreatmentViewGui extends JPanel implements ActionListener
 	{
 	    treatmentName = JOptionPane.showInputDialog("Indtast navn på behandling du ønsker at slette.");
 	    Treatment treatment = controllerApp.readTreatment(treatmentName);
-	    
-	    boolean nameIsValid = controllerApp.getName(treatmentName);
-	    if (nameIsValid)
+
+	    if (JOptionPane.showConfirmDialog(null, treatment.toString(), "Slet denne behandling?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 	    {
-		if (JOptionPane.showConfirmDialog(null, treatment.toString(), "Slet denne behandling?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-		{
-		    controllerApp.deleteTreatment(treatmentName);
-		    confirmationTime.confirmation("Behandlingen er Slettet", "Velkommen");
-		    createAndShowTable();
-		}
-	    } 
-	    else
-	    {
-		JOptionPane.showMessageDialog(null, "Behandling findes ikke.");
+		controllerApp.deleteTreatment(treatmentName);
+		confirmationTime.confirmation("Behandlingen er Slettet", "Velkommen");
+		createAndShowTable();
 	    }
 	}
     }

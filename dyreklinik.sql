@@ -84,12 +84,15 @@ CREATE TABLE `bookings` (
   `dateTime` varchar(60) NOT NULL,
   `fk_idTreatment` int(11) NOT NULL,
   `fk_idAnimal` int(11) NOT NULL,
+  `fk_idcustomer` int(11) NOT NULL,
   PRIMARY KEY (`idBooking`),
   KEY `fk_idTreatment_idx` (`fk_idTreatment`),
   KEY `fk_idAnimal_idx` (`fk_idAnimal`),
-  CONSTRAINT `fk_idAnimal` FOREIGN KEY (`fk_idAnimal`) REFERENCES `animals` (`idAnimal`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_idTreatment` FOREIGN KEY (`fk_idTreatment`) REFERENCES `treatments` (`idTreatment`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+  KEY `fk_customer_idx` (`fk_idcustomer`),
+  CONSTRAINT `fk_customer` FOREIGN KEY (`fk_idcustomer`) REFERENCES `customers` (`idCustomer`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_idAnimal` FOREIGN KEY (`fk_idAnimal`) REFERENCES `animals` (`idAnimal`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_idTreatment` FOREIGN KEY (`fk_idTreatment`) REFERENCES `treatments` (`idTreatment`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +101,7 @@ CREATE TABLE `bookings` (
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
-INSERT INTO `bookings` VALUES (42,'19-12-2014 Formiddag kl 09 - 12.30',13,3),(43,'19-12-2014 Eftermiddag kl 13 - 15.30',6,3),(44,'12-12-2014 Eftermiddag kl 13 - 15.30',6,3),(45,'17-12-2014 - Formiddag :09 - 12.30',9,15),(46,'17-12-2014 - Eftermiddag :13 - 15.30',6,16),(47,'null-null-null - Eftermiddag :13 - 15.30',6,3),(48,'null-null-null - Eftermiddag :13 - 15.30',6,16),(49,'12-12-2014 - Formiddag :09 - 12.30',6,4),(50,'17-12-2014 - Formiddag :09 - 12.30',6,16),(51,'17-12-2014 - Eftermiddag :13 - 15.30',6,3),(52,'17-12-2014 - Eftermiddag :13 - 15.30',6,3),(53,'28-12-2014 - Formiddag :09 - 12.30',7,4),(54,'17-12-2014 - Formiddag :09 - 12.30',7,17),(55,'17-12-2014 - Formiddag :09 - 12.30',6,3),(56,'14-12-2014 - Eftermiddag :13 - 15.30',6,13),(57,'02-12-2014 - Eftermiddag :13 - 15.30',7,13);
+INSERT INTO `bookings` VALUES (1,'01-12-2014 - Eftermiddag :13 - 15.30',1,16,62),(2,'02-12-2014 - Formiddag :09 - 12.30',5,17,70),(5,'04-12-2014 - Eftermiddag :13 - 15.30',1,13,59),(8,'20-12-2014 - Eftermiddag :13 - 15.30',13,18,70);
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +130,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (2,'Tina','Very close 17','99999999','Tina@awesome.dk'),(6,'Elvis Saronjic','Tæt på 15, 2650 Hvidore','26375263','elvis@theman.com'),(7,'gerg','vkuyv','10101010','uyvlyb'),(9,'ohuih','goiug','2','iugiougu'),(10,'lvyb','uyvluyv','3','vyvlyuv'),(11,'jc','tkcvl','4','lvyuv'),(12,'lbib','ilbiub','5','iulbiub'),(13,'hkclghæ','uyvvtcuvyl','6','yuvubæ'),(14,'ækjblbj','bhkblk','7','jijækb'),(15,'kjlvvb','vlkvj','8','vhvl'),(16,'lhvuv','vvuvuyv','9','uyvuviuluvi'),(17,'lkjblkj','kjvkjlvh','10','lkjvhv'),(18,'lgliug','uigigiu','11','lgigiugi'),(19,'blvi','vvuivlui','13','vuivuiæv'),(20,'lhvl','ljkv','14','vklvkjv'),(21,'jkbkj','bkjb','16','kbkjbkj'),(22,'lkh','æjklj','17','kggl'),(23,'kjblkb','bkjæb','18','æjkbjkb'),(24,'jklb','bæjkbkb','19','ækjbjkbæ'),(25,'ljkjl','kljhkjlh','24','kjhljkhkjhjkl'),(26,'hjkhh','jhlkjhjklh','20','kjlhljkhl'),(27,'John Wayne','Lige her','21','JohnWayne@superAwesome.com'),(28,'kgndlgn','gonrgon','23','oingoinrogin'),(31,'Bruce Lee','China','25','BrugeLee@isawesome.com'),(32,'Crazy Person','Hestevej 14, Hvidovre','27','HorseLover@itsTrue.com'),(33,'hgef','bjhbkhvj','28','jhvhjvkhv'),(34,'ub','tciyvyubuiænioømop','29','cytkvuylbiuænioø'),(35,'ukuyvlibæoøpøioubivyut','rtctykvyulbiæniobilvu','30','ckyvulybuinoibi'),(36,'vytcluiæb','tycvt5d','31','ljutfyt'),(37,',jvckhjv','jkcgkhvljhv','32','kclhclhv'),(39,'kdkskb','skyldb','34','knbgucns'),(40,'bjksfhv','jdlkglh','35','æjbkdklgb'),(41,'sbvybruibsb','fjsdkjfshguisfsijfshso','36','nfuifnoe'),(42,'John Mogens','Lige her 17','37','jegerawesome@forreal.com'),(43,'kbluiu','iuæblvæiu','38','vuivuiæbi'),(44,'hvlvl','vulvvy','39','vuyvulv'),(45,'lhv','lvvuyvluy','40','vuylvluyvuyv'),(46,'kgchgckgckhg','ckghckghck','41','gckhgcghc'),(47,'vyuv','uyvukyv','42','vuvkuvk'),(48,'llvlyuvv','yuvuvæiv','43','ivæiviuv'),(49,'blhvlhv','lhvlvhvlh','44','lvlhvvj'),(50,'vvæuilbui','uibiulb','45','ilbluibliub'),(54,'kenneth','lige her','46','genrogno'),(55,'tina','tæt på','47','oignoirn'),(56,'nilubyv','yulvlyvluyvuyvylvlyv','48','iævivæ'),(57,'lbyvæiu','yvuvæiyv','49','æuivæiuvuiæv'),(59,'ji','jioij','12365478','kop@oijo.do'),(60,'yui','VimmersVej','78978954','woeiru@iop.com'),(61,'John','lige her','66666666','john@wayne.com'),(62,'Klaus','lihe her','55555555','kiugliu@vyyhu.dk'),(63,'kenneth Mundt','hvidovre','44444444','Kenneth@smuk.dk'),(64,'gerg','gergerg','33333333','kenneth@mundt.com'),(65,'efwlkef','oioiboin','43434343','inoin@fwf.com'),(66,'oboi','iboiboi','54545454','boibbob@oo.com'),(67,'ono','obobo','12121212','bo@gerg.com'),(68,'Maria Montel','Hjemme hos mig','67676767','hot@hot.dk'),(69,'bobo','boubub','00000000','obobob@oiiooi.com'),(70,'Kenneth Mundt','lige her','11111111','kenneth@erSej.dk');
+INSERT INTO `customers` VALUES (2,'Tina','Very close 17','99999999','Tina@awesome.dk'),(6,'Elvis Saronjic','Tæt på 15, 2650 Hvidore','26375263','elvis@theman.com'),(11,'jc','tkcvl','4','lvyuv'),(12,'lbib','ilbiub','5','iulbiub'),(13,'hkclghæ','uyvvtcuvyl','6','yuvubæ'),(14,'ækjblbj','bhkblk','7','jijækb'),(15,'kjlvvb','vlkvj','8','vhvl'),(16,'lhvuv','vvuvuyv','9','uyvuviuluvi'),(17,'lkjblkj','kjvkjlvh','10','lkjvhv'),(18,'lgliug','uigigiu','11','lgigiugi'),(19,'blvi','vvuivlui','13','vuivuiæv'),(20,'lhvl','ljkv','14','vklvkjv'),(21,'jkbkj','bkjb','16','kbkjbkj'),(22,'lkh','æjklj','17','kggl'),(23,'kjblkb','bkjæb','18','æjkbjkb'),(24,'jklb','bæjkbkb','19','ækjbjkbæ'),(25,'ljkjl','kljhkjlh','24','kjhljkhkjhjkl'),(26,'hjkhh','jhlkjhjklh','20','kjlhljkhl'),(27,'John Wayne','Lige her','21','JohnWayne@superAwesome.com'),(28,'kgndlgn','gonrgon','23','oingoinrogin'),(31,'Bruce Lee','China','25','BrugeLee@isawesome.com'),(32,'Crazy Person','Hestevej 14, Hvidovre','27','HorseLover@itsTrue.com'),(33,'hgef','bjhbkhvj','28','jhvhjvkhv'),(34,'ub','tciyvyubuiænioømop','29','cytkvuylbiuænioø'),(35,'ukuyvlibæoøpøioubivyut','rtctykvyulbiæniobilvu','30','ckyvulybuinoibi'),(36,'vytcluiæb','tycvt5d','31','ljutfyt'),(37,',jvckhjv','jkcgkhvljhv','32','kclhclhv'),(39,'kdkskb','skyldb','34','knbgucns'),(40,'bjksfhv','jdlkglh','35','æjbkdklgb'),(41,'sbvybruibsb','fjsdkjfshguisfsijfshso','36','nfuifnoe'),(42,'John Mogens','Lige her 17','37','jegerawesome@forreal.com'),(43,'kbluiu','iuæblvæiu','38','vuivuiæbi'),(44,'hvlvl','vulvvy','39','vuyvulv'),(45,'lhv','lvvuyvluy','40','vuylvluyvuyv'),(46,'kgchgckgckhg','ckghckghck','41','gckhgcghc'),(47,'vyuv','uyvukyv','42','vuvkuvk'),(48,'llvlyuvv','yuvuvæiv','43','ivæiviuv'),(49,'blhvlhv','lhvlvhvlh','44','lvlhvvj'),(50,'vvæuilbui','uibiulb','45','ilbluibliub'),(54,'kenneth','lige her','46','genrogno'),(55,'tina','tæt på','47','oignoirn'),(56,'nilubyv','yulvlyvluyvuyvylvlyv','48','iævivæ'),(57,'lbyvæiu','yvuvæiyv','49','æuivæiuvuiæv'),(59,'ji','jioij','12365478','kop@oijo.do'),(60,'yui','VimmersVej','78978954','woeiru@iop.com'),(61,'John','lige her','66666666','john@wayne.com'),(62,'Klaus','lihe her','55555555','kiugliu@vyyhu.dk'),(63,'kenneth Mundt','hvidovre','44444444','Kenneth@smuk.dk'),(64,'gerg','gergerg','33333333','kenneth@mundt.com'),(65,'efwlkef','oioiboin','43434343','inoin@fwf.com'),(66,'oboi','iboiboi','54545454','boibbob@oo.com'),(67,'ono','obobo','12121212','bo@gerg.com'),(68,'Maria Montel','Hjemme hos mig','67676767','hot@hot.dk'),(69,'bobo','boubub','00000000','obobob@oiiooi.com'),(70,'Kenneth Mundt','lige her','11111111','kenneth@erSej.dk');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +197,7 @@ CREATE TABLE `treatments` (
   `duration` varchar(45) NOT NULL,
   `comment` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idTreatment`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +206,7 @@ CREATE TABLE `treatments` (
 
 LOCK TABLES `treatments` WRITE;
 /*!40000 ALTER TABLE `treatments` DISABLE KEYS */;
-INSERT INTO `treatments` VALUES (1,'Vacniation',750,'15',''),(5,'Aflivning',1200,'30','Ikke spise i 8 timer'),(6,'Test22',456,'45','we4'),(7,'peuhui',654,'60','12364'),(9,'elvis',123,'75','jio'),(13,'iuygyu',987,'90','jio'),(14,'uio',789,'120','jio'),(15,'Udyr',500,'45','');
+INSERT INTO `treatments` VALUES (1,'Vacniation',750,'15',''),(5,'Aflivning',1200,'30','Ikke spise i 8 timer'),(13,'iuygyu',987,'90','jio'),(16,'Fodring',555,'45','Dejlig rart'),(17,'hjernevrider',600,'45',''),(18,'høre test',500,'15','Mmmm'),(19,'amputation',4000,'60','OUCH!!!'),(20,'blodtryksmåling',450,'30','');
 /*!40000 ALTER TABLE `treatments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -216,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-05 21:39:25
+-- Dump completed on 2014-12-08 10:04:18

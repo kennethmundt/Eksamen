@@ -21,7 +21,6 @@ public class ControllerApp
     ReadApp readApp = new ReadApp();
 
     ///////////////////////////////// Update/Write ////////////////////////////////////////////
-    
     public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
 	updateApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
@@ -122,11 +121,6 @@ public class ControllerApp
     public boolean getPhone(String phone)
     {
 	return readDb.getPhone(phone);
-    }
-    
-    public boolean getName(String treatmentName)
-    {
-	return readDb.getName(treatmentName);
     }
     
     ///////////////////////////////// Delete ////////////////////////////////////////////
