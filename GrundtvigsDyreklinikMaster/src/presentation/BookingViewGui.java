@@ -1,3 +1,8 @@
+/**
+ * Tina, Jogvan, Elvis og Kenneth
+ * Shows all bookings
+ */
+
 package presentation;
 
 import java.awt.Dimension;
@@ -23,13 +28,6 @@ public class BookingViewGui extends JPanel
 	bookingTable.setFillsViewportHeight(true);
 
 	scrollPane = new JScrollPane(bookingTable);
-
-	// Add components to panel
 	add(scrollPane);
-
-	// Add tableModellistener
-	// Registers changes in customerTable and pass changes to
-	// aplicationLayer
-
     }
 }

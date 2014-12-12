@@ -1,6 +1,6 @@
 /**
- * @author kenneth, Tina, Elvis og Jogvan
- * Contains all information needed to create a customer
+ * @author Kenneth, Tina, Elvis og Jogvan
+ * "Blueprint" for a customer.
  */
 
 package application;

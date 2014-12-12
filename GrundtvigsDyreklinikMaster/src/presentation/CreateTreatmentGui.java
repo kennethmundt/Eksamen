@@ -1,5 +1,6 @@
 /**
- * @author Jogvan, Elvis
+ * @author Jogvan, Elvis, Tina og Kenneth
+ * Gui to create a treatment
  */
 package presentation;
 
@@ -26,7 +27,6 @@ public class CreateTreatmentGui extends JFrame implements ActionListener
     private ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
     private ControllerApp controllerApp = new ControllerApp();
     private InputValidater validater = new InputValidater();
-    
     private JPanel treatmentPanel;
     private JTextField treatmentNameTxt;
     private JTextField priceTxt;

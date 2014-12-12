@@ -1,3 +1,8 @@
+/**
+ * @author Kenneth, Tina, Jogvan og Elvis
+ * Passes delete parameters to the dataAccess layer
+ */
+
 package application;
 
 import dataAccess.DeleteDb;

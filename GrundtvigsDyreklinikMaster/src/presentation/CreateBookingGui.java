@@ -1,3 +1,8 @@
+/**
+ * @author kenneth, Jogvan, Elvis og Tina
+ * Gui to create a new booking
+ */
+
 package presentation;
 
 import java.awt.event.ActionEvent;
@@ -23,7 +28,6 @@ public class CreateBookingGui extends JPanel implements ActionListener
 {
     private ControllerApp controllerApp = new ControllerApp();
     private InputValidater validate = new InputValidater();
-
     private JButton bookBtn;
     private JDateChooser dateChooserCal;
     private String dateString;
@@ -106,7 +110,7 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	if (e.getSource() == bookBtn)
 	{
 	    date = dateChooserCal.getDate();
-	    dateString = String.format("%1$td-%1$tm-%1$tY", date); //Crazy shit fra nettet (Jogvan er skyldig)
+	    dateString = String.format("%1$td-%1$tm-%1$tY", date); //Hentet fra nettet.
 
 	    boolean bookingNotValidated = validate.validateBooking(treatmentId, animalId, date, time);
 	    if (bookingNotValidated) 
@@ -116,7 +120,6 @@ public class CreateBookingGui extends JPanel implements ActionListener
 	    } 
 	    controllerApp.create(treatmentId, animalId, dateString, time, customerId);
 	    JOptionPane.showMessageDialog(null, "Bookning er nu oprettet");
-	    
 	}
 	else if(e.getSource() == chooseAnimalBox)
 	{

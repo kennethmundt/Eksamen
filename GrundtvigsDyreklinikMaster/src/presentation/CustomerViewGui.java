@@ -1,5 +1,6 @@
 /**
- * @author kenneth og Tina
+ * @author kenneth, Tina, Jogvan og Elvis.
+ * Show all the customers.
  */
 
 package presentation;
@@ -37,18 +38,13 @@ public class CustomerViewGui extends JPanel implements ActionListener
 	createCustomerBtn = new JButton("Opret Kunde");
 	deleteCustomerBtn = new JButton("Slet Kunde");
 
-	// Add components to panel
 	add(scrollPane);
 	add(deleteCustomerBtn);
 	add(createCustomerBtn);
 
-	// add actionlisteners
 	createCustomerBtn.addActionListener(this);
 	deleteCustomerBtn.addActionListener(this);
 
-	// Add tableModellistener
-	// Registers changes in customerTable and pass changes to
-	// aplicationLayer
 	customerTable.getModel().addTableModelListener(new TableModelListener()
 	{
 	    @Override
@@ -60,10 +56,7 @@ public class CustomerViewGui extends JPanel implements ActionListener
 		String addressColumn = (String) customerTable.getValueAt(row, 2);
 		String phoneColumn = (String) customerTable.getValueAt(row, 3);
 		String mailColumn = (String) customerTable.getValueAt(row, 4);
-
-		// customerOverviewApp.saveChanges(nameColumn, addressColumn,
-		// phoneColumn, mailColumn, customerId);
-		controller.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
+		controller.saveChangesCustomer(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
 	    }
 	});
     }

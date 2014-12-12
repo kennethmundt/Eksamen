@@ -1,6 +1,8 @@
 /**
- * Jogvan, Elvis, Kenneth
+ * Jogvan, Elvis, Kenneth og Tina
+ * Reads from the database.
  */
+
 package dataAccess;
 
 import java.sql.Connection;
@@ -23,9 +25,13 @@ public class ReadDb
     private PreparedStatement preparedStatement = null;
     private ResultSet result = null;
 
-    public ArrayList<Customer> readCustomer()
+    /**
+     * 
+     * @return List of all customers in the database.
+     */
+    public List<Customer> readCustomer()
     {
-	ArrayList<Customer> customerList = new ArrayList<Customer>();
+	List<Customer> customerList = new ArrayList<Customer>();
 
 	try
 	{
@@ -45,13 +51,19 @@ public class ReadDb
 	    }
 	    preparedStatement.close();
 	    conn.close();
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    System.err.println(e);
 	}
 	return customerList;
     }
 
+    /**
+     * 
+     * @param phone
+     * @return specific customer
+     */
     public Customer readCustomer(String phone)
     {
 	Customer customer = null;
@@ -61,6 +73,7 @@ public class ReadDb
 	    preparedStatement = conn.prepareStatement("SELECT * FROM customers WHERE phone = ?");
 	    preparedStatement.setString(1, phone);
 	    result = preparedStatement.executeQuery();
+	   
 	    while (result.next())
 	    {
 		String id = result.getString("idCustomer");
@@ -72,13 +85,18 @@ public class ReadDb
 		customer = new Customer(id, name, address, phoneNum, mail);
 	    }
 
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    e.printStackTrace();
 	}
 	return customer;
     }
 
+    /**
+     * 
+     * @return List of animal species.
+     */
     public List<String> readAnimal()
     {
 	List<String> speciesList = new ArrayList<String>();
@@ -97,17 +115,51 @@ public class ReadDb
 	    }
 	    preparedStatement.close();
 	    conn.close();
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    System.err.println(e);
 	}
 	return speciesList;
     }
     
+    /**
+     * 
+     * @param animal
+     * @param customerId
+     * @return int animalId based on parameters.
+     */
+    public int readAnimal(String animal, String customerId) 
+    {
+	int id = 0;
+	try
+	{
+	    conn = dBc.connect();
+	    preparedStatement = conn.prepareStatement("SELECT idAnimal FROM dyreklinik.animals WHERE animalName = ? AND fk_idCustomer = ?");
+	    preparedStatement.setString(1, animal);
+	    preparedStatement.setString(2, customerId);
+	    result = preparedStatement.executeQuery();
+
+	    while (result.next())
+	    {
+		id = result.getInt("idAnimal");
+	    }
+	} 
+	catch (SQLException e)
+	{
+	    System.err.println(e);
+	}
+	return id;
+    }
+
+    /**
+     * 
+     * @param customer
+     * @return List of animals belonging to a specific customer.
+     */
     public List<Animal> readAnimal(Customer customer)
     {
 	List<Animal> animalInfoList = new ArrayList<Animal>();
-	
 	String id = customer.getId();
 	
 	try
@@ -136,7 +188,12 @@ public class ReadDb
 	}
 	return animalInfoList;
     }
-
+    
+    /**
+     * 
+     * @param animal
+     * @return int speciesId from parameter
+     */
     public int readSpecies(String animal)
     {
 	int id = 0;
@@ -146,6 +203,7 @@ public class ReadDb
 	    preparedStatement = conn.prepareStatement("SELECT idAnimalSpecies FROM dyreklinik.animalspecies WHERE speciesName = ?");
 	    preparedStatement.setString(1, animal);
 	    result = preparedStatement.executeQuery();
+	    
 	    while (result.next())
 	    {
 		id = result.getInt("idAnimalSpecies");
@@ -158,28 +216,10 @@ public class ReadDb
 	return id;
     }
     
-    public int readSpecies(String animal, String customerId) 
-    {
-	int id = 0;
-	try
-	{
-	    conn = dBc.connect();
-	    preparedStatement = conn.prepareStatement("SELECT idAnimal FROM dyreklinik.animals WHERE animalName = ? AND fk_idCustomer = ?");
-	    preparedStatement.setString(1, animal);
-	    preparedStatement.setString(2, customerId);
-	    result = preparedStatement.executeQuery();
-	    while (result.next())
-	    {
-		id = result.getInt("idAnimal");
-	    }
-	} 
-	catch (SQLException e)
-	{
-	    System.err.println(e);
-	}
-	return id;
-    }
-
+    /**
+     * 
+     * @return List of all treatments in the database.
+     */
     public List<Treatment> readTreatment()
     {
 	List<Treatment> treatmentList = new ArrayList<Treatment>();
@@ -203,13 +243,19 @@ public class ReadDb
 	    preparedStatement.close();
 	    conn.close();
 
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    System.err.println(e);
 	}
 	return treatmentList;
     }
 
+    /**
+     * 
+     * @param name
+     * @return specific treatment based on parameter.
+     */
     public Treatment readTreatment(String name)
     {		
 	Treatment treatment = null;
@@ -219,6 +265,7 @@ public class ReadDb
 	    preparedStatement = conn.prepareStatement("SELECT * FROM treatments WHERE treatmentName = ?");
 	    preparedStatement.setString(1, name);
 	    result = preparedStatement.executeQuery();
+	    
 	    while (result.next())
 	    {
 		String id = result.getString("idTreatment");
@@ -230,16 +277,21 @@ public class ReadDb
 		treatment = new Treatment(id, treatmentName, price, duration, comment);
 	    }
 
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    e.printStackTrace();
 	}
 	return treatment;
     }
 
-    public ArrayList<String> readTime()
+    /**
+     * 
+     * @return
+     */
+    public List<String> readTime()
     {
-	ArrayList<String> timeList = new ArrayList<String>();
+	List<String> timeList = new ArrayList<String>();
 
 	try
 	{
@@ -251,22 +303,24 @@ public class ReadDb
 	    {
 		String time = result.getString("time");
 		String min = result.getString("min");
-
 		String timeMin = time + " :" + min;
-
 		timeList.add(timeMin);
-
 	    }
 	    preparedStatement.close();
 	    conn.close();
-
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    System.err.println(e);
 	}
 	return timeList;
     }
     
+    /**
+     * 
+     * @param username
+     * @return hashed string.
+     */
     public String getPassword(String username)
     {
 	String password = "";
@@ -286,16 +340,21 @@ public class ReadDb
 	    
 	    preparedStatement.close();
 	    conn.close();
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    System.err.println(e);
 	}
 	return password;
     }
 
-    public ArrayList<Booking> readBooking()
+    /**
+     * 
+     * @return List of all bookings in the database.
+     */
+    public List<Booking> readBooking()
     {
-	ArrayList<Booking> bookingList = new ArrayList<Booking>();
+	List<Booking> bookingList = new ArrayList<Booking>();
 
 	try
 	{
@@ -317,13 +376,19 @@ public class ReadDb
 	    preparedStatement.close();
 	    conn.close();
 
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    System.err.println(e);
 	}
 	return bookingList;
     }
 
+    /**
+     * 
+     * @param phone
+     * @return true if parameter matches a value in the database.
+     */
     public boolean getPhone(String phone)
     {
 	String phoneNum = "";
@@ -347,7 +412,12 @@ public class ReadDb
 	return phoneNum.equals(phone);
     }
 
-    public boolean getName(String treatmentName) 
+    /**
+     * 
+     * @param treatmentName
+     * @return true if parameter matches a value in the database. 
+     */
+    public boolean getTreatmentName(String treatmentName) 
     {
 	String nameCheck = "";
 

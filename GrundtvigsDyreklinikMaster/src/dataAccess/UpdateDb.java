@@ -1,6 +1,8 @@
 /**
- * Jogvan, Elvis, Kenneth
+ * Jogvan, Elvis, Kenneth, Tina
+ * Updates the database.
  */
+
 package dataAccess;
 
 import java.sql.Connection;
@@ -15,7 +17,6 @@ public class UpdateDb
 
     /**
      * Updating a specific customer in the database
-     * 
      * @param name
      * @param address
      * @param phone
@@ -28,7 +29,6 @@ public class UpdateDb
 	try
 	{
 	    preparedStatement = conn.prepareStatement("UPDATE customers SET name = ?, address = ?, phone = ?, mail = ? WHERE idCustomer = " + id);
-
 	    preparedStatement.setString(1, name);
 	    preparedStatement.setString(2, address);
 	    preparedStatement.setString(3, phone);
@@ -36,8 +36,8 @@ public class UpdateDb
 	    preparedStatement.executeUpdate();
 	    preparedStatement.close();
 	    conn.close();
-
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    e.printStackTrace();
 	}
@@ -45,7 +45,6 @@ public class UpdateDb
 
     /**
      * Updating a specific treatment in the database
-     * 
      * @param treatmentName
      * @param price
      * @param duration
@@ -58,7 +57,6 @@ public class UpdateDb
 	try
 	{
 	    preparedStatement = conn.prepareStatement("UPDATE treatments SET treatmentName = ?, price = ?, duration = ?, comment = ? WHERE idTreatment = " + id);
-
 	    preparedStatement.setString(1, treatmentName);
 	    preparedStatement.setString(2, price);
 	    preparedStatement.setString(3, duration);
@@ -66,11 +64,10 @@ public class UpdateDb
 	    preparedStatement.executeUpdate();
 	    preparedStatement.close();
 	    conn.close();
-
-	} catch (SQLException e)
+	} 
+	catch (SQLException e)
 	{
 	    e.printStackTrace();
 	}
     }
-
 }

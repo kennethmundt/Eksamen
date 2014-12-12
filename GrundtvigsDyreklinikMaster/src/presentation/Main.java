@@ -1,5 +1,6 @@
 /**
- * @author kenneth
+ * @author kenneth, Jogvan, Tina og Elvis
+ * Starts the program.
  */
 
 package presentation;

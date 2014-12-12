@@ -1,0 +1,182 @@
+/**
+ * @author Kenneth, Tina, Jogvan og Elvis
+ * Responsible for passing read arguments to dataAccess
+ */
+
+package application;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
+import dataAccess.ReadDb;
+
+public class ReadApp
+{
+    private ReadDb readDb = new ReadDb();
+
+    /**
+     * Passes a string to be read in the database.
+     * @param animal
+     * @return int animalSpeciesId
+     */
+    public int readAnimal(String animal)
+    {
+	return readDb.readSpecies(animal);
+    }
+    
+    /**
+     * Passes two strings to be read in the database.
+     * @param animal
+     * @param customerId
+     * @return int animalId
+     */
+    public int readAnimal(String animal, String customerId)
+    {
+	return readDb.readSpecies(animal, customerId);
+    }
+
+    /**
+     * Use this method to get an object array of all possible
+     * animalSpecies.
+     * @return object array of all possible animmals
+     */
+    public Object[] readAnimal()
+    {
+	Object[] animal = readDb.readAnimal().toArray();
+
+	return animal;
+    }
+
+    /**
+     * Get all animals of a specific customer.
+     * @param customer
+     * @return objeck array of animals.
+     */
+    public Object[] readAnimal(Customer customer)
+    {
+	Object[] animal = readDb.readAnimal(customer).toArray();
+
+	return animal;
+    }
+
+    /**
+     * Get all possible times
+     * @return object array of times
+     */
+    public Object[] readTime()
+    {
+	Object[] timeList = readDb.readTime().toArray();
+	return timeList;
+    }
+
+    /**
+     * Read all treatments
+     * @return object array of treatments
+     */
+    public Object[] readTreatment()
+    {
+	Object[] treatment = readDb.readTreatment().toArray();
+	return treatment;
+    }
+
+    /**
+     * Create a tableModel of bookings
+     * @return tableModel of bookings
+     */
+    public DefaultTableModel getBookingTableModel()
+    {
+	List<Booking> bookingList = new ArrayList<Booking>(readDb.readBooking());
+
+	String[] columns = { "Navn", "Telefon", "Dato", "Dyrenavn", "Art", "Behandling" };
+	DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+
+	for (int i = 0; i < bookingList.size(); ++i)
+	{
+	    String customerName = bookingList.get(i).getCustomerName();
+	    String customerPhone = bookingList.get(i).getCustomerPhone();
+	    String date = bookingList.get(i).getDateTime();
+	    String animalName = bookingList.get(i).getAnimalName();
+	    String species = bookingList.get(i).getSpecies();
+	    String treatmentName = bookingList.get(i).getTreatmentName();
+
+	    Object[] data = { customerName, customerPhone, date, animalName, species, treatmentName };
+	    tableModel.addRow(data);
+	}
+	return tableModel;
+    }
+
+    /**
+     * Create a tableModel of customers
+     * @return tableModel of customers
+     */
+    public DefaultTableModel getCustomerTableModel()
+    {
+	List<Customer> customerList = new ArrayList<Customer>(readDb.readCustomer());
+
+	String[] columns = { "id", "Navn", "Adresse", "Telefon", "Mail" };
+	DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+
+	for (int i = 0; i < customerList.size(); ++i)
+	{
+	    String id = customerList.get(i).getId();
+	    String name = customerList.get(i).getName();
+	    String address = customerList.get(i).getAddress();
+	    String phone = customerList.get(i).getPhone();
+	    String mail = customerList.get(i).getMail();
+
+	    Object[] data = { id, name, address, phone, mail };
+	    tableModel.addRow(data);
+	}
+	return tableModel;
+    }
+
+    /**
+     * Create a tableModel of treatments
+     * @return tableModel of treatments
+     */
+    public DefaultTableModel getTreatmentTableModel()
+    {
+	List<Treatment> treatmentList = new ArrayList<Treatment>(readDb.readTreatment());
+
+	String[] columns = { "id", "Behandling", "Pris", "Varighed", "Kommentar" };
+	DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+
+	for (int i = 0; i < treatmentList.size(); ++i)
+	{
+	    String id = treatmentList.get(i).getId();
+	    String treatment = treatmentList.get(i).getTreatmentName();
+	    String price = treatmentList.get(i).getPrice();
+	    String duration = treatmentList.get(i).getDuration();
+	    String comment = treatmentList.get(i).getComment();
+
+	    Object[] data = { id, treatment, price, duration, comment };
+	    tableModel.addRow(data);
+	}
+	return tableModel;
+    }
+
+    /**
+     * @param phone
+     * @return customer who has the passed phone number
+     */
+    public Customer readCustomer(String phone)
+    {
+	Customer customer = readDb.readCustomer(phone);
+
+	return customer;
+    }
+
+    /**
+     * 
+     * @param treatmentName
+     * @return treatment matching the passed treatmentName
+     */
+    public Treatment readTreatment(String treatmentName)
+    {
+	Treatment treatment = readDb.readTreatment(treatmentName);
+
+	return treatment;
+    }
+}

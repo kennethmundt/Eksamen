@@ -1,6 +1,6 @@
 /**
  * @author kenneth, Tina, Elvis og Jogvan
- * Contains all information needed to create a booking object
+ * "Blueprint" of how to create a booking.
  */
 
 package application;

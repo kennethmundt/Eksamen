@@ -1,5 +1,6 @@
 /**
- * @author Tina og Kenneth
+ * @author Tina, Kenneth, Elvis og Jogvan
+ * Gui to create a customer
  */
 
 package presentation;
@@ -27,7 +28,6 @@ public class CreateCustomerGui extends JFrame implements ActionListener
     private ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
     private ControllerApp controller = new ControllerApp();
     private InputValidater validater = new InputValidater();
-    
     private JPanel customerPanel;
     private JPanel animalPanel;
     private JTextField nameTxt;
@@ -212,7 +212,6 @@ public class CreateCustomerGui extends JFrame implements ActionListener
 	    }
 	   
 	    controller.create(name, address, phone, mail);
-
 	    confirmationTime.confirmation("Kunden er oprettet, tilføj gerne en dyr. Dette vindue lukker ned om 2 sek.", "Velkommen");
 
 	    nameTxt.setText("");
@@ -221,7 +220,6 @@ public class CreateCustomerGui extends JFrame implements ActionListener
 	    mailTxt.setText("");
 
 	    switchToAnimalPnl();
-
 	} 
 	else if (e.getSource() == addAnimalBtn)
 	{
@@ -243,19 +241,12 @@ public class CreateCustomerGui extends JFrame implements ActionListener
 		return;
 	    }
 
-//	    boolean animalAgeNotValidated = validater.validateAge(animalAge);
-//	    if (animalAgeNotValidated)
-//	    {
-//		//do something
-//		//return;
-//	    }
-
 	    animalArea.append(animal + " " + animalName + " " + animalAge + "\n");
-
 	    controller.create(animalName, animalAge, id);
 
 	    animalNameTxt.setText("");
 	    ageTxt.setText("");
+	    animalCombo.setSelectedIndex(-1);
 	} 
 	else if (e.getSource() == okBtn)
 	{
@@ -268,7 +259,7 @@ public class CreateCustomerGui extends JFrame implements ActionListener
 	}
     }
 
-    public void switchToAnimalPnl()
+    private void switchToAnimalPnl()
     {
 	createCustomerBtn.setVisible(false);
 	nameTxt.setEditable(false);

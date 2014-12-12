@@ -1,6 +1,6 @@
 /**
  * @author Kenneth, Tina, Elvis og Jogvan
- * Contains all info needed to create an animal
+ * "Blueprint" of how to create an animal.
  */
 
 package application;
@@ -47,13 +47,6 @@ public class Animal
     {
 	this.animalBirth = animalBirth;
     }
-
-//    @Override
-//    public String toString()
-//    {
-//	return "Animal [speciesId=" + speciesId + ", animalName=" + animalName
-//		+ ", animalBirth=" + animalBirth + "]";
-//    }
     
     @Override
     public String toString()

@@ -1,5 +1,6 @@
 /**
- * @author Elvis og Jogvan
+ * @author Elvis, Jogvan, Tina og Kenneth
+ * Displays all treatments.
  */
 
 package presentation;
@@ -74,7 +75,6 @@ public class TreatmentViewGui extends JPanel implements ActionListener
 	{
 	    tableModel = controllerApp.getTreatmentTableModel();
 	    treatmentTable.setModel(tableModel);
-	    
 	}
 	    treatmentTable.setPreferredScrollableViewportSize(new Dimension(800, 500));
 	    treatmentTable.setFillsViewportHeight(true);

@@ -20,7 +20,7 @@ public class UpdateApp
      * @param mailColumn
      * @param customerId
      */
-    public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
+    public void saveChangesCustomer(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
 	updateDb.updateCustomer(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }

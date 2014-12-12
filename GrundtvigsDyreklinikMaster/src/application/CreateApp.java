@@ -1,6 +1,6 @@
 /**
  * @author kenneth, Tina, Elvis og Jogvan
- * Responsible for creating objects of customers, animals, treatments and bookings
+ * Responsible for creating objects of customers, animals, treatments and bookings.
  */
 
 package application;
@@ -12,8 +12,7 @@ public class CreateApp
     private CreateDb createDb = new CreateDb();
 
     /**
-     * Creates a new customer and passes this customer as a parameter to insert()
-     * in the dataAccess layer.
+     * Creates a new customer and passes this customer as a parameter to insert() in the dataAccess layer.
      * @param name
      * @param address
      * @param phone
@@ -22,12 +21,11 @@ public class CreateApp
     public void create(String name, String address, String phone, String mail)
     {
 	Customer customer = new Customer(name, address, phone, mail);
-
 	createDb.insert(customer);
     }
 
     /**
-     * Creates a new animal and passes it  
+     * Creates a new animal and passes it as a parameter to insert() in the dataAccess layer.  
      * @param animalName
      * @param animalBirth
      * @param animal
@@ -38,6 +36,14 @@ public class CreateApp
 	createDb.insert(animal);
     }
     
+    /**
+     * Creates a new booking and passes it as a parameter to insert() in the dataAccess layer.
+     * @param treatmentId
+     * @param animalId
+     * @param dateString
+     * @param time
+     * @param customerId
+     */
     public void create(String treatmentId, int animalId, String dateString, String time, int customerId)
     {
 	int treatId = Integer.parseInt(treatmentId);
@@ -47,7 +53,7 @@ public class CreateApp
     }
     
     /**
-     * Creates a new Treatment and and passes this Treatment as a parameter to insert()
+     * Creates a new Treatment and and passes this Treatment as a parameter to insert() in the dataAccess layer.
      * @param treatmentName
      * @param price
      * @param duration

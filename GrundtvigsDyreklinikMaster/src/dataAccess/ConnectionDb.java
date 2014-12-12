@@ -1,5 +1,6 @@
 /**
- * @author Jogvan og Elvis
+ * @author Jogvan, Elvis, Tina og Kenneth
+ * Creates a connection to the database
  */
 
 package dataAccess;

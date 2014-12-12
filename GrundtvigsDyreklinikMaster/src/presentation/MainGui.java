@@ -1,5 +1,6 @@
 /**
- * @author Tina og Kenneth
+ * @author Tina, Kenneth, Jogvan og Elvis
+ * Shows the main gui.
  */
 
 package presentation;
@@ -35,7 +36,6 @@ public class MainGui extends JFrame implements ActionListener
 {
     private ControllerApp controller = new ControllerApp();
     private InputValidater validater = new InputValidater();
-
     private JPanel contentPane;
     private JPanel startCard;
     private JPanel customerOverviewPnl;
@@ -53,7 +53,6 @@ public class MainGui extends JFrame implements ActionListener
     private int loginAttempts = 0;
     private String passwordInput;
     private String hashedPassword;
-
     private CardLayout cardLayout = new CardLayout();
 
     public MainGui()
@@ -203,9 +202,9 @@ public class MainGui extends JFrame implements ActionListener
 	treatmentOverviewPnl = new TreatmentViewGui();
 	bookingOverviewPnl = new BookingViewGui();
 
-	tabbedPane.addTab("Kundeoversigt", new ImageIcon("image/addMeIcon.png"), customerOverviewPnl, null); //Icon vises ikke
-	tabbedPane.addTab("Behandlingsoversigt", new ImageIcon("image/addMeIcon.png"), treatmentOverviewPnl, null); //Icon vises ikke
-	tabbedPane.addTab("Vis bookinger", new ImageIcon("image/addMeIcon.png"), bookingOverviewPnl, null);
+	tabbedPane.addTab("Kundeoversigt", null, customerOverviewPnl, null);
+	tabbedPane.addTab("Behandlingsoversigt", null, treatmentOverviewPnl, null);
+	tabbedPane.addTab("Vis bookinger", null, bookingOverviewPnl, null);
 	cardLayout.show(contentPane, "employeeUi");
     }
 

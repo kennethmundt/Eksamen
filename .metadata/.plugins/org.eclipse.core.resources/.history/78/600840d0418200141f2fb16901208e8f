@@ -1,0 +1,14 @@
+/**
+ * @author kenneth, Jogvan, Tina og Elvis
+ */
+
+package presentation;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+	MainGui mainGui = new MainGui();
+	mainGui.setVisible(true);
+    }
+}

@@ -1,6 +1,7 @@
 /**
- * @author Jogvan, Elvis, Kenneth
+ * @author Jogvan, Elvis, Kenneth og Tina
  */
+
 package dataAccess;
 
 import java.sql.Connection;
@@ -30,10 +31,8 @@ public class CreateDb
 	try
 	{
 	    String insert = "INSERT INTO customers VALUES(default, ?, ?, ?, ?)";
-
 	    conn = dBc.connect();
 	    preparedStatement = conn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-
 	    preparedStatement.setString(1, customer.getName());
 	    preparedStatement.setString(2, customer.getAddress());
 	    preparedStatement.setString(3, customer.getPhone());
@@ -59,14 +58,12 @@ public class CreateDb
      * Adding a new animal to the database
      * @param animal
      */
-
     public void insert(Animal animal)
     {
 	try
 	{
 	    conn = dBc.connect();
 	    preparedStatement = conn.prepareStatement("INSERT INTO animals VALUES(default, ?, ?, ?, ?)");
-
 	    preparedStatement.setString(1, animal.getAnimalBirth());
 	    preparedStatement.setString(2, animal.getAnimalName());
 	    preparedStatement.setInt(3, animal.getSpeciesId());
@@ -91,7 +88,6 @@ public class CreateDb
 	{
 	    conn = dBc.connect();
 	    preparedStatement = conn.prepareStatement("INSERT INTO treatments VALUES(default, ?, ?, ?, ?)");
-
 	    preparedStatement.setString(1, treatment.getTreatmentName());
 	    preparedStatement.setString(2, treatment.getPrice());
 	    preparedStatement.setString(3, treatment.getDuration());
@@ -106,6 +102,10 @@ public class CreateDb
 	}
     }
 
+    /**
+     * inserts a booking into the database.
+     * @param booking
+     */
     public void insert(Booking booking)
     {
 	try

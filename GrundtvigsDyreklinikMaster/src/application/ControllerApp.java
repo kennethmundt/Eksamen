@@ -20,9 +20,9 @@ public class ControllerApp
 
     ///////////////////////////////// Update/Write ////////////////////////////////////////////
     
-    public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
+    public void saveChangesCustomer(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
     {
-	updateApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
+	updateApp.saveChangesCustomer(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
     }
     
     public void saveChangesTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
@@ -55,7 +55,6 @@ public class ControllerApp
     public DefaultTableModel getTableModel()
     {
 	DefaultTableModel data = readApp.getCustomerTableModel();
-
 	return data;
     }
     
@@ -87,7 +86,6 @@ public class ControllerApp
     public DefaultTableModel getTreatmentTableModel()
     {
 	DefaultTableModel data = readApp.getTreatmentTableModel();
-
 	return data;
     }
     
@@ -124,7 +122,7 @@ public class ControllerApp
     
     public boolean getName(String treatmentName)
     {
-	return readDb.getName(treatmentName);
+	return readDb.getTreatmentName(treatmentName);
     }
     
     ///////////////////////////////// Delete ////////////////////////////////////////////

@@ -34,18 +34,16 @@ public class ReadApp
      */
     public int readAnimal(String animal, String customerId)
     {
-	return readDb.readSpecies(animal, customerId);
+	return readDb.readAnimal(animal, customerId);
     }
 
     /**
-     * Use this method to get an object array of all possible
-     * animalSpecies.
+     * Use this method to get an object array of all possible animalSpecies.
      * @return object array of all possible animmals
      */
     public Object[] readAnimal()
     {
 	Object[] animal = readDb.readAnimal().toArray();
-
 	return animal;
     }
 
@@ -57,7 +55,6 @@ public class ReadApp
     public Object[] readAnimal(Customer customer)
     {
 	Object[] animal = readDb.readAnimal(customer).toArray();
-
 	return animal;
     }
 
@@ -164,7 +161,6 @@ public class ReadApp
     public Customer readCustomer(String phone)
     {
 	Customer customer = readDb.readCustomer(phone);
-
 	return customer;
     }
 
@@ -176,7 +172,6 @@ public class ReadApp
     public Treatment readTreatment(String treatmentName)
     {
 	Treatment treatment = readDb.readTreatment(treatmentName);
-
 	return treatment;
     }
 }
