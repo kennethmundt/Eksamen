@@ -9,7 +9,7 @@ import dataAccess.CreateDb;
 
 public class CreateApp
 {
-    CreateDb createDb = new CreateDb();
+    private CreateDb createDb = new CreateDb();
 
     /**
      * Creates a new customer and passes this customer as a parameter to insert()

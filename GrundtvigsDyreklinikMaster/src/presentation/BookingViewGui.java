@@ -11,7 +11,7 @@ import application.ControllerApp;
 
 public class BookingViewGui extends JPanel
 {
-    ControllerApp controller = new ControllerApp();
+    private ControllerApp controller = new ControllerApp();
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
 

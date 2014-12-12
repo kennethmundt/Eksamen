@@ -23,9 +23,9 @@ import application.InputValidater;
 
 public class CreateTreatmentGui extends JFrame implements ActionListener
 {
-    ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
-    ControllerApp controllerApp = new ControllerApp();
-    InputValidater validater = new InputValidater();
+    private ConfirmationDialogGui confirmationTime = new ConfirmationDialogGui();
+    private ControllerApp controllerApp = new ControllerApp();
+    private InputValidater validater = new InputValidater();
     
     private JPanel treatmentPanel;
     private JTextField treatmentNameTxt;
@@ -34,10 +34,10 @@ public class CreateTreatmentGui extends JFrame implements ActionListener
     private JTextField commentTxt;
     private JButton okBtn;
     private JLabel TreatmentLbl;
-    String price;
-    String duration;
-    String treatmentName;
-    String comment;
+    private String price;
+    private String duration;
+    private String treatmentName;
+    private String comment;
 
     public CreateTreatmentGui()
     {

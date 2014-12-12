@@ -1,0 +1,44 @@
+package application;
+
+import dataAccess.ReadDb;
+
+public class ReadApp
+{
+    private ReadDb readDb = new ReadDb();
+    
+    public int readAnimal(String animal)
+    {
+	return readDb.readSpecies(animal);
+    }
+    
+    public int readAnimal(String animal, String customerId)
+    {
+	return readDb.readSpecies(animal, customerId);
+    }
+
+    public Object[] readAnimal()
+    {
+        Object[] animal = readDb.readAnimal().toArray();
+    
+        return animal;
+    }
+
+    public Object[] readAnimal(Customer customer)
+    {
+        Object[] animal = readDb.readAnimal(customer).toArray();
+    
+        return animal;
+    }
+
+    public Object[] readTime()
+    {
+        Object[] timeList = readDb.readTime().toArray();
+        return timeList;
+    }
+
+    public Object[] readTreatment()
+    {
+        Object[] treatment = readDb.readTreatment().toArray();
+        return treatment;
+    }
+}

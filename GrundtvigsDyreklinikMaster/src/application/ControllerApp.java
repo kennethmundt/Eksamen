@@ -12,13 +12,11 @@ import dataAccess.ReadDb;
 
 public class ControllerApp
 {
-    ReadDb readDb = new ReadDb();
-    UpdateApp updateApp = new UpdateApp();
-    DeleteApp deleteApp = new DeleteApp();
-    OverviewApp overviewApp = new OverviewApp();
-    CreateApp createApp = new CreateApp();
-    DropDownApp readDropDown = new DropDownApp();
-    ReadApp readApp = new ReadApp();
+    private ReadDb readDb = new ReadDb();
+    private UpdateApp updateApp = new UpdateApp();
+    private DeleteApp deleteApp = new DeleteApp();
+    private CreateApp createApp = new CreateApp();
+    private ReadApp readApp = new ReadApp();
 
     ///////////////////////////////// Update/Write ////////////////////////////////////////////
     
@@ -56,14 +54,14 @@ public class ControllerApp
     
     public DefaultTableModel getTableModel()
     {
-	DefaultTableModel data = overviewApp.getTableModel();
+	DefaultTableModel data = readApp.getCustomerTableModel();
 
 	return data;
     }
     
     public Customer readCustomer(String phone)
     {
-	return overviewApp.readCustomer(phone);
+	return readApp.readCustomer(phone);
     }
     
     public int readAnimal(String animal)
@@ -78,34 +76,34 @@ public class ControllerApp
 
     public Object[] getAnimal()
     {
-	return readDropDown.readAnimal();
+	return readApp.readAnimal();
     }
     
     public Object[] getAnimal(Customer customer)
     {
-	return readDropDown.readAnimal(customer);
+	return readApp.readAnimal(customer);
     }
     
     public DefaultTableModel getTreatmentTableModel()
     {
-	DefaultTableModel data = overviewApp.getTreatmentTableModel();
+	DefaultTableModel data = readApp.getTreatmentTableModel();
 
 	return data;
     }
     
     public Treatment readTreatment(String treatmentName)
     {
-	return overviewApp.readTreatment(treatmentName);
+	return readApp.readTreatment(treatmentName);
     }
     
     public Object[] getTreatment()
     {
-	return readDropDown.readTreatment();
+	return readApp.readTreatment();
     }
     
     public Object[] getTime()
     {
-	return readDropDown.readTime();
+	return readApp.readTime();
     }
 
     public String getPassword(String username)
@@ -115,7 +113,7 @@ public class ControllerApp
 
     public DefaultTableModel getBookingTableModel()
     {
-	DefaultTableModel data = overviewApp.getBookingTableModel();
+	DefaultTableModel data = readApp.getBookingTableModel();
 	return data;
     }
 

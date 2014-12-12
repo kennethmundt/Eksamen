@@ -18,10 +18,10 @@ import application.Treatment;
 
 public class ReadDb
 {
-    ConnectionDb dBc = new ConnectionDb();
-    Connection conn = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet result = null;
+    private ConnectionDb dBc = new ConnectionDb();
+    private Connection conn = null;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet result = null;
 
     public ArrayList<Customer> readCustomer()
     {

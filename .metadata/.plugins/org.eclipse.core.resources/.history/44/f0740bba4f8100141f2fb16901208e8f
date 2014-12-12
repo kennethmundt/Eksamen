@@ -1,0 +1,143 @@
+/**
+ * @author kenneth, Tina, Elvis og Jogvan
+ * First class to receive input from the presentation layer.
+ * Distributes data to other classes in the application layer.
+ */
+
+package application;
+
+import javax.swing.table.DefaultTableModel;
+
+import dataAccess.ReadDb;
+
+public class ControllerApp
+{
+    ReadDb readDb = new ReadDb();
+    UpdateApp updateApp = new UpdateApp();
+    DeleteApp deleteApp = new DeleteApp();
+    OverviewApp overviewApp = new OverviewApp();
+    CreateApp createApp = new CreateApp();
+    DropDownApp readDropDown = new DropDownApp();
+    ReadApp readApp = new ReadApp();
+
+    ///////////////////////////////// Update/Write ////////////////////////////////////////////
+    
+    public void saveChanges(String nameColumn, String addressColumn, String phoneColumn, String mailColumn, String customerId)
+    {
+	updateApp.saveChanges(nameColumn, addressColumn, phoneColumn, mailColumn, customerId);
+    }
+    
+    public void saveChangesTreatment(String treatmentColumn, String priceColumn, String durationColumn, String commentColumn, String customerId)
+    {
+	updateApp.saveChangesTreatment(treatmentColumn, priceColumn, durationColumn, commentColumn, customerId);
+    }
+    
+    public void create(String name, String address, String phone, String mail)
+    {
+	createApp.create(name, address, phone, mail);
+    }
+
+    public void create(String animalName, String animalBirth, int id)
+    {
+	createApp.create(animalName, animalBirth, id);
+    }
+    
+    public void create(String treatmentId, int animalId, String dateString, String time, int customerId)
+    {
+	createApp.create(treatmentId, animalId, dateString, time, customerId);
+    }
+    
+    public void createTreatment(String treatmentName, String price, String duration, String comment)
+    {
+	createApp.createTreatment(treatmentName, price, duration, comment);
+    }
+    
+    ///////////////////////////////// Read ////////////////////////////////////////////
+    
+    public DefaultTableModel getTableModel()
+    {
+	DefaultTableModel data = overviewApp.getTableModel();
+
+	return data;
+    }
+    
+    public Customer readCustomer(String phone)
+    {
+	return overviewApp.readCustomer(phone);
+    }
+    
+    public int readAnimal(String animal)
+    {
+	return readApp.readAnimal(animal);
+    }
+    
+    public int readAnimal(String animal, String customerId)
+    {
+	return readApp.readAnimal(animal, customerId);
+    }
+
+    public Object[] getAnimal()
+    {
+	return readDropDown.readAnimal();
+    }
+    
+    public Object[] getAnimal(Customer customer)
+    {
+	return readDropDown.readAnimal(customer);
+    }
+    
+    public DefaultTableModel getTreatmentTableModel()
+    {
+	DefaultTableModel data = overviewApp.getTreatmentTableModel();
+
+	return data;
+    }
+    
+    public Treatment readTreatment(String treatmentName)
+    {
+	return overviewApp.readTreatment(treatmentName);
+    }
+    
+    public Object[] getTreatment()
+    {
+	return readDropDown.readTreatment();
+    }
+    
+    public Object[] getTime()
+    {
+	return readDropDown.readTime();
+    }
+
+    public String getPassword(String username)
+    {
+	return readDb.getPassword(username);
+    }
+
+    public DefaultTableModel getBookingTableModel()
+    {
+	DefaultTableModel data = overviewApp.getBookingTableModel();
+	return data;
+    }
+
+    public boolean getPhone(String phone)
+    {
+	return readDb.getPhone(phone);
+    }
+    
+    public boolean getName(String treatmentName)
+    {
+	return readDb.getName(treatmentName);
+    }
+    
+    ///////////////////////////////// Delete ////////////////////////////////////////////
+    
+    public void deleteCustomer(String phone)
+    {
+	deleteApp.deleteCustomer(phone);
+    }
+    
+    public void deleteTreatment(String treatmentName)
+    {
+	deleteApp.deleteTreatment(treatmentName);
+    }
+}

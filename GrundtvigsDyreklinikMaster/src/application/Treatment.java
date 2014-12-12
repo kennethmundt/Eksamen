@@ -1,18 +1,18 @@
 /**
- * @author Elvis og Jogvan
+ * @author Elvis, Jogvan, Tina og Kenneth
+ * "Blueprint" of how to make a treatment
  */
-
 
 package application;
 
 public class Treatment
 {
     private String id;
-    String treatmentName;
-    String price;
-    String duration;
-    String comment;
-    
+    private String treatmentName;
+    private String price;
+    private String duration;
+    private String comment;
+
     public Treatment(String id, String treatmentName, String price, String duration, String comment)
     {
 	this.id = id;

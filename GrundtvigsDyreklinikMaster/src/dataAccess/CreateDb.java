@@ -16,10 +16,10 @@ import application.Treatment;
 
 public class CreateDb
 {
-    Connection conn = null;
-    PreparedStatement preparedStatement = null;
-    ConnectionDb dBc = new ConnectionDb();
-    int customerId;
+    private Connection conn = null;
+    private PreparedStatement preparedStatement = null;
+    private ConnectionDb dBc = new ConnectionDb();
+    private int customerId;
 
     /**
      * Adding a new customer to the database

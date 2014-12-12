@@ -1,0 +1,11 @@
+/**
+ * @author Kenneth, Jogvan, Elvis
+ */
+package application;
+
+import dataAccess.ReadDb;
+
+public class OverviewApp
+{
+    private ReadDb readDb = new ReadDb();
+}

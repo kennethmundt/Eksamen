@@ -9,10 +9,10 @@ import java.sql.DriverManager;
 
 public class ConnectionDb
 {
-    String user = "kennethmundt";
-    String password = "dreamteam";
-    String database = "dyreklinik";
-    String url = "jdbc:mysql://localhost/";
+    private String user = "kennethmundt";
+    private String password = "dreamteam";
+    private String database = "dyreklinik";
+    private String url = "jdbc:mysql://localhost/";
 
     /**
      * @return database connection

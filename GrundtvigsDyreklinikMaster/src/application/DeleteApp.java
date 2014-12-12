@@ -4,7 +4,7 @@ import dataAccess.DeleteDb;
 
 public class DeleteApp
 {
-    DeleteDb deleteDb = new DeleteDb();
+    private DeleteDb deleteDb = new DeleteDb();
     
     /**
      * Passing data from presentation to dataAccess

@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 public class UpdateDb
 {
-    Connection conn = null;
-    PreparedStatement preparedStatement = null;
-    ConnectionDb dBc = new ConnectionDb();
+    private Connection conn = null;
+    private PreparedStatement preparedStatement = null;
+    private ConnectionDb dBc = new ConnectionDb();
 
     /**
      * Updating a specific customer in the database
