@@ -43,7 +43,6 @@
 <fullyQualifiedTypeName name="java.awt.PageAttributes"/>
 <fullyQualifiedTypeName name="org.jasypt.exceptions.PasswordAlreadyCleanedException"/>
 <fullyQualifiedTypeName name="java.util.function.ToDoubleBiFunction"/>
-<fullyQualifiedTypeName name="org.jasypt.util.password.StrongPasswordEncryptor"/>
 <fullyQualifiedTypeName name="org.jasypt.util.password.PasswordEncryptor"/>
 <fullyQualifiedTypeName name="presentation.CustomerViewGui"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
@@ -58,6 +57,7 @@
 <fullyQualifiedTypeName name="dataAccess.DeleteDb"/>
 <fullyQualifiedTypeName name="dataAccess.CreateDb"/>
 <fullyQualifiedTypeName name="dataAccess.ReadDb"/>
-<fullyQualifiedTypeName name="presentation.MainGui"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="org.jasypt.util.password.StrongPasswordEncryptor"/>
+<fullyQualifiedTypeName name="presentation.MainGui"/>
 </qualifiedTypeNameHistroy>

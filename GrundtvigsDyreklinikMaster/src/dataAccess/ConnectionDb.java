@@ -10,8 +10,8 @@ import java.sql.DriverManager;
 
 public class ConnectionDb
 {
-    private String user = "kennethmundt";
-    private String password = "dreamteam";
+    private String user = "root";
+    private String password = "";
     private String database = "dyreklinik";
     private String url = "jdbc:mysql://localhost/";
 

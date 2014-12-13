@@ -27,8 +27,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import org.jasypt.util.password.StrongPasswordEncryptor;
-
 import application.ControllerApp;
 import application.InputValidater;
 
@@ -111,7 +109,7 @@ public class MainGui extends JFrame implements ActionListener
 
 	try
 	{
-	    BufferedImage logo = ImageIO.read(new File("images/logo.png"));
+	    BufferedImage logo = ImageIO.read(MainGui.class.getResourceAsStream("/images/logo.png"));
 	    employeePnl.setLayout(null);
 	    JLabel picLabel = new JLabel(new ImageIcon(logo));
 	    picLabel.setBounds(35, 17, 256, 256);
